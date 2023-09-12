@@ -1,9 +1,8 @@
 {
   "private": true,
-  "packageManager": "pnpm@8.2.0",
+  "name": "elegance-wallpaper",
   "engines": {
-    "node": ">=18",
-    "pnpm": ">=7"
+    "node": ">=18"
   },
   "scripts": {
     "dev": "next dev",
