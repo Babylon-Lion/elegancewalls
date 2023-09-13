@@ -39,19 +39,27 @@ function ThreeItemGridItem({
 
 export async function ThreeItemGrid() {
   // Collections that start with `hidden-*` are hidden from the search page.
+
   const homepageItems = await getCollectionProducts({
-    collection: 'hidden-homepage-featured-items'
+    collection: 'beta-1'
   });
 
-  if (!homepageItems[0] || !homepageItems[1] || !homepageItems[2]) return null;
-
-  const [firstProduct, secondProduct, thirdProduct] = homepageItems;
+  const displayHomepageItems =
+    homepageItems.length >= 0
+      ? homepageItems.slice(0, 3).map((item, index) => {
+          return index === 0 ? (
+            <ThreeItemGridItem size="full" item={item} priority={true} key={index} />
+          ) : index === 1 ? (
+            <ThreeItemGridItem size="half" item={item} priority={true} key={index} />
+          ) : (
+            <ThreeItemGridItem size="half" item={item} key={index} />
+          );
+        })
+      : null;
 
   return (
     <section className="mx-auto grid max-w-screen-2xl gap-4 px-4 pb-4 md:grid-cols-6 md:grid-rows-2">
-      <ThreeItemGridItem size="full" item={firstProduct} priority={true} />
-      <ThreeItemGridItem size="half" item={secondProduct} priority={true} />
-      <ThreeItemGridItem size="half" item={thirdProduct} />
+      {displayHomepageItems}
     </section>
   );
 }
