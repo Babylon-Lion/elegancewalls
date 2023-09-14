@@ -9,6 +9,12 @@ const productFragment = /* GraphQL */ `
     title
     description
     descriptionHtml
+    collections(first: 10) {
+      nodes {
+        title
+        handle
+      }
+    }
     options {
       id
       name

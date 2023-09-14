@@ -23,10 +23,17 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-select": "^1.2.2",
+    "@radix-ui/react-toast": "^1.1.4",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "lucide-react": "^0.277.0",
     "next": "^13.4.19",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
