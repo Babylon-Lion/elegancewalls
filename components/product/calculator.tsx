@@ -13,13 +13,17 @@ import { useEffect, useState } from 'react';
 
 const Calculator = ({
   collections,
-  setQuantity
+  setQuantity,
+  quantity
 }: {
   collections: { title: string; handle: string }[];
   setQuantity: (numb: number) => void;
+  quantity: number;
 }) => {
   const [collectionType, setCollectionType] = useState('');
   const [measurements, setMeasurements] = useState({ height: '', width: '', unit: 'inches' });
+
+  console.log(collectionType);
 
   //we only have to calculate measurments for those collection types
   useEffect(() => {
@@ -81,19 +85,18 @@ const Calculator = ({
     if (collectionType === 'hexa') {
       // Product is a Hexa Roll (1.06mx15.6m = 16.53m2)
       const rollCoverageArea = 16.53; // Roll coverage area in square meters
-      unit = (height * width * 1.2) / rollCoverageArea;
+      unit = (height * 1.2 * (width * 1.2)) / rollCoverageArea;
     } else if (collectionType === 'quad') {
       // Product is a Quad Roll (1.06mx10m = 10.6m2)
       const rollCoverageArea = 10.6; // Roll coverage area in square meters
-      unit = (height * width * 1.2) / rollCoverageArea;
+      unit = (height * 1.2 * (width * 1.2)) / rollCoverageArea;
     } else {
       // Product is a Mural (1m X 1m = 1m2)
       const muralCoverageArea = 1; // Mural coverage area in square meters
-      unit = ((height + 0.075) * (width + 0.075)) / muralCoverageArea;
+      unit = (((height + 0.15) * (width + 0.15)) / muralCoverageArea) * 10.7; // Adjusted mural calculation
     }
-
     // Round the unit to the nearest integer
-    unit = Math.round(unit);
+    unit = Math.ceil(unit);
 
     toast({
       variant: 'default',
@@ -161,6 +164,13 @@ const Calculator = ({
             </SelectContent>
           </Select>
         </div>
+      </div>
+      <div>
+        {quantity ? (
+          <div className="flex justify-center text-lg font-semibold">
+            Suggested Quantity: {quantity}
+          </div>
+        ) : null}
       </div>
       <button
         aria-label="Calculate"

@@ -9,7 +9,7 @@ import Calculator from './calculator';
 import Quantity from './quantity';
 
 export function ProductDescription({ product }: { product: Product }) {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
 
   return (
     <>
@@ -23,7 +23,11 @@ export function ProductDescription({ product }: { product: Product }) {
         </div>
       </div>
       <VariantSelector options={product.options} variants={product.variants} />
-      <Calculator collections={product.collections.nodes} setQuantity={setQuantity} />
+      <Calculator
+        collections={product.collections.nodes}
+        setQuantity={setQuantity}
+        quantity={quantity}
+      />
       <Quantity quantity={quantity} setQuantity={setQuantity} />
 
       {product.descriptionHtml ? (
