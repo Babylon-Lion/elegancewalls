@@ -23,8 +23,6 @@ const Calculator = ({
   const [collectionType, setCollectionType] = useState('');
   const [measurements, setMeasurements] = useState({ height: '', width: '', unit: 'inches' });
 
-  console.log(collectionType);
-
   //we only have to calculate measurments for those collection types
   useEffect(() => {
     const handlesToCheck = ['hexa', 'murals', 'quad'];
@@ -48,10 +46,56 @@ const Calculator = ({
       [id]: value
     }));
   }
+  // const calculateUnit = () => {
+  //   // Create local variables and assign the values from the state
+  //   let height = parseFloat(measurements.height);
+  //   let width = parseFloat(measurements.width);
+
+  //   if (isNaN(height) || isNaN(width)) {
+  //     return toast({
+  //       variant: 'destructive',
+  //       title: 'Please enter valid numeric values for height and width'
+  //     });
+  //   }
+
+  //   let unit = 0; // Initialize the unit variable
+
+  //   if (collectionType === 'hexa') {
+  //     // Product is a Hexa Roll (1.06mx15.6m = 16.53m2)
+  //     const rollCoverageArea = 16.53; // Roll coverage area in square meters
+  //     unit = (height  * width )*  1.44 / rollCoverageArea;
+  //   } else if (collectionType === 'quad') {
+  //     // Product is a Quad Roll (1.06mx10m = 10.6m2)
+  //     console.log('quad')
+
+  //     const rollCoverageArea = 10.6; // Roll coverage area in square meters
+  //     unit = (height * width) * 1.44 / rollCoverageArea;
+  //   } else {
+  //     // Product is a Mural (1m X 1m = 1m2)
+  //     console.log('mural')
+  //     const muralCoverageArea = 1; // Mural coverage area in square meters
+  //     unit = ((height + 0.15) * (width + 0.15)) / muralCoverageArea * 10.7; // Adjusted mural calculation
+  //     console.log(unit)
+
+  //   }
+  //   // Round the unit to the nearest integer
+  //   console.log(unit)
+  //   unit = Math.ceil(unit);
+
+  //   toast({
+  //     variant: 'default',
+  //     title: 'Success!'
+  //   });
+
+  //   setQuantity(unit ? unit : 1);
+  //   return unit;
+  // };
+
   const calculateUnit = () => {
-    // Create local variables and assign the values from the state
     let height = parseFloat(measurements.height);
     let width = parseFloat(measurements.width);
+    let unit = measurements.unit;
+    let area = 0;
 
     if (isNaN(height) || isNaN(width)) {
       return toast({
@@ -60,53 +104,62 @@ const Calculator = ({
       });
     }
 
-    // Convert height and width to meters if needed
-    switch (measurements.unit) {
-      case 'inches':
-        height *= 0.0254; // Convert inches to meters
-        width *= 0.0254;
-        break;
-      case 'feet':
-        height *= 0.3048; // Convert feet to meters
-        width *= 0.3048;
-        break;
-      case 'centimeters':
-        height *= 0.01; // Convert centimeters to meters
-        width *= 0.01;
-        break;
-      // No need to convert if the unit is already in meters
-      case 'meters':
-      default:
-        break;
-    }
-
-    let unit = 0; // Initialize the unit variable
-
-    if (collectionType === 'hexa') {
-      // Product is a Hexa Roll (1.06mx15.6m = 16.53m2)
-      const rollCoverageArea = 16.53; // Roll coverage area in square meters
-      unit = (height * 1.2 * (width * 1.2)) / rollCoverageArea;
-    } else if (collectionType === 'quad') {
-      // Product is a Quad Roll (1.06mx10m = 10.6m2)
-      const rollCoverageArea = 10.6; // Roll coverage area in square meters
-      unit = (height * 1.2 * (width * 1.2)) / rollCoverageArea;
+    if (collectionType === 'mural') {
+      switch (unit) {
+        case 'meters':
+          area = Math.ceil(((width + 0.0762) / 10.7) * ((height + 0.0762) / 10.7));
+          break;
+        case 'centimeters':
+          area = Math.ceil(((width + 7.62) / 30.48) * ((height + 7.62) / 30.48));
+          break;
+        case 'feet':
+          area = Math.ceil((width + 0.25) * (height + 0.25));
+          break;
+        case 'inches':
+          area = Math.ceil(((width + 3) / 12) * ((height + 3) / 12));
+          break;
+        default:
+          break;
+      }
     } else {
-      // Product is a Mural (1m X 1m = 1m2)
-      const muralCoverageArea = 1; // Mural coverage area in square meters
-      unit = (((height + 0.15) * (width + 0.15)) / muralCoverageArea) * 10.7; // Adjusted mural calculation
+      // Convert height and width to meters if needed
+      switch (measurements.unit) {
+        case 'inches':
+          height *= 0.0254; // Convert inches to meters
+          width *= 0.0254;
+          break;
+        case 'feet':
+          height *= 0.3048; // Convert feet to meters
+          width *= 0.3048;
+          break;
+        case 'centimeters':
+          height *= 0.01; // Convert centimeters to meters
+          width *= 0.01;
+          break;
+        // No need to convert if the unit is already in meters
+        case 'meters':
+        default:
+          break;
+      }
+      if (collectionType === 'hexa') {
+        // Product is a Hexa Roll (1.06mx15.6m = 16.53m2)
+        const rollCoverageArea = 16.53; // Roll coverage area in square meters
+        area = Math.ceil((height * width * 1.44) / rollCoverageArea);
+      } else if (collectionType === 'quad') {
+        // Product is a Quad Roll (1.06mx10m = 10.6m2)
+
+        const rollCoverageArea = 10.6; // Roll coverage area in square meters
+        area = Math.ceil((height * width * 1.44) / rollCoverageArea);
+      }
+      toast({
+        variant: 'default',
+        title: 'Success!'
+      });
     }
-    // Round the unit to the nearest integer
-    unit = Math.ceil(unit);
-
-    toast({
-      variant: 'default',
-      title: 'Success!'
-    });
-
-    console.log(unit);
-    setQuantity(Math.round(unit) ? Math.round(unit) : 1);
-    return unit;
+    setQuantity(area ? area : 1);
+    return;
   };
+  console.log(collectionType);
 
   if (!collectionType) {
     return null;
