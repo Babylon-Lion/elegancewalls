@@ -104,7 +104,7 @@ const Calculator = ({
       });
     }
 
-    if (collectionType === 'mural') {
+    if (collectionType === 'murals') {
       switch (unit) {
         case 'meters':
           area = Math.ceil(((width + 0.0762) / 10.7) * ((height + 0.0762) / 10.7));
@@ -156,6 +156,7 @@ const Calculator = ({
         title: 'Success!'
       });
     }
+    console.log(area);
     setQuantity(area ? area : 1);
     return;
   };
