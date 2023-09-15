@@ -4,7 +4,6 @@ import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue
@@ -20,7 +19,7 @@ const Calculator = ({
   setQuantity: (numb: number) => void;
 }) => {
   const [collectionType, setCollectionType] = useState('');
-  const [measurements, setMeasurments] = useState({ height: 0, width: 0, unit: 'inches' });
+  const [measurements, setMeasurements] = useState({ height: '', width: '', unit: 'inches' });
 
   //we only have to calculate measurments for those collection types
   useEffect(() => {
@@ -37,21 +36,25 @@ const Calculator = ({
     });
   }, [collections]);
 
-  const handleMeasurmentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMeasurments({ ...measurements, [e.target.id]: parseInt(e.target.value) });
-  };
+  function handleMeasurementChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const { id, value } = e.target;
 
+    setMeasurements((prevMeasurements) => ({
+      ...prevMeasurements,
+      [id]: value
+    }));
+  }
   const calculateUnit = () => {
-    if (!measurements.height || !measurements.width) {
+    // Create local variables and assign the values from the state
+    let height = parseFloat(measurements.height);
+    let width = parseFloat(measurements.width);
+
+    if (isNaN(height) || isNaN(width)) {
       return toast({
         variant: 'destructive',
-        title: 'Please enter a valid height and width'
+        title: 'Please enter valid numeric values for height and width'
       });
     }
-
-    // Create local variables and assign the values from the state
-    let height = measurements.height;
-    let width = measurements.width;
 
     // Convert height and width to meters if needed
     switch (measurements.unit) {
@@ -116,26 +119,26 @@ const Calculator = ({
         <div className="w-1/4">
           <Label>Height</Label>
           <Input
-            type="number"
+            type="text"
             placeholder="Height"
             id="height"
             className="pl-2"
             value={measurements.height}
             onChange={(e) => {
-              handleMeasurmentChange(e);
+              handleMeasurementChange(e);
             }}
           />
         </div>
         <div className="w-1/4">
           <Label>Width</Label>
           <Input
-            type="number"
+            type="text"
             placeholder="Width"
             id="width"
             className="pl-2"
             value={measurements.width}
             onChange={(e) => {
-              handleMeasurmentChange(e);
+              handleMeasurementChange(e);
             }}
           />
         </div>
@@ -144,7 +147,7 @@ const Calculator = ({
           <Select
             defaultValue="inches"
             onValueChange={(val) => {
-              setMeasurments({ ...measurements, unit: val });
+              setMeasurements({ ...measurements, unit: val });
             }}
           >
             <SelectTrigger>
