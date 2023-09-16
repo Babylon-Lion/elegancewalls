@@ -156,7 +156,6 @@ const Calculator = ({
         title: 'Success!'
       });
     }
-    console.log(area);
     setQuantity(area ? area : 1);
     return;
   };
