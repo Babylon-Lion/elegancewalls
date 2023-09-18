@@ -48,7 +48,7 @@ export async function ThreeItemGrid() {
     homepageItems.length >= 0
       ? homepageItems.slice(0, 3).map((item, index) => {
           return index === 0 ? (
-            <ThreeItemGridItem size="full" item={item} priority={true} key={index} />
+            <ThreeItemGridItem size="half" item={item} priority={true} key={index} />
           ) : index === 1 ? (
             <ThreeItemGridItem size="half" item={item} priority={true} key={index} />
           ) : (
@@ -58,7 +58,7 @@ export async function ThreeItemGrid() {
       : null;
 
   return (
-    <section className="mx-auto grid max-w-screen-2xl gap-4 px-4 pb-4 md:grid-cols-6 md:grid-rows-2">
+    <section className="mx-auto grid max-w-screen-2xl gap-4 px-4 pb-4 md:grid-cols-6 md:grid-rows-1">
       {displayHomepageItems}
     </section>
   );
