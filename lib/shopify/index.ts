@@ -83,6 +83,8 @@ export async function shopifyFetch<T>({
         ...(query && { query }),
         ...(variables && { variables })
       }),
+      cache: 'no-store',
+      next: { revalidate: 3600 },
       ...(tags && { next: { tags } })
     });
 
