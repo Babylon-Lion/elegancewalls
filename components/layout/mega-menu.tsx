@@ -5,7 +5,7 @@ const MegaMenu = async () => {
   const collections = await getCollections();
 
   return (
-    <div className="hidden h-14 w-full bg-gold md:block">
+    <div className="mb-5 hidden h-14 w-full bg-gold md:block">
       <MegaMenuNav collections={collections} />
     </div>
   );
