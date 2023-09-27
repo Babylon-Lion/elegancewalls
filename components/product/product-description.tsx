@@ -1,12 +1,13 @@
 'use client';
-import { useState } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AddToCart } from 'components/cart/add-to-cart';
 import Price from 'components/price';
 import Prose from 'components/prose';
 import { Product } from 'lib/shopify/types';
-import { VariantSelector } from './variant-selector';
+import { useState } from 'react';
 import Calculator from './calculator';
 import Quantity from './quantity';
+import { VariantSelector } from './variant-selector';
 
 export function ProductDescription({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(0);
@@ -29,15 +30,33 @@ export function ProductDescription({ product }: { product: Product }) {
         quantity={quantity}
       />
       <Quantity quantity={quantity} setQuantity={setQuantity} />
+      <AddToCart variants={product.variants} availableForSale={product.availableForSale} />
 
       {product.descriptionHtml ? (
-        <Prose
-          className="mb-6 text-sm leading-tight dark:text-white/[60%]"
-          html={product.descriptionHtml}
-        />
+        <div className="pt-5">
+          <Tabs defaultValue="description">
+            <TabsList>
+              <TabsTrigger value="description">Description</TabsTrigger>
+              <TabsTrigger value="shipping">Shipping</TabsTrigger>
+            </TabsList>
+            <TabsContent value="description">
+              {' '}
+              <Prose
+                className="mb-6 text-sm leading-tight dark:text-white/[60%]"
+                html={product.descriptionHtml}
+              />
+            </TabsContent>
+            <TabsContent value="shipping">
+              <p className="font-semibold">Free shipping on orders over $50!</p>
+              <ul>
+                <li>No-Risk Money Back Guarantee!</li>
+                <li>No Hassle Refunds </li>
+                <li>Secure Payments</li>
+              </ul>
+            </TabsContent>
+          </Tabs>
+        </div>
       ) : null}
-
-      <AddToCart variants={product.variants} availableForSale={product.availableForSale} />
     </>
   );
 }
