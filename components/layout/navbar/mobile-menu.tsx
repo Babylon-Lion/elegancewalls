@@ -4,12 +4,18 @@ import { Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
-
+import MobileNavigation from './mobile-nav';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Menu } from 'lib/shopify/types';
+import { Collection, Menu } from 'lib/shopify/types';
 import Search from './search';
 
-export default function MobileMenu({ menu }: { menu: Menu[] }) {
+export default function MobileMenu({
+  menu,
+  collections
+}: {
+  menu: Menu[];
+  collections: Collection[];
+}) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
@@ -88,6 +94,8 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                     ))}
                   </ul>
                 ) : null}
+
+                <MobileNavigation collections={collections} />
               </div>
             </Dialog.Panel>
           </Transition.Child>
