@@ -8,15 +8,17 @@ import {
 import { Collection } from 'lib/shopify/types';
 import Link from 'next/link';
 import { AvatarFunc } from '@/components/ui/avatar';
+
 const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
   const displayCollections = collections.map((collection, index) => {
     return (
       <Link
         href={collection.path}
-        className="rounded-md   bg-accent  p-3 font-semibold"
+        className="flex   items-center  justify-between rounded-md bg-accent p-3 font-semibold"
         key={index}
       >
-        {collection.title}
+        <p>{collection.title}</p>
+        {AvatarFunc(collection.image?.url, collection.title.slice(0, 1), 'h-10 w-10')}
       </Link>
     );
   });

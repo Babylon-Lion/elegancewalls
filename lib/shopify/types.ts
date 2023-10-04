@@ -106,6 +106,9 @@ export type ShopifyCollection = {
   description: string;
   seo: SEO;
   updatedAt: string;
+  image: {
+    url: string;
+  };
 };
 
 export type ShopifyProduct = {
