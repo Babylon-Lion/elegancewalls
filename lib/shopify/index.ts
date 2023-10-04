@@ -321,6 +321,9 @@ export async function getCollections(): Promise<Collection[]> {
       handle: '',
       title: 'All',
       description: 'All products',
+      image: {
+        url: ''
+      },
       seo: {
         title: 'All',
         description: 'All products'
