@@ -15,10 +15,20 @@ export default async function SearchPage({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const { sort, q: searchValue } = searchParams as { [key: string]: string };
+  const { sort, q: searchValue, color, style } = searchParams as { [key: string]: string };
   const { sortKey, reverse } = sorting.find((item) => item.slug === sort) || defaultSort;
 
-  const products = await getProducts({ sortKey, reverse, query: searchValue });
+  const products = await getProducts({ sortKey, reverse, query: searchValue }).then((data) =>
+    data.filter((product) => {
+      return color && style
+        ? product.tags.includes(color) && product.tags.includes(style)
+        : color
+        ? product.tags.includes(color)
+        : style
+        ? product.tags.includes(style)
+        : true;
+    })
+  );
   const resultsText = products.length > 1 ? 'results' : 'result';
 
   return (

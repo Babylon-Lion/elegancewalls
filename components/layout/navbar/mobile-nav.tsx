@@ -1,14 +1,14 @@
-import React from 'react';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger
 } from '@/components/ui/accordion';
+import { AvatarFunc } from '@/components/ui/avatar';
 import { Collection } from 'lib/shopify/types';
 import Link from 'next/link';
-import { AvatarFunc } from '@/components/ui/avatar';
-
+import { colors } from '../mega-menu/megamenu-nav';
+import { wallpaperStyles } from '../mega-menu/megamenu-nav';
 const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
   const displayCollections = collections.map((collection, index) => {
     return (
@@ -22,6 +22,23 @@ const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
       </Link>
     );
   });
+
+  const displayColorsOrStyle = (arr: any[]) => {
+    return arr.map((item, index) => {
+      return (
+        <Link
+          href={`/search?color=${item.title ? item.title : item}`}
+          className="flex   items-center  justify-between rounded-md bg-accent p-3 font-semibold"
+          key={index}
+        >
+          {item.title || item}
+          {item.title && (
+            <div className={`h-5 w-5 rounded-full `} style={{ backgroundColor: item.hex }}></div>
+          )}
+        </Link>
+      );
+    });
+  };
 
   const mostPopular = Array.from({ length: 5 });
 
@@ -42,13 +59,22 @@ const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
           <AccordionTrigger className="rounded-md bg-gold px-2 text-white">
             Shop by style
           </AccordionTrigger>
-          <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+          <AccordionContent>
+            {' '}
+            <div className="flex max-h-screen flex-col gap-3 overflow-y-scroll pt-4 ">
+              {displayColorsOrStyle(wallpaperStyles)}
+            </div>
+          </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
           <AccordionTrigger className="rounded-md bg-gold px-2 text-white">
             Shop by color
           </AccordionTrigger>
-          <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+          <AccordionContent>
+            <div className="flex max-h-screen flex-col gap-3 overflow-y-scroll pt-4 ">
+              {displayColorsOrStyle(colors)}
+            </div>
+          </AccordionContent>
         </AccordionItem>
       </Accordion>
       <div className="flex flex-col gap-3">
