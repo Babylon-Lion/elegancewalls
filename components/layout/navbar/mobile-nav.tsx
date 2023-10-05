@@ -61,7 +61,7 @@ const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
           </AccordionTrigger>
           <AccordionContent>
             {' '}
-            <div className="flex max-h-screen flex-col gap-3 overflow-y-scroll pt-4 ">
+            <div className="flex max-h-[500px] flex-col gap-3 overflow-y-scroll pt-4 ">
               {displayColorsOrStyle(wallpaperStyles)}
             </div>
           </AccordionContent>
@@ -71,7 +71,7 @@ const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
             Shop by color
           </AccordionTrigger>
           <AccordionContent>
-            <div className="flex max-h-screen flex-col gap-3 overflow-y-scroll pt-4 ">
+            <div className="flex max-h-[500px] flex-col gap-3 overflow-y-scroll pt-4 ">
               {displayColorsOrStyle(colors)}
             </div>
           </AccordionContent>
