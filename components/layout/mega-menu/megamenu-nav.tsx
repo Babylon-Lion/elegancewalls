@@ -29,21 +29,56 @@ export const colors = [
   { title: 'Turquoise', hex: '#40e0d0' }
 ];
 
-export const wallpaperStyles = [
-  'Abstract',
-  'Animal',
-  'Black & White',
-  'Floral',
-  'Damask',
-  'Concrete',
-  'Geometric',
-  'Grasscloth',
-  'Modern',
-  'Plain',
-  'Stone',
-  'Stripes'
+const wallpaperStyles = [
+  {
+    title: 'Abstract',
+    url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882317/qa5hh3hwtq1wslobq1su.jpg?_s=public-apps'
+  },
+  {
+    title: 'Animal',
+    url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882318/s603jf5wvjbwy7ckyjpk.jpg?_s=public-apps'
+  },
+  {
+    title: 'Black & White',
+    url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882318/sy0twnmhdcw7wmnujfgt.jpg?_s=public-apps'
+  },
+  {
+    title: 'Concrete',
+    url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882317/gnhg2191qlhkzogleiuw.jpg?_s=public-apps'
+  },
+  {
+    title: 'Damask',
+    url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882317/jzdwrhjtk39xkdba1zln.jpg?_s=public-apps'
+  },
+  {
+    title: 'Floral',
+    url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882318/jgscpbevhp3tzahlj0ak.jpg?_s=public-apps'
+  },
+  {
+    title: 'Geometric',
+    url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882318/jjag1rhrthmnjfg6sz8d.jpg?_s=public-apps'
+  },
+  {
+    title: 'Grasscloth',
+    url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882318/v40lvt3zyl3r94tbl2c4.jpg?_s=public-apps'
+  },
+  {
+    title: 'Modern',
+    url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882318/dpmo0aptkboh9mwfxuqt.jpg?_s=public-apps'
+  },
+  {
+    title: 'Plain',
+    url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882318/enb3cycmomao162mvvs0.jpg?_s=public-apps'
+  },
+  {
+    title: 'Stripes',
+    url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882318/wctmu5xlgzdgcbwriz8p.jpg?_s=public-apps'
+  },
+  {
+    title: 'Stone',
+    url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882318/fcmtecnaboavrgj2tsva.jpg?_s=public-apps'
+  }
 ];
-
 const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
   const mostPopular = Array.from({ length: 4 });
 
@@ -72,7 +107,7 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
               Shop by collection
             </NavigationMenuTrigger>
             <NavigationMenuContent className="p-3 ">
-              <div className="div flex  h-[600px] w-[400px] p-4  md:w-[800px] xl:w-[900px]  ">
+              <div className="div flex  h-[550px] w-[400px] p-4  md:w-[800px] xl:w-[900px]  ">
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
                   {mostPopular.map((component, index) => (
@@ -128,12 +163,15 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
               Shop by style
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <div className="div flex  h-auto w-[400px] p-4  md:w-[800px] xl:w-[900px]  ">
+              <div className="div flex  h-[550px] w-[400px] p-4  md:w-[800px] xl:w-[900px]  ">
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
                   {mostPopular.map((component, index) => (
                     <ListItem key={index} title={'Abstract'} src={'/download.jpeg'}></ListItem>
                   ))}
+                  {hoveredCollection && (
+                    <Image src={hoveredCollection} width={300} height={300} alt="test" />
+                  )}
                 </div>
                 <div className="flex w-2/3  flex-col  gap-2  ">
                   {/* <h3 className="text-md h-8 pb-3 font-semibold">Collections</h3> */}
@@ -147,10 +185,16 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                         {chunk.map((style, i) => (
                           <Link
                             key={i}
-                            href={`/search?style=${style}`}
+                            href={`/search?style=${style.title}`}
                             className="rounded-full p-1 px-2 hover:bg-slate-600 hover:text-white "
+                            onMouseOver={() => {
+                              setHoveredCollection(style.url);
+                            }}
+                            onMouseLeave={() => {
+                              setHoveredCollection('');
+                            }}
                           >
-                            {style}
+                            {style.title}
                           </Link>
                         ))}
                       </div>
