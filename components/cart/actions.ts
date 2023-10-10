@@ -1,7 +1,6 @@
 'use server';
 
 import { addToCart, createCart, getCart, removeFromCart, updateCart } from 'lib/shopify';
-// import { cookies } from 'next/headers';
 
 export const addItem = async (variantId: string | undefined): Promise<String | undefined> => {
   let cartId = '';

@@ -32,7 +32,7 @@ const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
           key={index}
         >
           {item.title || item}
-          {item.title && (
+          {item.title && item.hex && (
             <div className={`h-5 w-5 rounded-full `} style={{ backgroundColor: item.hex }}></div>
           )}
         </Link>
