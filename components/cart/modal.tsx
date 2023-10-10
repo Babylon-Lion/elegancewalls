@@ -102,7 +102,7 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                         >
                           <div className="relative flex w-full flex-row justify-between px-1 py-4">
                             <div className="absolute z-40 -mt-2 ml-[55px]">
-                              <DeleteItemButton item={item} />
+                              <DeleteItemButton />
                             </div>
                             <Link
                               href={merchandiseUrl}
@@ -140,11 +140,11 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                                 currencyCode={item.cost.totalAmount.currencyCode}
                               />
                               <div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200 dark:border-neutral-700">
-                                <EditItemQuantityButton item={item} type="minus" />
+                                <EditItemQuantityButton type="minus" />
                                 <p className="w-6 text-center">
                                   <span className="w-full text-sm">{item.quantity}</span>
                                 </p>
-                                <EditItemQuantityButton item={item} type="plus" />
+                                <EditItemQuantityButton type="plus" />
                               </div>
                             </div>
                           </div>

@@ -3,11 +3,11 @@ import LoadingDots from 'components/loading-dots';
 import { useRouter } from 'next/navigation';
 
 import clsx from 'clsx';
-import { removeItem } from 'components/cart/actions';
-import type { CartItem } from 'lib/shopify/types';
+// import { removeItem } from 'components/cart/actions';
+// import type { CartItem } from 'lib/shopify/types';
 import { useTransition } from 'react';
 
-export default function DeleteItemButton({ item }: { item: CartItem }) {
+export default function DeleteItemButton() {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -16,7 +16,7 @@ export default function DeleteItemButton({ item }: { item: CartItem }) {
       aria-label="Remove cart item"
       onClick={() => {
         startTransition(async () => {
-          const error = await removeItem(item.id);
+          const error = 123;
 
           if (error) {
             // Trigger the error boundary in the root error.js
