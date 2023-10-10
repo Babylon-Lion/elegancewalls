@@ -128,7 +128,6 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                   )}
                 </div>
                 <div className="flex w-2/3  flex-col  gap-2  ">
-                  {/* <h3 className="text-md h-8 pb-3 font-semibold">Collections</h3> */}
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
                   <div className="flex w-full  gap-3">
                     {collectionChunks.map((chunk, index) => (
@@ -175,7 +174,6 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                   )}
                 </div>
                 <div className="flex w-2/3  flex-col  gap-2  ">
-                  <h3 className="text-md h-8 pb-3 font-semibold">Collections</h3>
                   <h3 className="text-md col-span-1 font-semibold ">Styles</h3>
                   <div className="flex w-full  gap-3">
                     {styleChunks.map((chunk, index) => (
@@ -228,7 +226,6 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                   ))}
                 </div>
                 <div className="flex w-2/3  flex-col  gap-2  ">
-                  <h3 className="text-md h-8 pb-3 font-semibold">Collections</h3>
                   <h3 className="text-md col-span-1 font-semibold ">Colors</h3>
                   <div className="flex w-full  gap-3">
                     {colorChunks.map((chunk, index) => (
