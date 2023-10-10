@@ -29,7 +29,7 @@ export const colors = [
   { title: 'Turquoise', hex: '#40e0d0' }
 ];
 
-const wallpaperStyles = [
+export const wallpaperStyles = [
   {
     title: 'Abstract',
     url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882317/qa5hh3hwtq1wslobq1su.jpg?_s=public-apps'
@@ -162,7 +162,8 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
             <NavigationMenuTrigger className="bg-transparent text-white underline opacity-100">
               Shop by style
             </NavigationMenuTrigger>
-            <NavigationMenuContent>
+            <NavigationMenuContent></NavigationMenuContent>
+            {/* <NavigationMenuContent>
               <div className="div flex  h-[550px] w-[400px] p-4  md:w-[800px] xl:w-[900px]  ">
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
@@ -175,7 +176,7 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                 </div>
                 <div className="flex w-2/3  flex-col  gap-2  ">
                   {/* <h3 className="text-md h-8 pb-3 font-semibold">Collections</h3> */}
-                  <h3 className="text-md col-span-1 font-semibold ">Styles</h3>
+            {/* <h3 className="text-md col-span-1 font-semibold ">Styles</h3>
                   <div className="flex w-full  gap-3">
                     {styleChunks.map((chunk, index) => (
                       <div
@@ -201,8 +202,8 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                     ))}
                   </div>
                 </div>
-              </div>{' '}
-            </NavigationMenuContent>
+              </div> */}{' '}
+            {/* </NavigationMenuContent> */}
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuTrigger className="bg-transparent text-white underline opacity-100">
