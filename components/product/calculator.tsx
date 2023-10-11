@@ -13,15 +13,14 @@ import { useEffect, useState } from 'react';
 
 const Calculator = ({
   collections,
-  setQuantity,
-  quantity
+  setQuantity
 }: {
   collections: { title: string; handle: string }[];
-  setQuantity: (numb: number) => void;
-  quantity: number;
+  setQuantity: (num: number) => void;
 }) => {
   const [collectionType, setCollectionType] = useState('');
   const [measurements, setMeasurements] = useState({ height: '', width: '', unit: 'inches' });
+  const [suggestedQuantity, setSuggestedQuantity] = useState(0);
 
   //we only have to calculate measurments for those collection types
   useEffect(() => {
@@ -46,55 +45,11 @@ const Calculator = ({
       [id]: value
     }));
   }
-  // const calculateUnit = () => {
-  //   // Create local variables and assign the values from the state
-  //   let height = parseFloat(measurements.height);
-  //   let width = parseFloat(measurements.width);
-
-  //   if (isNaN(height) || isNaN(width)) {
-  //     return toast({
-  //       variant: 'destructive',
-  //       title: 'Please enter valid numeric values for height and width'
-  //     });
-  //   }
-
-  //   let unit = 0; // Initialize the unit variable
-
-  //   if (collectionType === 'hexa') {
-  //     // Product is a Hexa Roll (1.06mx15.6m = 16.53m2)
-  //     const rollCoverageArea = 16.53; // Roll coverage area in square meters
-  //     unit = (height  * width )*  1.44 / rollCoverageArea;
-  //   } else if (collectionType === 'quad') {
-  //     // Product is a Quad Roll (1.06mx10m = 10.6m2)
-  //     console.log('quad')
-
-  //     const rollCoverageArea = 10.6; // Roll coverage area in square meters
-  //     unit = (height * width) * 1.44 / rollCoverageArea;
-  //   } else {
-  //     // Product is a Mural (1m X 1m = 1m2)
-  //     console.log('mural')
-  //     const muralCoverageArea = 1; // Mural coverage area in square meters
-  //     unit = ((height + 0.15) * (width + 0.15)) / muralCoverageArea * 10.7; // Adjusted mural calculation
-  //     console.log(unit)
-
-  //   }
-  //   // Round the unit to the nearest integer
-  //   console.log(unit)
-  //   unit = Math.ceil(unit);
-
-  //   toast({
-  //     variant: 'default',
-  //     title: 'Success!'
-  //   });
-
-  //   setQuantity(unit ? unit : 1);
-  //   return unit;
-  // };
 
   const calculateUnit = () => {
     let height = parseFloat(measurements.height);
     let width = parseFloat(measurements.width);
-    let unit = measurements.unit;
+    const unit = measurements.unit;
     let area = 0;
 
     if (isNaN(height) || isNaN(width)) {
@@ -157,6 +112,8 @@ const Calculator = ({
       });
     }
     setQuantity(area ? area : 1);
+
+    setSuggestedQuantity(area ? area : 1);
     return;
   };
   console.log(collectionType);
@@ -219,9 +176,9 @@ const Calculator = ({
         </div>
       </div>
       <div>
-        {quantity ? (
+        {suggestedQuantity ? (
           <div className="flex justify-center text-lg font-semibold">
-            Suggested Quantity: {quantity}
+            Suggested Quantity: {suggestedQuantity}
           </div>
         ) : null}
       </div>

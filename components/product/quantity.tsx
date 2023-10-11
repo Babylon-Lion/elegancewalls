@@ -5,7 +5,7 @@ const Quantity = ({
   setQuantity
 }: {
   quantity: number;
-  setQuantity: (numb: number) => void;
+  setQuantity: (numbe: number) => void;
 }) => {
   return (
     <div className="flex flex-col gap-4 pb-5">

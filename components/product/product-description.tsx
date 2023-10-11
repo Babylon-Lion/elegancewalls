@@ -10,7 +10,7 @@ import Quantity from './quantity';
 import { VariantSelector } from './variant-selector';
 
 export function ProductDescription({ product }: { product: Product }) {
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   return (
     <>
@@ -30,7 +30,11 @@ export function ProductDescription({ product }: { product: Product }) {
         quantity={quantity}
       />
       <Quantity quantity={quantity} setQuantity={setQuantity} />
-      <AddToCart variants={product.variants} availableForSale={product.availableForSale} />
+      <AddToCart
+        variants={product.variants}
+        availableForSale={product.availableForSale}
+        quantity={quantity}
+      />
 
       {product.descriptionHtml ? (
         <div className="pt-5">

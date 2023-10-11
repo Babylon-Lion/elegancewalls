@@ -5,25 +5,32 @@ import clsx from 'clsx';
 // import { addItem } from 'components/cart/actions';
 import LoadingDots from 'components/loading-dots';
 import { ProductVariant } from 'lib/shopify/types';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useTransition } from 'react';
+import { useCart } from '@shopify/hydrogen-react';
+import { useAtom } from 'jotai/react';
+import { isCartOpenAtom } from 'lib/shopify/jotai';
 
 export function AddToCart({
   variants,
-  availableForSale
+  availableForSale,
+  quantity
 }: {
   variants: ProductVariant[];
   availableForSale: boolean;
+  quantity: number;
 }) {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
+  const [cartOpen, isCartOpen] = useAtom(isCartOpenAtom);
   const variant = variants.find((variant: ProductVariant) =>
     variant.selectedOptions.every(
       (option) => option.value === searchParams.get(option.name.toLowerCase())
     )
   );
+  const { linesAdd } = useCart();
+
   const selectedVariantId = variant?.id || defaultVariantId;
   const title = !availableForSale
     ? 'Out of stock'
@@ -40,16 +47,13 @@ export function AddToCart({
         // Safeguard in case someone messes with `disabled` in devtools.
         if (!availableForSale || !selectedVariantId) return;
 
-        startTransition(async () => {
-          const error = 123;
-
-          if (error) {
-            // Trigger the error boundary in the root error.js
-            throw new Error(error.toString());
+        linesAdd([
+          {
+            merchandiseId: selectedVariantId,
+            quantity: quantity
           }
-
-          router.refresh();
-        });
+        ]);
+        isCartOpen(true);
       }}
       className={clsx(
         'relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white hover:opacity-90',

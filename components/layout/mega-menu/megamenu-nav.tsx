@@ -108,7 +108,7 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
               <div className="div flex  h-[550px] w-[400px] p-4  md:w-[800px] xl:w-[900px]  ">
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
-                  {collections.slice(0, 5).map((component, index) => (
+                  {collections.slice(0, 4).map((component, index) => (
                     <ListItem
                       key={index}
                       title={component.title}
@@ -164,7 +164,7 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
               <div className="div flex  h-[550px] w-[400px] p-4  md:w-[800px] xl:w-[900px]  ">
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
-                  {wallpaperStyles.slice(0, 5).map((component, index) => (
+                  {wallpaperStyles.slice(0, 4).map((component, index) => (
                     <ListItem key={index} title={component.title} src={component.url}></ListItem>
                   ))}
                   {hoveredCollection && (
@@ -209,7 +209,7 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
               <div className="div flex  h-auto w-[400px] p-4  md:w-[800px] xl:w-[900px]  ">
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
-                  {colors.slice(0, 5).map((component, index) => (
+                  {colors.slice(0, 4).map((component, index) => (
                     <ListItem key={index} title={component.title} color={component.hex}></ListItem>
                   ))}
                 </div>

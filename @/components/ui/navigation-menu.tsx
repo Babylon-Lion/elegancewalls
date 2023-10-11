@@ -112,7 +112,6 @@ type ExtendedAnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
 };
 const ListItem = React.forwardRef<React.ElementRef<'a'>, ExtendedAnchorProps>(
   ({ className, title, children, src, color, ...props }, ref) => {
-    console.log(color);
     return (
       <li className="list-none	">
         <NavigationMenuLink asChild>

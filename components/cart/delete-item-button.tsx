@@ -1,29 +1,28 @@
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import LoadingDots from 'components/loading-dots';
-import { useRouter } from 'next/navigation';
+import { useCart } from '@shopify/hydrogen-react';
 
 import clsx from 'clsx';
-// import { removeItem } from 'components/cart/actions';
-// import type { CartItem } from 'lib/shopify/types';
 import { useTransition } from 'react';
 
-export default function DeleteItemButton() {
-  const router = useRouter();
+export default function DeleteItemButton({ cartItem }: { cartItem: any }) {
   const [isPending, startTransition] = useTransition();
+
+  const { linesRemove, lines } = useCart();
+
+  const cartRemove = () => {
+    const line = lines?.find(() => cartItem.merchandise.id)!;
+
+    linesRemove([line?.id!]);
+    // removeItem(obj)
+  };
 
   return (
     <button
       aria-label="Remove cart item"
       onClick={() => {
         startTransition(async () => {
-          const error = 123;
-
-          if (error) {
-            // Trigger the error boundary in the root error.js
-            throw new Error(error.toString());
-          }
-
-          router.refresh();
+          cartRemove();
         });
       }}
       disabled={isPending}
