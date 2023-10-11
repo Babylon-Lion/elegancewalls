@@ -80,8 +80,6 @@ export const wallpaperStyles = [
   }
 ];
 const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
-  const mostPopular = Array.from({ length: 4 });
-
   const [hoveredCollection, setHoveredCollection] = useState('');
 
   const splitArray = (n: number, array: any[]) => {
@@ -99,24 +97,24 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
   const styleChunks = splitArray(2, wallpaperStyles);
 
   return (
-    <div className="  container  h-full items-center justify-center py-5 md:flex  ">
-      <NavigationMenu>
-        <NavigationMenuList className="flex gap-10">
+    <div className="  container  h-full w-full items-center justify-center py-5 md:flex  ">
+      <NavigationMenu id="navItem">
+        <NavigationMenuList className="flex w-full gap-10">
           <NavigationMenuItem>
             <NavigationMenuTrigger className="bg-transparent text-white underline opacity-100">
               Shop by collection
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="p-3 ">
+            <NavigationMenuContent className="absolute p-3  ">
               <div className="div flex  h-[550px] w-[400px] p-4  md:w-[800px] xl:w-[900px]  ">
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
-                  {mostPopular.map((component, index) => (
+                  {collections.slice(0, 5).map((component, index) => (
                     <ListItem
                       key={index}
-                      title={'Acoustin WallCovering'}
-                      src={'/download.jpeg'}
+                      title={component.title}
+                      src={component.image.url}
                       onMouseOver={() => {
-                        setHoveredCollection('/download.jpeg');
+                        setHoveredCollection(component.image.url);
                       }}
                       onMouseLeave={() => {
                         setHoveredCollection('');
@@ -166,8 +164,8 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
               <div className="div flex  h-[550px] w-[400px] p-4  md:w-[800px] xl:w-[900px]  ">
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
-                  {mostPopular.map((component, index) => (
-                    <ListItem key={index} title={'Abstract'} src={'/download.jpeg'}></ListItem>
+                  {wallpaperStyles.slice(0, 5).map((component, index) => (
+                    <ListItem key={index} title={component.title} src={component.url}></ListItem>
                   ))}
                   {hoveredCollection && (
                     <Image src={hoveredCollection} width={300} height={300} alt="test" />
@@ -211,18 +209,8 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
               <div className="div flex  h-auto w-[400px] p-4  md:w-[800px] xl:w-[900px]  ">
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
-                  {mostPopular.map((component, index) => (
-                    <ListItem
-                      key={index}
-                      title={'Blue Wallpaper'}
-                      src={'/download.jpeg'}
-                      onMouseOver={() => {
-                        setHoveredCollection('/download.jpeg');
-                      }}
-                      onMouseLeave={() => {
-                        setHoveredCollection('');
-                      }}
-                    ></ListItem>
+                  {colors.slice(0, 5).map((component, index) => (
+                    <ListItem key={index} title={component.title} color={component.hex}></ListItem>
                   ))}
                 </div>
                 <div className="flex w-2/3  flex-col  gap-2  ">

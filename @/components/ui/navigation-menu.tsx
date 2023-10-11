@@ -1,7 +1,7 @@
-import * as React from 'react';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import { cva } from 'class-variance-authority';
 import { ChevronDown } from 'lucide-react';
+import * as React from 'react';
 import { AvatarFunc } from './avatar';
 
 import { cn } from '@/lib/utils';
@@ -111,7 +111,8 @@ type ExtendedAnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   src?: string;
 };
 const ListItem = React.forwardRef<React.ElementRef<'a'>, ExtendedAnchorProps>(
-  ({ className, title, children, src, ...props }, ref) => {
+  ({ className, title, children, src, color, ...props }, ref) => {
+    console.log(color);
     return (
       <li className="list-none	">
         <NavigationMenuLink asChild>
@@ -125,7 +126,7 @@ const ListItem = React.forwardRef<React.ElementRef<'a'>, ExtendedAnchorProps>(
           >
             <div className="flex w-full items-center justify-between text-sm font-medium leading-none">
               {title}
-              {AvatarFunc(src!, 's', 'h-10 w-10')}
+              {AvatarFunc(src!, title?.slice(0, 1)!, `h-10 w-10 `, color)}
             </div>
             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
           </a>
@@ -137,14 +138,14 @@ const ListItem = React.forwardRef<React.ElementRef<'a'>, ExtendedAnchorProps>(
 ListItem.displayName = 'ListItem';
 
 export {
-  navigationMenuTriggerStyle,
+  ListItem,
   NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
   NavigationMenuContent,
-  NavigationMenuTrigger,
-  NavigationMenuLink,
   NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
   NavigationMenuViewport,
-  ListItem
+  navigationMenuTriggerStyle
 };

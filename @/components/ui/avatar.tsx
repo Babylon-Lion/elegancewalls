@@ -46,11 +46,13 @@ AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
 export { Avatar, AvatarImage, AvatarFallback };
 
-export const AvatarFunc = (src: string, fallback: string, className?: string) => {
+export const AvatarFunc = (src: string, fallback: string, className?: string, color?: string) => {
   return (
-    <Avatar className={className}>
-      <AvatarImage src={src} alt="Avatar" />
-      <AvatarFallback className="text-black">{fallback.slice(0, 1)}</AvatarFallback>
+    <Avatar className={className} style={{ backgroundColor: color }}>
+      <AvatarImage src={src} alt="Avatar" style={{ backgroundColor: color }} />
+      <AvatarFallback className="text-black" style={{ backgroundColor: color }}>
+        {fallback.slice(0, 1)}
+      </AvatarFallback>
     </Avatar>
   );
 };
