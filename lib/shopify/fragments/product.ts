@@ -40,6 +40,9 @@ const productFragment = /* GraphQL */ `
             name
             value
           }
+          image {
+            url
+          }
           price {
             amount
             currencyCode

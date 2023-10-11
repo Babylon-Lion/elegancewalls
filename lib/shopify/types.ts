@@ -76,6 +76,9 @@ export type ProductVariant = {
   id: string;
   title: string;
   availableForSale: boolean;
+  image: {
+    url: string;
+  };
   selectedOptions: {
     name: string;
     value: string;

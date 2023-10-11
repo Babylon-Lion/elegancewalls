@@ -1,18 +1,27 @@
 'use client';
-
+import { useEffect } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { GridTileImage } from 'components/grid/tile';
 import { createUrl } from 'lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { Product } from 'lib/shopify/types';
+import { useRouter } from 'next/navigation';
 
-export function Gallery({ images }: { images: { src: string; altText: string }[] }) {
-  console.log(images);
+export function Gallery({
+  images,
+  product
+}: {
+  images: { src: string; altText: string }[];
+  product: Product;
+}) {
+  const router = useRouter();
 
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const imageSearchParam = searchParams.get('image');
+  const colorSearchParam = searchParams.get('color');
   const imageIndex = imageSearchParam ? parseInt(imageSearchParam) : 0;
 
   const nextSearchParams = new URLSearchParams(searchParams.toString());
@@ -24,6 +33,23 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
   const previousImageIndex = imageIndex === 0 ? images.length - 1 : imageIndex - 1;
   previousSearchParams.set('image', previousImageIndex.toString());
   const previousUrl = createUrl(pathname, previousSearchParams);
+
+  //when variant changes find that variants image and set it as active
+  useEffect(() => {
+    if (colorSearchParam) {
+      const selectedVariant = product?.variants?.find(
+        (item) => item.selectedOptions[0]?.value! === colorSearchParam
+      )?.image?.url;
+      const selectedImageIndex =
+        product?.images?.findIndex((item) => item.url === selectedVariant) + 1;
+
+      const imageSearchParams = new URLSearchParams(searchParams.toString());
+
+      imageSearchParams.set('image', selectedImageIndex.toString());
+
+      router.push(createUrl(pathname, imageSearchParams));
+    }
+  }, [colorSearchParam]);
 
   const buttonClassName =
     'h-full px-6 transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white flex items-center justify-center';

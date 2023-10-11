@@ -116,7 +116,6 @@ const Calculator = ({
     setSuggestedQuantity(area ? area : 1);
     return;
   };
-  console.log(collectionType);
 
   if (!collectionType) {
     return null;

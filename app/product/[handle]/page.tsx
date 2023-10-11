@@ -89,6 +89,7 @@ export default async function ProductPage({ params }: { params: { handle: string
                 src: image.url,
                 altText: image.altText
               }))}
+              product={product}
             />
           </div>
 
