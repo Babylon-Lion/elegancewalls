@@ -24,11 +24,7 @@ export function ProductDescription({ product }: { product: Product }) {
         </div>
       </div>
       <VariantSelector options={product.options} variants={product.variants} />
-      <Calculator
-        collections={product.collections.nodes}
-        setQuantity={setQuantity}
-        quantity={quantity}
-      />
+      <Calculator collections={product.collections.nodes} setQuantity={setQuantity} />
       <Quantity quantity={quantity} setQuantity={setQuantity} />
       <AddToCart
         variants={product.variants}
