@@ -1,8 +1,10 @@
-import { Carousel } from 'components/carousel';
-import { ThreeItemGrid } from 'components/grid/three-items';
-import Footer from 'components/layout/footer';
-import { Suspense } from 'react';
-
+// import { Carousel } from 'components/carousel';
+// import { ThreeItemGrid } from 'components/grid/three-items';
+// import Footer from 'components/layout/footer';
+// import { Suspense } from 'react';
+import { createClient } from 'prismicio';
+import { SliceZone } from '@prismicio/react';
+import { components } from '../slices/components';
 export const runtime = 'edge';
 
 export const metadata = {
@@ -13,15 +15,20 @@ export const metadata = {
 };
 
 export default async function HomePage() {
+  const client = createClient();
+
+  const page = await client.getByUID('home', 'homepage');
+
   return (
-    <>
-      <ThreeItemGrid />
+    <div className="container">
+      <SliceZone components={components} slices={page.data.slices} />
+      {/* <ThreeItemGrid />
       <Suspense>
         <Carousel />
         <Suspense>
           <Footer />
         </Suspense>
-      </Suspense>
-    </>
+      </Suspense> */}
+    </div>
   );
 }

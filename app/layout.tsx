@@ -5,6 +5,9 @@ import { ReactNode, Suspense } from 'react';
 import { Toaster } from '@/components/ui/toaster';
 import MegaMenu from 'components/layout/mega-menu';
 import ShopifyContext from 'components/shopify-context';
+import { repositoryName } from 'prismicio';
+
+import { PrismicPreview } from '@prismicio/next';
 
 import './globals.css';
 
@@ -50,6 +53,8 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           <MegaMenu />
           <Suspense>
             <main>{children}</main>
+            <PrismicPreview repositoryName={repositoryName} />
+
             <Toaster />
           </Suspense>
         </ShopifyContext>
