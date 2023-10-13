@@ -14,7 +14,7 @@ export const metadata = {
 
 export default async function HomePage() {
   return (
-    <>
+    <div className="container">
       <ThreeItemGrid />
       <Suspense>
         <Carousel />
@@ -22,6 +22,6 @@ export default async function HomePage() {
           <Footer />
         </Suspense>
       </Suspense>
-    </>
+    </div>
   );
 }
