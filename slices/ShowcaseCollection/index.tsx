@@ -5,13 +5,11 @@ import { asText } from '@prismicio/client';
 const ShowcaseCollection = async ({ slice }: { slice: ShowcaseCollectionnSlice }) => {
   const data = await Promise.all(
     slice.items.map((item) => {
-      //@ts-ignore
       return getCollectionProducts({ collection: asText(item?.collectionhandle) });
     })
   );
 
   const displayOnSlider = data.map((item, index) => {
-    //@ts-ignore
     return (
       <Slider
         productData={item}

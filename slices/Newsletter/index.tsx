@@ -6,6 +6,7 @@ import { Instagram, Facebook, Twitter } from 'lucide-react';
 import { NewsletterSlice } from 'types.generated';
 import Link from 'next/link';
 
+import { asLink } from '@prismicio/client';
 const Newsletter = ({ slice }: { slice: NewsletterSlice }) => {
   return (
     <div className=" h-auto w-full py-10  md:h-32">
@@ -22,13 +23,13 @@ const Newsletter = ({ slice }: { slice: NewsletterSlice }) => {
           <h4 className="block text-xl font-semibold">Stay Connected</h4>
 
           <div className="flex gap-5">
-            <Link href={slice.primary.instagram.url!}>
+            <Link href={asLink(slice.primary.instagram)!}>
               <Instagram size={30} />
             </Link>
-            <Link href={slice.primary.facebook.url!}>
+            <Link href={asLink(slice.primary.facebook)!}>
               <Facebook size={30} />
             </Link>
-            <Link href={slice.primary.twitter.url!}>
+            <Link href={asLink(slice.primary.twitter)!}>
               <Twitter size={30} />
             </Link>
           </div>

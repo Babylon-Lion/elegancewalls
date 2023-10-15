@@ -3,13 +3,13 @@ import { asText } from '@prismicio/client';
 import { PrismicRichText } from '@prismicio/react';
 import Image from 'next/image';
 import { DisplayOffersSlice } from 'types.generated';
+import { asLink } from '@prismicio/client';
 const DisplayOffers = ({ slice }: { slice: DisplayOffersSlice }) => {
   const offers = slice.items.map((item, index) => {
     return (
       <div className="relative col-span-1 flex h-[350px] items-center " key={index}>
         <div>
-          {/*/@ts-ignore */}
-          <Image src={item.image.url} fill className="absolute" alt={asText(item.header)} />
+          <Image src={asLink(item.image)!} fill className="absolute" alt={asText(item.header)} />
         </div>
 
         <div
