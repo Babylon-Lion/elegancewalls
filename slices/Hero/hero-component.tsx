@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import { PrismicRichText } from '@prismicio/react';
 import Image from 'next/image';
 import { HeroSliceDefaultItem } from 'types.generated';
+import { asLink } from '@prismicio/client';
 
 import Link from 'next/link';
 
@@ -21,7 +22,7 @@ const HeroComponent = ({ data, className }: { data: HeroSliceDefaultItem; classN
           </h3>
 
           <Button asChild size={'sm'} className="bg-blue">
-            <Link href={data.pagelink.url!}>
+            <Link href={asLink(data.pagelink)!}>
               <PrismicRichText field={data.button} />
             </Link>
           </Button>
