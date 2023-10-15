@@ -18,7 +18,7 @@ const Slider = ({
   title
 }: {
   productData: Product[];
-  handle: string;
+  handle: string | null;
   title: any;
 }) => {
   const displayProducts = productData.slice(0, 10).map((item, index) => {
