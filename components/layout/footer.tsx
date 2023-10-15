@@ -23,6 +23,7 @@ export default async function Footer() {
         <ul>
           {item.items.map((sliceItem, index) => {
             return (
+              //@ts-ignore
               <Link href={sliceItem.listitemlink.url!} key={index}>
                 {' '}
                 <li className="cursor-pointer font-semibold hover:underline">
