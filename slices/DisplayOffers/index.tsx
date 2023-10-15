@@ -8,6 +8,7 @@ const DisplayOffers = ({ slice }: { slice: DisplayOffersSlice }) => {
     return (
       <div className="relative col-span-1 flex h-[350px] items-center " key={index}>
         <div>
+          {/*/@ts-ignore */}
           <Image src={item.image.url} fill className="absolute" alt={asText(item.header)} />
         </div>
 
