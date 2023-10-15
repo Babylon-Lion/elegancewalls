@@ -20,7 +20,7 @@ export default async function HomePage() {
   const page = await client.getByUID('home', 'homepage');
 
   return (
-    <div className="container">
+    <div className="container min-h-screen">
       <SliceZone components={components} slices={page.data.slices} />
       {/* <ThreeItemGrid />
       <Suspense>

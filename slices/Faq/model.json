@@ -1,8 +1,8 @@
 {
-  "id": "hero",
+  "id": "faq",
   "type": "SharedSlice",
-  "name": "Hero",
-  "description": "Hero",
+  "name": "Faq",
+  "description": "Faq",
   "variations": [
     {
       "id": "default",
@@ -11,49 +11,34 @@
       "version": "initial",
       "description": "Default",
       "imageUrl": "",
-      "primary": {},
-      "items": {
-        "pagelink": {
-          "type": "Link",
-          "config": {
-            "label": "pageLink",
-            "placeholder": "",
-            "select": null
-          }
-        },
-        "collectiontype": {
+      "primary": {
+        "header": {
           "type": "StructuredText",
           "config": {
-            "label": "CollectionType",
+            "label": "Header",
             "placeholder": "",
             "allowTargetBlank": true,
             "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
-        },
+        }
+      },
+      "items": {
         "title": {
           "type": "StructuredText",
           "config": {
-            "label": "Title",
+            "label": "title",
             "placeholder": "",
             "allowTargetBlank": true,
             "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
         },
-        "button": {
+        "text": {
           "type": "StructuredText",
           "config": {
-            "label": "Button",
+            "label": "description",
             "placeholder": "",
             "allowTargetBlank": true,
             "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-          }
-        },
-        "image": {
-          "type": "Link",
-          "config": {
-            "label": "image",
-            "placeholder": "",
-            "select": null
           }
         }
       }

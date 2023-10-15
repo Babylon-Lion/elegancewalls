@@ -1,8 +1,8 @@
 {
-  "id": "hero",
+  "id": "showcase_collectionn",
   "type": "SharedSlice",
-  "name": "Hero",
-  "description": "Hero",
+  "name": "ShowcaseCollection",
+  "description": "ShowcaseCollectionn",
   "variations": [
     {
       "id": "default",
@@ -13,18 +13,10 @@
       "imageUrl": "",
       "primary": {},
       "items": {
-        "pagelink": {
-          "type": "Link",
-          "config": {
-            "label": "pageLink",
-            "placeholder": "",
-            "select": null
-          }
-        },
-        "collectiontype": {
+        "collectionhandle": {
           "type": "StructuredText",
           "config": {
-            "label": "CollectionType",
+            "label": "shopifyCollectionHandle",
             "placeholder": "",
             "allowTargetBlank": true,
             "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
@@ -33,27 +25,10 @@
         "title": {
           "type": "StructuredText",
           "config": {
-            "label": "Title",
+            "label": "title",
             "placeholder": "",
             "allowTargetBlank": true,
             "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-          }
-        },
-        "button": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Button",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
-          }
-        },
-        "image": {
-          "type": "Link",
-          "config": {
-            "label": "image",
-            "placeholder": "",
-            "select": null
           }
         }
       }

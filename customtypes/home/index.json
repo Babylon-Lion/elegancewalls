@@ -18,6 +18,21 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "display_offers": {
+              "type": "SharedSlice"
+            },
+            "faq": {
+              "type": "SharedSlice"
+            },
+            "newsletter": {
+              "type": "SharedSlice"
+            },
+            "most_popular_collection": {
+              "type": "SharedSlice"
+            },
+            "showcase_collectionn": {
+              "type": "SharedSlice"
+            },
             "hero": {
               "type": "SharedSlice"
             }

@@ -8,7 +8,8 @@ module.exports = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-    './@/**/*.{ts,tsx}'
+    './@/**/*.{ts,tsx}',
+    './slices/**/*.{ts,tsx}'
   ],
   theme: {
     container: {
@@ -27,6 +28,7 @@ module.exports = {
         gold: '#D3B574',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        blue: '#16163F',
 
         primary: {
           DEFAULT: 'hsl(var(--primary))',

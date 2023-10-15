@@ -1,0 +1,94 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {},
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "preheader",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Enim ea tempor laborum qui ea do excepteur eu."
+                  }
+                }
+              ]
+            }
+          ],
+          [
+            "header",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Ullamco sunt duis nisi aute aliqua eu dolor incididunt minim. Dolor aute cillum duis eiusmod nisi adipisicing consequat tempor adipisicing exercitation esse deserunt ullamco elit labore."
+                  }
+                }
+              ]
+            }
+          ],
+          [
+            "description",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Sint ut fugiat ea cillum. Reprehenderit esse sint consequat consequat eu irure pariatur esse. Voluptate eiusmod labore anim veniam irure sit Lorem sint nulla dolore."
+                  }
+                }
+              ]
+            }
+          ],
+          [
+            "buttontext",
+            {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Fugiat dolor ut excepteur occaecat sint quis consequat laboris consequat magna Lorem sint ex esse. Nostrud labore esse consectetur quis cillum reprehenderit nulla proident officia ullamco. Lorem ullamco sint irure."
+                  }
+                }
+              ]
+            }
+          ],
+          [
+            "buttonlink",
+            {
+              "__TYPE__": "LinkContent",
+              "value": {
+                "__TYPE__": "ExternalLink",
+                "url": "http://google.com"
+              }
+            }
+          ],
+          [
+            "image",
+            {
+              "__TYPE__": "LinkContent",
+              "value": {
+                "id": "mock_Media_link",
+                "kind": "image/jpeg",
+                "name": "mock_name",
+                "url": "https://source.unsplash.com/daily",
+                "size": "0",
+                "__TYPE__": "FileLink"
+              }
+            }
+          ]
+        ]
+      }
+    ]
+  }
+]
