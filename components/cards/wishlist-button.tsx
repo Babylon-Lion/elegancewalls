@@ -1,11 +1,11 @@
 'use client';
-import React from 'react';
-import { Heart } from 'lucide-react';
 import { Product } from 'lib/shopify/types';
+import { Heart } from 'lucide-react';
+import React from 'react';
 
 const WishlistButton = ({ product }: { product: Product }) => {
-  //@ts-ignore
-  const initialWishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+  const initialWishlist =
+    typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('wishlist') || '[]') : [];
   const [wishlist, setWishlist] = React.useState(initialWishlist);
 
   const isProductInWishlist = wishlist.some((item: Product) => item.id === product.id);
@@ -28,7 +28,6 @@ const WishlistButton = ({ product }: { product: Product }) => {
 
   // Save the wishlist to localStorage whenever it changes
   React.useEffect(() => {
-    //@ts-ignore
     localStorage.setItem('wishlist', JSON.stringify(wishlist));
   }, [wishlist]);
 

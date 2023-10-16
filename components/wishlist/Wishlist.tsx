@@ -1,10 +1,10 @@
 'use client';
-import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { Heart } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import Image from 'next/image';
+import clsx from 'clsx';
 import { Product } from 'lib/shopify/types';
+import { Heart } from 'lucide-react';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 import Price from 'components/price';
 
@@ -13,7 +13,8 @@ import Link from 'next/link';
 
 export default function WishList({ className }: { className?: string }) {
   //@ts-ignore
-  const initialWishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+  const initialWishlist =
+    typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('wishlist') || '[]') : [];
   const [wishlist, setWishlist] = useState(initialWishlist);
 
   const displayWishListItems = wishlist.map((item: Product, index: number) => {
@@ -50,7 +51,6 @@ export default function WishList({ className }: { className?: string }) {
   });
 
   useEffect(() => {
-    //@ts-ignore
     localStorage.setItem('wishlist', JSON.stringify(wishlist));
   }, [wishlist]);
 
