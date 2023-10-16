@@ -4,8 +4,7 @@ import { cn } from '@/lib/utils';
 import { PrismicRichText } from '@prismicio/react';
 import { HeroSliceDefaultItem } from 'types.generated';
 import { asLink } from '@prismicio/client';
-// import { PrismicNextImage } from '@prismicio/next';
-import Image from 'next/image';
+import { PrismicNextImage } from '@prismicio/next';
 
 import Link from 'next/link';
 
@@ -14,13 +13,7 @@ const HeroComponent = ({ data, className }: { data: HeroSliceDefaultItem; classN
   return (
     <div className={cn(className)}>
       <div className="relative h-full w-full ">
-        <Image
-          src={data.image.url!}
-          fill
-          loading="eager"
-          className="absolute"
-          alt={data.image.alt!}
-        />
+        <PrismicNextImage field={data.image} fill loading="eager" className="absolute" />
 
         <div className="absolute flex h-full w-full flex-col items-center justify-center  gap-3 text-white">
           <h3 className="text-xl font-bold lg:text-3xl">

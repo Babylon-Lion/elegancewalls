@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { PrismicRichText } from '@prismicio/react';
+import Image from 'next/image';
 import { DisplayOffersSlice } from 'types.generated';
-import { PrismicNextImage } from '@prismicio/next';
 const DisplayOffers = ({ slice }: { slice: DisplayOffersSlice }) => {
   const offers = slice.items.map((item, index) => {
     return (
@@ -10,7 +10,7 @@ const DisplayOffers = ({ slice }: { slice: DisplayOffersSlice }) => {
         key={index}
       >
         <div className="md:aspect-video   ">
-          <PrismicNextImage field={item.image} fill className="absolute" />
+          <Image src={item?.image?.url!} fill className="absolute" alt={'test'} />
         </div>
 
         <div
