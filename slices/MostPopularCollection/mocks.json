@@ -1,0 +1,31 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Cillum amet cillum minim incididunt tempor ex pariatur amet irure nulla in fugiat ea. Aliquip cupidatat et ut incididunt nostrud aute aliqua laborum duis aliqua."
+            }
+          }
+        ]
+      },
+      "shopifycollectionhandle": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Lorem esse id ut deserunt fugiat est ullamco aliqua nulla cillum sit dolor cillum aliqua irure."
+            }
+          }
+        ]
+      }
+    },
+    "items": []
+  }
+]

@@ -8,6 +8,7 @@ import { Suspense } from 'react';
 import MobileMenu from './mobile-menu';
 import Search from './search';
 import { getCollections } from 'lib/shopify';
+import WishList from 'components/wishlist/Wishlist';
 const { SITE_NAME } = process.env;
 
 export default async function Navbar() {
@@ -45,9 +46,10 @@ export default async function Navbar() {
         <div className="hidden justify-center md:flex md:w-1/3">
           <Search />
         </div>
-        <div className="flex justify-end md:w-1/3">
+        <div className="flex justify-end gap-2 md:w-1/3">
           <Suspense fallback={<OpenCart />}>
             <Cart />
+            <WishList />
           </Suspense>
         </div>
       </div>

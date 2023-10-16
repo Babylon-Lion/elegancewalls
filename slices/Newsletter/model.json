@@ -1,0 +1,43 @@
+{
+  "id": "newsletter",
+  "type": "SharedSlice",
+  "name": "Newsletter",
+  "description": "Newsletter",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "instagram": {
+          "type": "Link",
+          "config": {
+            "label": "instagram",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "facebook": {
+          "type": "Link",
+          "config": {
+            "label": "facebook",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "twitter": {
+          "type": "Link",
+          "config": {
+            "label": "twitter",
+            "placeholder": "",
+            "select": null
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -85,3 +85,26 @@ button {
   left: 50% !important;
   transform: translateX(-50%);
 }
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #f2f2f2 !important;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  background-color: #2f2d2a;
+  border-radius: 100%;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #d3b574 !important;
+}
