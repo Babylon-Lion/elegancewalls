@@ -13,7 +13,7 @@ const HeroComponent = ({ data, className }: { data: HeroSliceDefaultItem; classN
       <div className="relative h-full w-full ">
         {/*/@ts-ignore */}
         <Image
-          src={data.image.url}
+          src={asLink(data.image)}
           fill
           className="absolute"
           alt={asText(data.title)}
