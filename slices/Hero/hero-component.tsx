@@ -12,14 +12,12 @@ const HeroComponent = ({ data, className }: { data: HeroSliceDefaultItem; classN
   return (
     <div className={cn(className)}>
       <div className="relative h-full w-full ">
-        {/*/@ts-ignore */}
         <PrismicNextImage
           field={data.image}
           fill
           loading="eager"
           className="absolute"
           // alt={asText(data.title)!}
-          sizes="(min-width: 1024px) 66vw, 100vw"
         />
 
         <div className="absolute flex h-full w-full flex-col items-center justify-center  gap-3 text-white">
