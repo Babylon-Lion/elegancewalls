@@ -31,7 +31,7 @@ const Slider = ({
   });
 
   return (
-    <div className=" my-20 h-[450px]">
+    <div className=" my-20 h-[500px]">
       <div className=" h-full w-full">
         <h3 className="mb-3 text-center text-2xl font-semibold uppercase">
           <PrismicText field={title} />
@@ -50,12 +50,16 @@ const Slider = ({
               slidesPerView: 2,
               spaceBetween: 40
             },
-            1024: {
+            1000: {
               slidesPerView: 3,
               spaceBetween: 30
+            },
+            1400: {
+              slidesPerView: 4,
+              spaceBetween: 50
             }
           }}
-          className="h-[400px] md:h-[350px]"
+          className="h-[400px]  "
           modules={[Pagination, Navigation]}
         >
           {displayProducts}
