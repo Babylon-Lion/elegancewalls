@@ -18,7 +18,7 @@ const HeroComponent = ({ data, className }: { data: HeroSliceDefaultItem; classN
           fill
           loading="eager"
           className="absolute"
-          alt={data.image.alt}
+          alt={data.image.alt! || ''}
         />
 
         <div className="absolute flex h-full w-full flex-col items-center justify-center  gap-3 text-white">
