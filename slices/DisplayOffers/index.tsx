@@ -7,8 +7,11 @@ import { asLink } from '@prismicio/client';
 const DisplayOffers = ({ slice }: { slice: DisplayOffersSlice }) => {
   const offers = slice.items.map((item, index) => {
     return (
-      <div className="relative col-span-1 flex max-h-[400px] items-center " key={index}>
-        <div className="aspect-video  max-h-[400px]">
+      <div
+        className="relative col-span-1 flex h-[300px] items-center md:max-h-[400px] "
+        key={index}
+      >
+        <div className="md:aspect-video   ">
           <Image src={asLink(item.image)!} fill className="absolute" alt={asText(item.header)} />
         </div>
 

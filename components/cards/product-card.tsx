@@ -18,7 +18,13 @@ const ProductCard = ({ product }: { product: Product }) => {
     <div className="h-full">
       <Link href={`/product/${product.handle}`}>
         <div className="relative mb-2 aspect-square max-h-[80%] w-full">
-          <Image fill src={product.featuredImage.url} alt={product.title} className="absolute " />
+          <Image
+            fill
+            src={product.featuredImage.url}
+            alt={product.title}
+            className="absolute "
+            sizes="(min-width: 1024px) 66vw, 100vw"
+          />
         </div>
       </Link>
 
