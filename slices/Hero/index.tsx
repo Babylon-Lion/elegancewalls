@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import HeroComponent from './hero-component';
 import { HeroSlice } from 'types.generated';
