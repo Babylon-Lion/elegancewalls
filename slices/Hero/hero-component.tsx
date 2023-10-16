@@ -9,7 +9,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const HeroComponent = ({ data, className }: { data: HeroSliceDefaultItem; className: string }) => {
-  console.log(data.image);
   return (
     <div className={cn(className)}>
       <div className="relative h-full w-full ">
