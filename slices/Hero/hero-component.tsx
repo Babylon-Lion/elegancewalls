@@ -15,6 +15,7 @@ const HeroComponent = ({ data, className }: { data: HeroSliceDefaultItem; classN
         <Image
           src={asLink(data.image)!}
           fill
+          loading="eager"
           className="absolute"
           alt={asText(data.title)}
           sizes="(min-width: 1024px) 66vw, 100vw"
