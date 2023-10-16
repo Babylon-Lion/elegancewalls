@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Heart } from 'lucide-react';
 import { Product } from 'lib/shopify/types';
