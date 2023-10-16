@@ -12,6 +12,7 @@ import { X } from 'lucide-react';
 import Link from 'next/link';
 
 export default function WishList({ className }: { className?: string }) {
+  //@ts-ignore
   const initialWishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
   const [wishlist, setWishlist] = useState(initialWishlist);
 
@@ -49,6 +50,7 @@ export default function WishList({ className }: { className?: string }) {
   });
 
   useEffect(() => {
+    //@ts-ignore
     localStorage.setItem('wishlist', JSON.stringify(wishlist));
   }, [wishlist]);
 
