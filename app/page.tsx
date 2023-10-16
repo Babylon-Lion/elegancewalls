@@ -5,7 +5,7 @@
 import { createClient } from 'prismicio';
 import { SliceZone } from '@prismicio/react';
 import { components } from '../slices/components';
-// export const runtime = 'edge';
+export const runtime = 'edge';
 
 export const metadata = {
   description: 'High-performance ecommerce store built with Next.js, Vercel, and Shopify.',

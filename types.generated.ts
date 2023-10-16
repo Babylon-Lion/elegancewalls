@@ -199,12 +199,12 @@ export interface DisplayOffersSliceDefaultItem {
   /**
    * image field in *DisplayOffers → Items*
    *
-   * - **Field Type**: Link to Media
+   * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: display_offers.items[].image
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.LinkToMediaField;
+  image: prismic.ImageField<never>;
 }
 
 /**
@@ -306,7 +306,7 @@ export type FaqSlice = prismic.SharedSlice<'faq', FaqSliceVariation>;
  */
 export interface FooterMenuSliceDefaultPrimary {
   /**
-   * Header field in *FooterMenu → Primary*
+   * header field in *FooterMenu → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -321,7 +321,7 @@ export interface FooterMenuSliceDefaultPrimary {
  */
 export interface FooterMenuSliceDefaultItem {
   /**
-   * listItem field in *FooterMenu → Items*
+   * listitem field in *FooterMenu → Items*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -415,12 +415,12 @@ export interface HeroSliceDefaultItem {
   /**
    * image field in *Hero → Items*
    *
-   * - **Field Type**: Link
+   * - **Field Type**: Image
    * - **Placeholder**: *None*
    * - **API ID Path**: hero.items[].image
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.LinkField;
+  image: prismic.ImageField<never>;
 }
 
 /**
@@ -622,33 +622,6 @@ export type ShowcaseCollectionnSlice = prismic.SharedSlice<
   ShowcaseCollectionnSliceVariation
 >;
 
-/**
- * Default variation for Test Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type TestSliceDefault = prismic.SharedSliceVariation<
-  'default',
-  Record<string, never>,
-  never
->;
-
-/**
- * Slice variation for *Test*
- */
-type TestSliceVariation = TestSliceDefault;
-
-/**
- * Test Shared Slice
- *
- * - **API ID**: `test`
- * - **Description**: Test
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type TestSlice = prismic.SharedSlice<'test', TestSliceVariation>;
-
 declare module '@prismicio/client' {
   interface CreateClient {
     (
@@ -695,10 +668,7 @@ declare module '@prismicio/client' {
       ShowcaseCollectionnSlice,
       ShowcaseCollectionnSliceDefaultItem,
       ShowcaseCollectionnSliceVariation,
-      ShowcaseCollectionnSliceDefault,
-      TestSlice,
-      TestSliceVariation,
-      TestSliceDefault
+      ShowcaseCollectionnSliceDefault
     };
   }
 }

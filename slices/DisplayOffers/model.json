@@ -58,11 +58,11 @@
           }
         },
         "image": {
-          "type": "Link",
+          "type": "Image",
           "config": {
             "label": "image",
-            "placeholder": "",
-            "select": "media"
+            "constraint": {},
+            "thumbnails": []
           }
         }
       }
