@@ -59,7 +59,7 @@ const Slider = ({
               spaceBetween: 50
             }
           }}
-          className="h-[400px]  "
+          className="h-[430px]  "
           modules={[Pagination, Navigation]}
         >
           {displayProducts}
