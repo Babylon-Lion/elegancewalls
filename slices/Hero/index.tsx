@@ -1,5 +1,6 @@
 import React from 'react';
 import HeroComponent from './hero-component';
+
 import { HeroSlice } from 'types.generated';
 
 const Hero = ({ slice }: { slice: HeroSlice }) => {
@@ -14,7 +15,7 @@ const Hero = ({ slice }: { slice: HeroSlice }) => {
   });
 
   return (
-    <div className="grid-rows-auto  grid  h-[500px] grid-cols-2 gap-5 pb-10 md:gap-10 lg:h-[400px] lg:grid-cols-3 lg:grid-rows-2 xl:h-[550px]">
+    <div className="grid-rows-auto  grid  h-auto grid-cols-2 gap-5  pb-10 md:gap-10  lg:grid-cols-3 lg:grid-rows-2 xl:h-auto">
       {displaySlices}
     </div>
   );

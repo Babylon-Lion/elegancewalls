@@ -9,8 +9,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
 import { Button } from '@/components/ui/button';
-import { PrismicText } from '@prismicio/react';
 import Link from 'next/link';
+import { asText } from '@prismicio/client';
 
 const Slider = ({
   productData,
@@ -33,9 +33,7 @@ const Slider = ({
   return (
     <div className=" mb-20 h-[500px]">
       <div className=" h-full w-full">
-        <h3 className="mb-7 text-center text-3xl font-semibold uppercase">
-          <PrismicText field={title} />
-        </h3>
+        <h2 className="mb-7 text-center text-3xl font-semibold uppercase">{asText(title)}</h2>
         <Swiper
           navigation={true}
           pagination={{

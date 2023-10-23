@@ -1,6 +1,6 @@
 import Navbar from 'components/layout/navbar';
 import { ensureStartsWith } from 'lib/utils';
-import { Inter, Open_Sans } from 'next/font/google';
+import { Playfair_Display, Roboto } from 'next/font/google';
 import { ReactNode, Suspense } from 'react';
 import { Toaster } from '@/components/ui/toaster';
 import MegaMenu from 'components/layout/mega-menu';
@@ -39,14 +39,20 @@ export const metadata = {
     })
 };
 
-const sans = Open_Sans({
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  variable: '--font-sans'
+  variable: '--font-playfair'
+});
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  variable: '--font-roboto',
+  weight: '400'
 });
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={sans.variable}>
+    <html lang="en" className={`${playfair.variable} ${roboto.variable}`}>
       <body className=" bg-neutral-50 font-main text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
         <ShopifyContext>
           <Navbar />

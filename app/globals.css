@@ -84,6 +84,7 @@ button {
 #navItem .absolute.left-0.top-full.flex.justify-center {
   left: 50% !important;
   transform: translateX(-50%);
+  z-index: 200 !important;
 }
 
 .swiper-button-prev,
@@ -107,4 +108,19 @@ button {
 
 .swiper-pagination-bullet-active {
   background-color: #d3b574 !important;
+}
+
+h1,
+h2 {
+  font-family: var(--font-playfair);
+}
+
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div {
+  font-family: var(--font-roboto);
 }

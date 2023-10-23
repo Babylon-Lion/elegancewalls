@@ -21,7 +21,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        main: ['var(--font-sans)']
+        main: ['var(--font-playfair)'],
+        secondary: ['var(--font-roboto)']
       },
       colors: {
         border: 'hsl(var(--border))',

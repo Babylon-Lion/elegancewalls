@@ -104,7 +104,7 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
             <NavigationMenuTrigger className="bg-transparent text-white underline opacity-100">
               Shop by collection
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="absolute p-3  ">
+            <NavigationMenuContent className="absolute p-3   ">
               <div className="div flex  h-[550px] w-[400px] p-4  md:w-[800px] xl:w-[900px]  ">
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
@@ -125,6 +125,7 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                     <Image src={hoveredCollection} width={300} height={300} alt="test" />
                   )}
                 </div>
+
                 <div className="flex w-2/3  flex-col  gap-2  ">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
                   <div className="flex w-full  gap-3">
@@ -159,7 +160,6 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
             <NavigationMenuTrigger className="bg-transparent text-white underline opacity-100">
               Shop by style
             </NavigationMenuTrigger>
-            <NavigationMenuContent></NavigationMenuContent>
             <NavigationMenuContent>
               <div className="div flex  h-[550px] w-[400px] p-4  md:w-[800px] xl:w-[900px]  ">
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
