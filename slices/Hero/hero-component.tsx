@@ -18,7 +18,7 @@ const HeroComponent = ({ data, className }: { data: HeroSliceDefaultItem; classN
             src={data.image.url!}
             fill
             loading="eager"
-            className="max-h-full object-cover"
+            className="object-cover"
             alt={data.image.alt! || ''}
           />
           <div className="absolute flex h-full w-full flex-col items-center justify-center  gap-3 text-white ">
