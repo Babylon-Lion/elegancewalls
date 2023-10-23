@@ -1,10 +1,42 @@
-import { HeroSlice } from 'types.generated';
+'use client';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { asLink, asText } from '@prismicio/client';
-import Link from 'next/link';
 import { PrismicRichText } from '@prismicio/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { HeroSlice, HeroSliceDefaultItem } from 'types.generated';
+
+export const HeroComponent = ({ item }: { item: HeroSliceDefaultItem }) => {
+  return (
+    <div className="relative h-full w-full ">
+      <AspectRatio ratio={1 / 1}>
+        <Image
+          src={item.image.url!}
+          fill
+          loading="eager"
+          className="object-cover"
+          alt={item.image.alt! || ''}
+        />
+        <div className="absolute flex h-full w-full flex-col items-center justify-center  gap-3 text-white ">
+          <h1 className="text-xl font-bold lg:text-6xl">{asText(item.title)}</h1>
+          <h3 className="text-lg font-semibold lg:text-xl">{asText(item.collectiontype)} </h3>
+
+          <Button
+            asChild
+            size={window.innerWidth > 768 ? 'lg' : 'sm'}
+            className="border-2 border-black bg-white text-black hover:bg-white hover:opacity-70"
+          >
+            <Link href={asLink(item.pagelink)!}>
+              <PrismicRichText field={item.button} />
+            </Link>
+          </Button>
+        </div>
+      </AspectRatio>
+    </div>
+  );
+};
+
 const Hero = ({ slice }: { slice: HeroSlice }) => {
   const displaySlices = slice.items.map((item, index) => {
     return (
@@ -12,27 +44,7 @@ const Hero = ({ slice }: { slice: HeroSlice }) => {
         className={`${index === 0 ? 'col-span-2 row-span-2' : 'col-span-1 row-span-1 '}`}
         key={index}
       >
-        <div className="relative h-full w-full ">
-          <AspectRatio ratio={1 / 1}>
-            <Image
-              src={item.image.url!}
-              fill
-              loading="eager"
-              className="object-cover"
-              alt={item.image.alt! || ''}
-            />
-            <div className="absolute flex h-full w-full flex-col items-center justify-center  gap-3 text-white ">
-              <h1 className="text-xl font-bold lg:text-4xl">{asText(item.title)}</h1>
-              <h3 className="text-lg font-semibold lg:text-xl">{asText(item.collectiontype)} </h3>
-
-              <Button asChild size={'sm'} className="bg-niceBlue">
-                <Link href={asLink(item.pagelink)!}>
-                  <PrismicRichText field={item.button} />
-                </Link>
-              </Button>
-            </div>
-          </AspectRatio>
-        </div>
+        <HeroComponent item={item} />
       </div>
     );
   });

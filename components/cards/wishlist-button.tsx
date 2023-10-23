@@ -2,11 +2,14 @@
 import { Product } from 'lib/shopify/types';
 import { Heart } from 'lucide-react';
 import React from 'react';
+// import { useEffect, useState } from 'react';
+import { wishlistAtom } from 'lib/shopify/jotai';
+import { useAtom } from 'jotai/react';
 
 const WishlistButton = ({ product }: { product: Product }) => {
-  const initialWishlist =
-    typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('wishlist') || '[]') : [];
-  const [wishlist, setWishlist] = React.useState(initialWishlist);
+  // const initialWishlist =
+  //   typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('wishlist') || '[]') : [];
+  const [wishlist, setWishlist] = useAtom(wishlistAtom);
 
   const isProductInWishlist = wishlist.some((item: Product) => item.id === product.id);
 

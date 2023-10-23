@@ -4,30 +4,36 @@ import clsx from 'clsx';
 import { Product } from 'lib/shopify/types';
 import { Heart } from 'lucide-react';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-
+import { useEffect } from 'react';
+import { wishlistAtom } from 'lib/shopify/jotai';
+import { useAtom } from 'jotai/react';
 import Price from 'components/price';
 
 import { X } from 'lucide-react';
 import Link from 'next/link';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 export default function WishList({ className }: { className?: string }) {
   //@ts-ignore
-  const initialWishlist =
-    typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('wishlist') || '[]') : [];
-  const [wishlist, setWishlist] = useState(initialWishlist);
+  // const initialWishlist =
+  //   typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('wishlist') || '[]') : [];
+  // const [wishlist, setWishlist] = useState(initialWishlist);
+  const [wishlist, setWishlist] = useAtom(wishlistAtom);
 
   const displayWishListItems = wishlist.map((item: Product, index: number) => {
     return (
       <div key={index} className="flex gap-2">
         <Link href={`/product/${item.handle}`}>
-          <Image
-            width={120}
-            height={150}
-            alt={item.title}
-            src={item.featuredImage.url}
-            className="rounded-md"
-          />
+          <div className="relative h-[80px] w-[80px]">
+            <AspectRatio ratio={1 / 1}>
+              <Image
+                fill
+                alt={item.title}
+                src={item.featuredImage.url}
+                className="rounded-md object-cover"
+              />
+            </AspectRatio>
+          </div>
         </Link>
         <Link href={`/product/${item.handle}`}>
           <div className="flex flex-col gap-3">
@@ -62,7 +68,7 @@ export default function WishList({ className }: { className?: string }) {
           <Heart className={clsx('h-4 transition-all ease-in-out hover:scale-110 ', className)} />
 
           {wishlist.length ? (
-            <div className=" absolute right-0 top-0 -mr-2 -mt-2 h-4 w-4 rounded text-[11px] font-medium text-red-600">
+            <div className=" absolute right-0 top-0 -mr-2 -mt-2 h-4 w-4 rounded bg-red-600 text-[11px] text-sm font-semibold text-white">
               {wishlist.length}
             </div>
           ) : null}
