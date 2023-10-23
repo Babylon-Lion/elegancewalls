@@ -38,7 +38,7 @@ const Hero = ({ slice }: { slice: HeroSlice }) => {
   });
 
   return (
-    <div className="grid-rows-auto  grid   h-[500px] grid-cols-2  gap-5 pb-10  md:gap-10 lg:grid-cols-3 lg:grid-rows-2 xl:h-[550px] ">
+    <div className="grid-rows-auto  grid   h-[600px] grid-cols-2  gap-5 pb-10  md:gap-10 lg:grid-cols-3 lg:grid-rows-2 xl:h-[550px] ">
       {displaySlices}
     </div>
   );

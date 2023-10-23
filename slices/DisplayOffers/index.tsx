@@ -10,8 +10,8 @@ const DisplayOffers = ({ slice }: { slice: DisplayOffersSlice }) => {
         className="relative col-span-1 flex h-[300px] items-center md:max-h-[400px] "
         key={index}
       >
-        <div className="md:aspect-video   ">
-          <Image src={item?.image?.url!} fill className="absolute" alt={'test'} />
+        <div className="aspect-video   ">
+          <Image src={item?.image?.url!} fill className="absolute object-cover" alt={'test'} />
         </div>
 
         <div
