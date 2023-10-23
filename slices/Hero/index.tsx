@@ -18,9 +18,13 @@ export const HeroComponent = ({ item }: { item: HeroSliceDefaultItem }) => {
           className="object-cover"
           alt={item.image.alt! || ''}
         />
-        <div className="absolute flex h-full w-full flex-col items-center justify-center  gap-3 text-white ">
-          <h1 className="text-xl font-bold lg:text-6xl">{asText(item.title)}</h1>
-          <h3 className="text-lg font-semibold lg:text-xl">{asText(item.collectiontype)} </h3>
+        <div className="absolute flex h-full w-full flex-col items-center justify-center  gap-3 ">
+          <h2 className="heroHeader text-xl font-bold text-white lg:text-6xl">
+            {asText(item.title)}
+          </h2>
+          <h3 className="text-lg font-semibold text-white lg:text-xl">
+            {asText(item.collectiontype)}{' '}
+          </h3>
 
           <Button
             asChild
