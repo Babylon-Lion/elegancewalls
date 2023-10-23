@@ -2,13 +2,13 @@
 // import { ThreeItemGrid } from 'components/grid/three-items';
 // import Footer from 'components/layout/footer';
 // import { Suspense } from 'react';
-import { createClient } from 'prismicio';
 import { SliceZone } from '@prismicio/react';
+import { createClient } from 'prismicio';
 import { components } from '../slices/components';
 export const runtime = 'edge';
 
 export const metadata = {
-  description: 'High-performance ecommerce store built with Next.js, Vercel, and Shopify.',
+  description: 'Elegance wallpaper, is high end wallcovering store',
   openGraph: {
     type: 'website'
   }
