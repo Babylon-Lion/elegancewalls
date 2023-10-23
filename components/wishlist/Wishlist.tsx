@@ -22,8 +22,8 @@ export default function WishList({ className }: { className?: string }) {
       <div key={index} className="flex gap-2">
         <Link href={`/product/${item.handle}`}>
           <Image
-            width={64}
-            height={64}
+            width={120}
+            height={150}
             alt={item.title}
             src={item.featuredImage.url}
             className="rounded-md"
@@ -62,7 +62,7 @@ export default function WishList({ className }: { className?: string }) {
           <Heart className={clsx('h-4 transition-all ease-in-out hover:scale-110 ', className)} />
 
           {wishlist.length ? (
-            <div className="bg-blue-600 absolute right-0 top-0 -mr-2 -mt-2 h-4 w-4 rounded text-[11px] font-medium text-red-600">
+            <div className=" absolute right-0 top-0 -mr-2 -mt-2 h-4 w-4 rounded text-[11px] font-medium text-red-600">
               {wishlist.length}
             </div>
           ) : null}
