@@ -23,7 +23,7 @@ const FAQ = ({ slice }: { slice: FaqSlice }) => {
 
   return (
     <div className="my-10">
-      <h3 className="pb-5 text-center text-3xl font-semibold text-blue ">FAQs</h3>
+      <h3 className="pb-5 text-center text-3xl font-semibold text-niceBlue ">FAQs</h3>
       <Accordion type="single" collapsible className="flex w-full flex-col md:flex-row md:gap-10">
         <div className="w-full md:w-1/2 ">{faqItemsColumn1}</div>
         <div className="w-full md:w-1/2">{faqItemsColumn2} </div>

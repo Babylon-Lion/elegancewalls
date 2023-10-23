@@ -28,7 +28,7 @@ const HeroComponent = ({ data, className }: { data: HeroSliceDefaultItem; classN
             <PrismicRichText field={data.collectiontype} />
           </h3>
 
-          <Button asChild size={'sm'} className="bg-blue">
+          <Button asChild size={'sm'} className="bg-niceBlue">
             <Link href={asLink(data.pagelink)!}>
               <PrismicRichText field={data.button} />
             </Link>

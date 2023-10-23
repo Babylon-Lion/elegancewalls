@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { PrismicRichText } from '@prismicio/react';
 import Image from 'next/image';
 import { DisplayOffersSlice } from 'types.generated';
+import { asText } from '@prismicio/client';
 const DisplayOffers = ({ slice }: { slice: DisplayOffersSlice }) => {
   const offers = slice.items.map((item, index) => {
     return (
@@ -14,18 +15,21 @@ const DisplayOffers = ({ slice }: { slice: DisplayOffersSlice }) => {
         </div>
 
         <div
-          className=" z-30  flex h-2/3 w-full flex-col gap-5 p-5"
-          style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)' }}
+          className=" z-30  flex h-3/4 w-full flex-col justify-center gap-5 p-5 md:h-2/3"
+          style={{ backgroundColor: 'rgba(255, 255, 255, 0.6)' }}
         >
-          <h2 className="text-xl">
+          {/* <h2 className="text-xl">
             <PrismicRichText field={item.header} />
-          </h2>
+          </h2> */}
 
-          <p>
-            <PrismicRichText field={item.description} />
+          <p className="text-center font-sans text-xl font-semibold text-niceBlue">
+            {asText(item.description)}
           </p>
-          <div className="flex  w-full">
-            <Button className="w-1/2 bg-blue">
+          <div className="flex  w-full justify-center">
+            <Button
+              className="w-1/2  border-2 border-black font-semibold text-niceBlue"
+              variant={'ghost'}
+            >
               {' '}
               <PrismicRichText field={item.buttontext} />
             </Button>
@@ -36,7 +40,7 @@ const DisplayOffers = ({ slice }: { slice: DisplayOffersSlice }) => {
   });
 
   return (
-    <div className="my-10 grid  h-auto grid-cols-1 gap-10 md:h-[400px] md:grid-cols-2">
+    <div className="grid h-auto grid-cols-1  gap-10 pt-20 md:h-[400px] md:grid-cols-2 md:pt-10">
       {offers}
     </div>
   );

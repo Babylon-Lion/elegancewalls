@@ -20,6 +20,9 @@ module.exports = {
       }
     },
     extend: {
+      fontFamily: {
+        main: ['var(--font-sans)']
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -28,7 +31,7 @@ module.exports = {
         gold: '#D3B574',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
-        blue: '#16163F',
+        niceBlue: '#16163F',
 
         primary: {
           DEFAULT: 'hsl(var(--primary))',

@@ -31,9 +31,9 @@ const Slider = ({
   });
 
   return (
-    <div className=" my-20 h-[500px]">
+    <div className=" mb-20 h-[500px]">
       <div className=" h-full w-full">
-        <h3 className="mb-3 text-center text-2xl font-semibold uppercase">
+        <h3 className="mb-7 text-center text-3xl font-semibold uppercase">
           <PrismicText field={title} />
         </h3>
         <Swiper

@@ -15,7 +15,7 @@ const Newsletter = ({ slice }: { slice: NewsletterSlice }) => {
           <h4 className="block text-xl font-semibold">Stay Updated</h4>
           <div className="flex  w-full items-center justify-end gap-2 md:w-2/3">
             <Input placeholder="Your email" />
-            <Button className="bg-blue">Subscribe</Button>
+            <Button className="bg-niceBlue">Subscribe</Button>
           </div>
         </div>
 
