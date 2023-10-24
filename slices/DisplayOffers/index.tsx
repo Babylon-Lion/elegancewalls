@@ -21,6 +21,7 @@ const DisplayOffers = ({ slice }: { slice: DisplayOffersSlice }) => {
           {/* <h2 className="text-xl">
             <PrismicRichText field={item.header} />
           </h2> */}
+          <h2 className="text-center text-xl font-bold">{asText(item.header)}</h2>
 
           <p className="text-center font-sans text-xl font-semibold text-niceBlue">
             {asText(item.description)}

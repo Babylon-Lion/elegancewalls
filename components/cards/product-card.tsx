@@ -1,3 +1,4 @@
+'use client';
 import Price from 'components/price';
 import { Product } from 'lib/shopify/types';
 import { ScissorsLineDashed, ShoppingCart } from 'lucide-react';

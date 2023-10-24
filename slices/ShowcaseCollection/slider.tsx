@@ -62,15 +62,16 @@ const Slider = ({
         >
           {displayProducts}
         </Swiper>
-
-        <div className="mt-3 flex w-full justify-center">
-          <Button
-            className="text-wblack border-2 border-black bg-transparent hover:bg-transparent hover:opacity-80"
-            asChild
-          >
-            <Link href={`/search/${handle}`}>View All</Link>
-          </Button>
-        </div>
+        {handle && (
+          <div className="mt-3 flex w-full justify-center">
+            <Button
+              className="text-wblack border-2 border-black bg-transparent hover:bg-transparent hover:opacity-80"
+              asChild
+            >
+              <Link href={`/search/${handle}`}>View All</Link>
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

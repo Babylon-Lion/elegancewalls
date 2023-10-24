@@ -109,17 +109,23 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
                   {collections.slice(0, 4).map((component, index) => (
-                    <ListItem
+                    <Link
+                      href={`/search/${
+                        component.title === 'All' ? '' : component.title.toLowerCase()
+                      }`}
                       key={index}
-                      title={component.title}
-                      src={component.image.url}
-                      onMouseOver={() => {
-                        setHoveredCollection(component.image.url);
-                      }}
-                      onMouseLeave={() => {
-                        setHoveredCollection('');
-                      }}
-                    ></ListItem>
+                    >
+                      <ListItem
+                        title={component.title}
+                        src={component.image.url}
+                        onMouseOver={() => {
+                          setHoveredCollection(component.image.url);
+                        }}
+                        onMouseLeave={() => {
+                          setHoveredCollection('');
+                        }}
+                      ></ListItem>
+                    </Link>
                   ))}
                   {hoveredCollection && (
                     <Image src={hoveredCollection} width={300} height={300} alt="test" />
@@ -165,7 +171,9 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
                   {wallpaperStyles.slice(0, 4).map((component, index) => (
-                    <ListItem key={index} title={component.title} src={component.url}></ListItem>
+                    <Link href={`/search?style=${component.title.replace(' ', '-')}`} key={index}>
+                      <ListItem key={index} title={component.title} src={component.url}></ListItem>
+                    </Link>
                   ))}
                   {hoveredCollection && (
                     <Image src={hoveredCollection} width={300} height={300} alt="test" />
@@ -210,7 +218,13 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
                   {colors.slice(0, 4).map((component, index) => (
-                    <ListItem key={index} title={component.title} color={component.hex}></ListItem>
+                    <Link href={`/search?color=${component.title.replace(' ', '-')}`} key={index}>
+                      <ListItem
+                        key={index}
+                        title={component.title}
+                        color={component.hex}
+                      ></ListItem>
+                    </Link>
                   ))}
                 </div>
                 <div className="flex w-2/3  flex-col  gap-2  ">

@@ -15,7 +15,7 @@ export const HeroComponent = ({ item }: { item: HeroSliceDefaultItem }) => {
           src={item.image.url!}
           fill
           loading="eager"
-          className="object-cover"
+          className="object-cover brightness-75"
           alt={item.image.alt! || ''}
         />
         <div className="absolute flex h-full w-full flex-col items-center justify-center  gap-3 ">

@@ -47,11 +47,16 @@ export default async function Footer() {
     <footer className="  h-[300px]  w-full  border-t-2 border-gold ">
       <div className="grid-rows-auto container grid grid-cols-2 gap-10 py-10 md:grid-cols-4 md:gap-20">
         {footerMenus}
-        <div className="col-span-1">
+        <div className="col-span-1  ">
           <h3 className="mb-2 text-2xl font-semibold">Office</h3>
           <ul>
-            <li className="cursor-pointer font-semibold hover:underline">
-              <a href={`mailto:${asText(footerData?.email)}`}>{asText(footerData?.email)}</a>
+            <li className="cursor-pointer font-semibold hover:underline  ">
+              <a
+                className="line-clamp-1 flex flex-wrap"
+                href={`mailto:${asText(footerData?.email)}`}
+              >
+                {asText(footerData?.email)}
+              </a>
             </li>
             <li className="cursor-pointer font-semibold hover:underline">
               PH:{' '}
