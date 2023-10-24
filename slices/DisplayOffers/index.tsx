@@ -2,9 +2,11 @@ import { Button } from '@/components/ui/button';
 import { PrismicRichText } from '@prismicio/react';
 import Image from 'next/image';
 import { DisplayOffersSlice } from 'types.generated';
-import { asText } from '@prismicio/client';
+import { asLink, asText } from '@prismicio/client';
+import Link from 'next/link';
 const DisplayOffers = ({ slice }: { slice: DisplayOffersSlice }) => {
   const offers = slice.items.map((item, index) => {
+    console.log(item.buttonlink);
     return (
       <div
         className="relative col-span-1 flex h-[300px] items-center md:max-h-[400px] "
@@ -30,9 +32,12 @@ const DisplayOffers = ({ slice }: { slice: DisplayOffersSlice }) => {
             <Button
               className="w-1/2  border-2 border-black font-semibold text-niceBlue"
               variant={'ghost'}
+              asChild
             >
-              {' '}
-              <PrismicRichText field={item.buttontext} />
+              <Link href={asLink(item.buttonlink)!}>
+                {' '}
+                <PrismicRichText field={item.buttontext} />
+              </Link>
             </Button>
           </div>
         </div>
