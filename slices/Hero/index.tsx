@@ -19,7 +19,7 @@ export const HeroComponent = ({ item }: { item: HeroSliceDefaultItem }) => {
           alt={item.image.alt! || ''}
         />
         <div className="absolute flex h-full w-full flex-col items-center justify-center  gap-3 ">
-          <h2 className="heroHeader text-xl font-bold text-white drop-shadow-sm lg:text-6xl">
+          <h2 className="heroHeader text-xl font-bold text-white drop-shadow-lg lg:text-6xl">
             {asText(item.title)}
           </h2>
           <h3 className="text-lg font-semibold text-white lg:text-xl">
@@ -29,7 +29,7 @@ export const HeroComponent = ({ item }: { item: HeroSliceDefaultItem }) => {
           <Button
             asChild
             size={window.innerWidth > 768 ? 'lg' : 'sm'}
-            className="border-1 border-black bg-white text-black hover:bg-white hover:opacity-70"
+            className="border-1 border-black bg-white text-black drop-shadow-lg hover:bg-white hover:opacity-70"
           >
             <Link href={asLink(item.pagelink)!}>
               <PrismicRichText field={item.button} />
