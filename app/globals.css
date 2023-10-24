@@ -130,6 +130,6 @@ div[data-radix-aspect-ratio-wrapper] {
   position: static !important;
 }
 .heroHeader {
-  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
 }
