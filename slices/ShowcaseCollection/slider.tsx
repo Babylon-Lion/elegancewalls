@@ -4,13 +4,13 @@ import { Product } from 'lib/shopify/types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import { Pagination, Navigation } from 'swiper/modules';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import { asText } from '@prismicio/client';
+import Link from 'next/link';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Navigation, Pagination } from 'swiper/modules';
 
 const Slider = ({
   productData,
@@ -31,9 +31,11 @@ const Slider = ({
   });
 
   return (
-    <div className=" mb-20 h-[500px]">
+    <div className=" mb-40 h-[500px]">
       <div className=" h-full w-full">
-        <h2 className="mb-7 text-center text-3xl font-semibold uppercase">{asText(title)}</h2>
+        <h2 className="mb-16 mt-10 text-center text-3xl font-semibold uppercase">
+          {asText(title)}
+        </h2>
         <Swiper
           navigation={true}
           pagination={{
@@ -65,7 +67,7 @@ const Slider = ({
         {handle && (
           <div className="mt-3 flex w-full justify-center">
             <Button
-              className="text-wblack border-2 border-black bg-transparent hover:bg-transparent hover:opacity-80"
+              className="border-2 border-black bg-transparent text-black hover:bg-transparent hover:opacity-80"
               asChild
             >
               <Link href={`/search/${handle}`}>View All</Link>
