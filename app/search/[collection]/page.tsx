@@ -31,19 +31,9 @@ export default async function CategoryPage({
   params: { collection: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const { sort, color, style } = searchParams as { [key: string]: string };
+  const { sort } = searchParams as { [key: string]: string };
   const { sortKey, reverse } = sorting.find((item) => item.slug === sort) || defaultSort;
-  const products = (
-    await getCollectionProducts({ collection: params.collection, sortKey, reverse })
-  ).filter((product) => {
-    return color && style
-      ? product.tags.includes(color) && product.tags.includes(style)
-      : color
-      ? product.tags.includes(color)
-      : style
-      ? product.tags.includes(style)
-      : true;
-  });
+  const products = await getCollectionProducts({ collection: params.collection, sortKey, reverse });
 
   return (
     <section>

@@ -1,4 +1,7 @@
 import { atom } from 'jotai';
 
 export const isCartOpenAtom = atom(false);
-export const wishlistAtom = atom(JSON.parse(localStorage.getItem('wishlist') || '[]'));
+//@ts-ignore
+export const wishlistAtom = atom(
+  typeof window != undefined ? JSON.parse(localStorage.getItem('wishlist') || '[]') : []
+);
