@@ -1,3 +1,5 @@
+import Image from 'next/image';
+import about from '../../public/elegance-walls-store.jpg';
 function page() {
   return (
     <div className="px-4 py-9 2xl:container md:px-6 md:py-12 lg:px-20 lg:py-16 2xl:mx-auto">
@@ -19,22 +21,8 @@ function page() {
             expectations and help you transform your space into something truly remarkable.
           </p>
         </div>
-        <div className="w-full lg:w-6/12">
-          <img
-            className="hidden w-full lg:block"
-            src="https://i.ibb.co/RjNH7QB/Rectangle-122-1.png"
-            alt="people discussing on board"
-          />
-          <img
-            className="hidden w-full sm:block lg:hidden"
-            src="https://i.ibb.co/16fPqrg/Rectangle-122-2.png"
-            alt="people discussing on board"
-          />
-          <img
-            className="block w-full sm:hidden"
-            src="https://i.ibb.co/Jxhpxh6/Rectangle-122.png"
-            alt="people discussing on board"
-          />
+        <div className="relative w-full lg:w-6/12">
+          <Image src={about} alt="people discussing on board" fill style={{ objectFit: 'cover' }} />
         </div>
       </div>
 

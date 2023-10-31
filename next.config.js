@@ -23,7 +23,13 @@ module.exports = {
     serverActions: true
   },
   images: {
-    domains: ['cdn.shopify.com', 'asset.cloudinary.com', 'res.cloudinary.com', 'images.prismic.io']
+    domains: [
+      'cdn.shopify.com',
+      'asset.cloudinary.com',
+      'res.cloudinary.com',
+      'images.prismic.io',
+      'i.ibb.co'
+    ]
   },
   async redirects() {
     return [
