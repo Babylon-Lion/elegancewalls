@@ -42,7 +42,6 @@ const ProductCard = ({ product }: { product: Product }) => {
             </p>
           </div>
         </Link>
-
         <div className="flex gap-2">
           <ShoppingCart
             className="cursor-pointer"
