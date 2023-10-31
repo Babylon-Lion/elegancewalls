@@ -23,8 +23,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             fill
             src={product.featuredImage.url}
             alt={product.title}
-            className="absolute "
-            sizes="(min-width: 1024px) 66vw, 100vw"
+            className="absolute object-cover"
           />
         </div>
       </Link>

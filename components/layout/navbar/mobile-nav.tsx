@@ -40,8 +40,6 @@ const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
     });
   };
 
-  const mostPopular = Array.from({ length: 5 });
-
   return (
     <div className="mb-3 flex flex-col gap-8">
       <Accordion type="single" collapsible className="flex flex-col gap-3">
@@ -79,18 +77,19 @@ const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
       </Accordion>
       <div className="flex flex-col gap-3">
         <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
-        {mostPopular.map((component, index) => (
-          <a
+        {collections.slice(0, 5).map((component, index) => (
+          <Link
             key={index}
+            href={`/search/${component.handle}`}
             className={
               'block select-none space-y-1 rounded-md bg-accent  p-3 leading-none no-underline opacity-80 outline-none transition-colors hover:text-accent-foreground hover:opacity-100 focus:bg-accent focus:text-accent-foreground'
             }
           >
             <div className="flex w-full items-center justify-between text-sm font-medium leading-none">
-              Acoustic Wallpaper
-              {AvatarFunc('/download.jpeg', 's', 'h-10 w-10')}
+              {component.title}
+              {AvatarFunc(component.image.url, 's', 'h-10 w-10')}
             </div>
-          </a>
+          </Link>
         ))}
       </div>
     </div>
