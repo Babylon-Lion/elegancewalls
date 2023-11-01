@@ -41,7 +41,7 @@ const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
   };
 
   return (
-    <div className="mb-3 flex flex-col gap-8">
+    <div className="mb-3 flex flex-col gap-8 ">
       <Accordion type="single" collapsible className="flex flex-col gap-3">
         <AccordionItem value="item-1">
           <AccordionTrigger className="rounded-md bg-gold px-2 text-white">
