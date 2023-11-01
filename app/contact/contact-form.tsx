@@ -1,40 +1,60 @@
 'use client';
 
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 export default function ContactForm() {
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(event: any) {
-    event.preventDefault();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
     setLoading(true);
 
-    const data = {
-      name: String(event.target.name.value),
-      email: String(event.target.email.value),
-      message: String(event.target.message.value)
-    };
-
-    const response = await fetch('../api/email/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-
-    if (response.ok) {
-      console.log('Message sent successfully');
-      setLoading(false);
-      // reset the form
-      event.target.name.value = '';
-      event.target.email.value = '';
-      event.target.message.value = '';
+    try {
+      const res = await fetch('/contact', {
+        method: 'POST',
+        body: JSON.stringify({
+          name,
+          email,
+          message
+        }),
+        headers: {
+          'content-type': 'application/json'
+        }
+      });
+    } catch (err: any) {
+      console.log('Error', err);
     }
-    if (!response.ok) {
-      console.log('Error sending message');
-      setLoading(false);
-    }
+
+    // const data = {
+    //   name: String(event.target.name.value),
+    //   email: String(event.target.email.value),
+    //   message: String(event.target.message.value)
+    // };
+
+    // const response = await fetch('../api/email/contact', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(data)
+    // });
+
+    // if (response.ok) {
+    //   console.log('Message sent successfully');
+    //   setLoading(false);
+    //   // reset the form
+    //   event.target.name.value = '';
+    //   event.target.email.value = '';
+    //   event.target.message.value = '';
+    // }
+    // if (!response.ok) {
+    //   console.log('Error sending message');
+    //   setLoading(false);
+    // }
   }
   return (
     <form onSubmit={handleSubmit}>
@@ -44,6 +64,8 @@ export default function ContactForm() {
         </label>
 
         <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           type="text"
           minLength={3}
           maxLength={150}
@@ -58,6 +80,8 @@ export default function ContactForm() {
           Email
         </label>
         <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           type="email"
           minLength={5}
           maxLength={150}
@@ -72,6 +96,8 @@ export default function ContactForm() {
           Message
         </label>
         <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           rows={4}
           required
           minLength={10}
