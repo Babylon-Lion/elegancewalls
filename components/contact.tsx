@@ -1,9 +1,8 @@
 'use client';
 
-import { FC } from 'react';
-import { useForm } from 'react-hook-form';
+import { toast } from '@/components/ui/use-toast';
+import { ChangeEvent, FC, useState } from 'react';
 import { sendEmail } from '../lib/send-email';
-
 export type FormData = {
   name: string;
   email: string;
@@ -11,10 +10,47 @@ export type FormData = {
 };
 
 const Contact: FC = () => {
-  const { register, handleSubmit } = useForm<FormData>();
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    to: '',
+    text: ''
+  });
 
-  function onSubmit(data: FormData) {
-    sendEmail(data);
+  const handleFormChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const id = e.target.id;
+    const value = e.target.value;
+
+    setFormData({ ...formData, [id]: value });
+  };
+  async function onSubmit() {
+    if (!formData.to || !formData.to.includes('@')) {
+      toast({
+        variant: 'destructive',
+        description: 'Please enter a valid email address.'
+      });
+      return;
+    }
+    if (!formData.firstName || !formData.lastName) {
+      toast({
+        variant: 'destructive',
+        description: 'Please enter your name.'
+      });
+      return;
+    }
+
+    if (!formData.text) {
+      toast({
+        variant: 'destructive',
+        description: 'Please enter text'
+      });
+      return;
+    }
+    sendEmail(formData);
+    toast({
+      variant: 'default',
+      description: 'Email sent!'
+    });
   }
 
   return (
@@ -55,8 +91,8 @@ const Contact: FC = () => {
             Get in touch
           </h1>
           <p role="contentinfo" className="mt-4 hidden text-base leading-6 text-gray-600 lg:block">
-            We're eager to hear from you. Whether you have questions about our products, need design
-            advice, or want to discuss a project, don't hesitate to get in touch. <br /> Our
+            We`re eager to hear from you. Whether you have questions about our products, need design
+            advice, or want to discuss a project, don`t hesitate to get in touch. <br /> Our
             friendly and knowledgeable team is here to assist you every step of the way, ensuring
             your interior design journey is seamless and inspiring{' '}
           </p>
@@ -65,7 +101,12 @@ const Contact: FC = () => {
             <div>
               <p className="mb-4 text-base font-medium leading-4 text-gray-800">First Name</p>
               <input
-                type="name"
+                value={formData.firstName}
+                onChange={(e) => {
+                  handleFormChange(e);
+                }}
+                type="text"
+                id="firstName"
                 aria-label="Please input first name"
                 className="w-full rounded bg-gray-100 p-3 text-base leading-none text-gray-500 placeholder-gray-500 xl:w-48"
                 placeholder="eg. William"
@@ -74,7 +115,12 @@ const Contact: FC = () => {
             <div className="mt-4 xl:ml-6 xl:mt-0">
               <p className="mb-4 text-base font-medium leading-4 text-gray-800">Last Name</p>
               <input
-                type="name"
+                value={formData.lastName}
+                onChange={(e) => {
+                  handleFormChange(e);
+                }}
+                type="text"
+                id="lastName"
                 aria-label="Please input Last name"
                 className="w-full rounded bg-gray-100 p-3 text-base leading-none text-gray-500 placeholder-gray-500 xl:w-48"
                 placeholder="eg. Smith"
@@ -84,21 +130,33 @@ const Contact: FC = () => {
           <div className="mt-6">
             <p className="mb-4 text-base font-medium leading-4 text-gray-800">Email Address</p>
             <input
-              type="email"
+              value={formData.to}
+              onChange={(e) => {
+                handleFormChange(e);
+              }}
+              type="text"
+              id="to"
               aria-label="Please enter email"
               className="w-full rounded bg-gray-100 p-3 text-base leading-none text-gray-500 placeholder-gray-500"
               placeholder="eg. william.smith@doeco.com"
             />
           </div>
+
           <div className="mt-6">
             <p className="mb-4 text-base font-medium leading-4 text-gray-800">Message </p>
             <textarea
+              id="text"
+              value={formData.text}
+              onChange={(e) => {
+                handleFormChange(e);
+              }}
               aria-label="Please leave comments"
               className="h-40 w-full resize-none rounded bg-gray-100 p-3 text-base leading-none text-gray-500 placeholder-gray-500"
               defaultValue={''}
             />
           </div>
           <button
+            onClick={onSubmit}
             role="button"
             arial-label="send message "
             className="mt-12 rounded bg-indigo-700 px-8 py-6 text-base font-semibold leading-4 text-white hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-offset-2"

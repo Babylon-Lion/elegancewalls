@@ -10,6 +10,7 @@ import {
   editCartItemsMutation,
   removeFromCartMutation
 } from './mutations/cart';
+import { getBlogQuery, getBlogsQuery } from './queries/blog';
 import { getCartQuery } from './queries/cart';
 import {
   getCollectionProductsQuery,
@@ -24,6 +25,7 @@ import {
   getProductsQuery
 } from './queries/product';
 import {
+  Blog,
   Cart,
   Collection,
   Connection,
@@ -32,6 +34,8 @@ import {
   Page,
   Product,
   ShopifyAddToCartOperation,
+  ShopifyBlogOperation,
+  ShopifyBlogsOperation,
   ShopifyCart,
   ShopifyCartOperation,
   ShopifyCollection,
@@ -419,6 +423,41 @@ export async function getProducts({
   });
 
   return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
+}
+
+export async function getBlogs({
+  query,
+  reverse,
+  sortKey,
+  after
+}: {
+  query?: string;
+  reverse?: boolean;
+  sortKey?: string;
+  after: string | null;
+}): Promise<Blog[]> {
+  const res = await shopifyFetch<ShopifyBlogsOperation>({
+    query: getBlogsQuery,
+    variables: {
+      query,
+      reverse,
+      sortKey,
+      after
+    }
+  });
+  //@ts-ignore
+  return removeEdgesAndNodes(res.body.data.blogs);
+}
+
+export async function getBlog({ handle }: { handle: string }): Promise<Blog> {
+  const res = await shopifyFetch<ShopifyBlogOperation>({
+    query: getBlogQuery,
+    variables: {
+      handle
+    }
+  });
+
+  return res.body.data.blog;
 }
 
 // This is called from `app/api/revalidate.ts` so providers can control revalidation logic.

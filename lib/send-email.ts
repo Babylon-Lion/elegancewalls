@@ -1,17 +1,21 @@
-import { FormData } from '../components/contact';
+'use server';
 
-export function sendEmail(data: FormData) {
-  const apiEndpoint = '/api/email';
+import * as sgMail from '@sendgrid/mail';
+sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
-  fetch(apiEndpoint, {
-    method: 'POST',
-    body: JSON.stringify(data)
-  })
-    .then((res) => res.json())
-    .then((response) => {
-      alert(response.message);
+export const sendEmail = async ({ to, text }: { to: string; text: string }) => {
+  const msg = {
+    to: 'sbkobaidze@gmail.com', // Change to your recipient
+    from: 'elegancewalls@gmail.com', // Change to your verified sender
+    subject: to,
+    text: text
+  };
+  sgMail
+    .send(msg)
+    .then(() => {
+      console.log('Email Sent!');
     })
-    .catch((err) => {
-      alert(err);
+    .catch(async (error) => {
+      console.error(error.response.body);
     });
-}
+};

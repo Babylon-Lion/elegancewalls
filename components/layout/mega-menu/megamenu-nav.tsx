@@ -8,10 +8,11 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger
 } from '@/components/ui/navigation-menu';
-import { Collection } from 'lib/shopify/types';
+import { Blog, Collection } from 'lib/shopify/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+// import BlogNav from './blog-nav';
 export const colors = [
   { title: 'White', hex: '#ffffff' },
   { title: 'Black', hex: '#000000' },
@@ -79,7 +80,7 @@ export const wallpaperStyles = [
     url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882318/fcmtecnaboavrgj2tsva.jpg?_s=public-apps'
   }
 ];
-const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
+const MegaMenuNav = ({ collections, blogs }: { collections: Collection[]; blogs: Blog[] }) => {
   const [hoveredCollection, setHoveredCollection] = useState('');
 
   const splitArray = (n: number, array: any[]) => {
@@ -256,6 +257,17 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                 </div>
               </div>
             </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            {/* <NavigationMenuTrigger  > */}
+            <Link href="/blog" className="bg-transparent text-white underline opacity-100">
+              Learn
+            </Link>
+            {/* </NavigationMenuTrigger> */}
+            {/* <NavigationMenuContent>
+            <BlogNav blogs={blogs} />
+
+            </NavigationMenuContent> */}
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

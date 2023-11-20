@@ -8,13 +8,14 @@ import { useState } from 'react';
 import Calculator from './calculator';
 import Quantity from './quantity';
 import { VariantSelector } from './variant-selector';
-
+import AdditionalInfo from './additional-info';
 export function ProductDescription({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
 
   return (
     <>
       <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700">
+        <p>{product.variants[0]?.sku}</p>
         <h1 className="mb-4 text-5xl font-medium">{product.title}</h1>
         <div className="mr-auto w-auto rounded-full bg-blue-600 p-2 text-sm text-white">
           <Price
@@ -22,7 +23,9 @@ export function ProductDescription({ product }: { product: Product }) {
             currencyCode={product.priceRange.maxVariantPrice.currencyCode}
           />
         </div>
+        <AdditionalInfo product={product} />
       </div>
+      <div></div>
       <VariantSelector options={product.options} variants={product.variants} />
       <Calculator collections={product.collections.nodes} setQuantity={setQuantity} />
       <Quantity quantity={quantity} setQuantity={setQuantity} />

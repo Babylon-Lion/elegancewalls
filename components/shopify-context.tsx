@@ -1,5 +1,5 @@
 'use client';
-import { ShopifyProvider, CartProvider } from '@shopify/hydrogen-react';
+import { CartProvider, ShopifyProvider } from '@shopify/hydrogen-react';
 import React from 'react';
 
 const ShopifyContext = ({ children }: { children: React.ReactNode }) => {

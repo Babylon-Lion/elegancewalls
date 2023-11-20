@@ -1,11 +1,11 @@
 'use client';
 import Price from 'components/price';
+import { useAtom } from 'jotai/react';
+import { isCartOpenAtom } from 'lib/shopify/jotai';
 import { Product } from 'lib/shopify/types';
 import { ScissorsLineDashed, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useAtom } from 'jotai/react';
-import { isCartOpenAtom } from 'lib/shopify/jotai';
 
 import { useCart } from '@shopify/hydrogen-react';
 import WishlistButton from './wishlist-button';

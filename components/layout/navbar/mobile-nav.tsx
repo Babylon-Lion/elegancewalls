@@ -5,11 +5,12 @@ import {
   AccordionTrigger
 } from '@/components/ui/accordion';
 import { AvatarFunc } from '@/components/ui/avatar';
-import { Collection } from 'lib/shopify/types';
+import { Blog, Collection } from 'lib/shopify/types';
 import Link from 'next/link';
-import { colors } from '../mega-menu/megamenu-nav';
-import { wallpaperStyles } from '../mega-menu/megamenu-nav';
-const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
+// import BlogNav from '../mega-menu/blog-nav';
+import { colors, wallpaperStyles } from '../mega-menu/megamenu-nav';
+const MobileNavigation = ({ collections, blogs }: { collections: Collection[]; blogs: Blog[] }) => {
+  console.log(blogs, 'test12345623');
   const displayCollections = collections.map((collection, index) => {
     return (
       <Link
@@ -74,7 +75,20 @@ const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
             </div>
           </AccordionContent>
         </AccordionItem>
+        <AccordionItem value="item-4">
+          <Link href="/blog">
+            <AccordionTrigger className="rounded-md bg-slate-900  px-2 text-white">
+              Learn
+            </AccordionTrigger>
+          </Link>
+          {/* <AccordionContent>
+            <div className="flex max-h-[500px] flex-col gap-3 overflow-y-scroll pt-4 ">
+              <BlogNav blogs={blogs} mobile={true} />
+            </div>
+          </AccordionContent> */}
+        </AccordionItem>
       </Accordion>
+
       <div className="flex flex-col gap-3">
         <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
         {collections.slice(0, 5).map((component, index) => (

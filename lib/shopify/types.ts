@@ -66,6 +66,28 @@ export type Product = Omit<ShopifyProduct, 'variants' | 'images'> & {
   images: Image[];
 };
 
+export type Article = {
+  image: Image | null; // assuming 'null' or a string URL for the image
+  handle: string;
+  title: string;
+  contentHtml: string;
+  content: string;
+  publishedAt: string;
+  seo: {
+    title: string | null;
+    description: string | null;
+  };
+};
+
+export type Blog = {
+  authors: { firstName: string; lastName: string }[];
+  title: string;
+  handle: string;
+  articles: {
+    nodes: Article[];
+  };
+};
+
 export type ProductOption = {
   id: string;
   name: string;
@@ -76,6 +98,7 @@ export type ProductVariant = {
   id: string;
   title: string;
   availableForSale: boolean;
+  sku: string;
   image: {
     url: string;
   };
@@ -270,5 +293,26 @@ export type ShopifyProductsOperation = {
     query?: string;
     reverse?: boolean;
     sortKey?: string;
+  };
+};
+
+export type ShopifyBlogsOperation = {
+  data: {
+    blogs: Blog[];
+  };
+  variables: {
+    query?: string;
+    reverse?: boolean;
+    sortKey?: string;
+    after: string | null;
+  };
+};
+
+export type ShopifyBlogOperation = {
+  data: {
+    blog: any;
+  };
+  variables: {
+    handle: string;
   };
 };
