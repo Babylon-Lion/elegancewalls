@@ -5,8 +5,8 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
 export const sendEmail = async ({ to, text }: { to: string; text: string }) => {
   const msg = {
-    to: 'sbkobaidze@gmail.com', // Change to your recipient
-    from: 'elegancewalls@gmail.com', // Change to your verified sender
+    to: 'contact@elegancewallpaper.com    ', // Change to your recipient
+    from: 'contact@elegancewallpaper.com',
     subject: to,
     text: text
   };
