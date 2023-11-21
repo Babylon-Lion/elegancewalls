@@ -8,7 +8,7 @@ import MobileMenu from './mobile-menu';
 import Search from './search';
 import { getCollections } from 'lib/shopify';
 const { SITE_NAME } = process.env;
-import WishList from 'components/wishlist/wishlist';
+import WishList from 'components/wishlist';
 
 export default async function Navbar() {
   const collections = await getCollections();

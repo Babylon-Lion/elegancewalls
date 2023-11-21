@@ -1,4 +1,4 @@
-function page() {
+function About() {
   return (
     <div className="px-4 py-9 2xl:container md:px-6 md:py-12 lg:px-20 lg:py-16 2xl:mx-auto">
       <p className="cursor-pointer pb-2 text-sm font-normal leading-3 text-indigo-700 hover:text-indigo-800">
@@ -13,7 +13,7 @@ function page() {
             Elegance Wallpaper is a leading provider of high-quality interior design products and
             services. We offer a wide range of wallcoverings, including wallpaper, commercial grade
             vinyl, custom printed murals, and more, as well as expert design consultations to help
-            bring your vision to life. At Elegance Wallpaper we're passionate about creating
+            bring your vision to life. At Elegance Wallpaper we`re passionate about creating
             beautiful and functional spaces that reflect your unique style and personality. With a
             commitment to quality, creativity, and customer service, we strive to exceed your
             expectations and help you transform your space into something truly remarkable.
@@ -165,9 +165,9 @@ function page() {
             We Ship to all North America
           </p>
           <p className="mt-6 text-base font-normal leading-6 text-gray-600">
-            At Elegance Wallpaper, we're proud to offer seamless service to all of North America.
-            Whether you're in the bustling cities of the United States, the serene landscapes of
-            Canada, or anywhere in between, our commitment to excellence knows no borders. We're
+            At Elegance Wallpaper, we`re proud to offer seamless service to all of North America.
+            Whether you`re in the bustling cities of the United States, the serene landscapes of
+            Canada, or anywhere in between, our commitment to excellence knows no borders. We`re
             dedicated to delivering our high-quality interior design products and services to your
             doorstep, ensuring that your vision for stunning spaces transcends geographical
             boundaries.
@@ -182,7 +182,7 @@ function page() {
             finest high-quality wallcoverings that transform your living spaces into works of art.
             Our extensive selection, ranging from elegant wallpaper to durable commercial-grade
             vinyl and custom printed murals, reflects our unwavering dedication to excellence. With
-            an unwavering commitment to quality, creativity, and superior customer service, we're
+            an unwavering commitment to quality, creativity, and superior customer service, we`re
             your trusted partner in elevating your interior design to the highest level of
             sophistication
           </p>
@@ -193,7 +193,7 @@ function page() {
           </p>
           <p className="mt-6 text-base font-normal leading-6 text-gray-600">
             Elegance Wallpaper: Where Design Meets Innovation Powered by the Most Advanced Web
-            Technology, AI, and Augmented Reality. We're at the forefront of interior design with
+            Technology, AI, and Augmented Reality. We`re at the forefront of interior design with
             the most advanced technology, including cutting-edge web solutions and edge services
             that make browsing seamless and lightning-fast. Our integration of artificial
             intelligence and augmented reality takes your design journey to new heights, allowing
@@ -372,4 +372,4 @@ function page() {
   );
 }
 
-export default page;
+export default About;
