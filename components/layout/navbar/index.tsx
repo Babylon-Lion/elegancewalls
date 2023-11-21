@@ -7,8 +7,8 @@ import { Suspense } from 'react';
 import MobileMenu from './mobile-menu';
 import Search from './search';
 import { getCollections } from 'lib/shopify';
-import WishList from 'components/wishlist/wishlist';
 const { SITE_NAME } = process.env;
+import WishList from 'components/wishlist/wishlist';
 
 export default async function Navbar() {
   const collections = await getCollections();
