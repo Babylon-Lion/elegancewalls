@@ -22,6 +22,7 @@ export const getBlogsQuery = `
           title
           articles(first:100){
            nodes{
+            id
             seo{
                 description
                 title
@@ -76,3 +77,24 @@ export const getBlogQuery = `query getBlog($handle:String){
 
 
 `;
+
+export const getArticleQuery = `query getArticle($id:ID!){
+  article(id:$id){
+
+     publishedAt
+            seo{
+                description
+                title
+              }
+            image{
+                url
+                altText
+                width
+                height
+              }
+              handle
+              title
+              contentHtml
+              content
+  }
+}`;

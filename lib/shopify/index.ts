@@ -10,7 +10,7 @@ import {
   editCartItemsMutation,
   removeFromCartMutation
 } from './mutations/cart';
-import { getBlogQuery, getBlogsQuery } from './queries/blog';
+import { getArticleQuery, getBlogsQuery } from './queries/blog';
 import { getCartQuery } from './queries/cart';
 import {
   getCollectionProductsQuery,
@@ -25,6 +25,7 @@ import {
   getProductsQuery
 } from './queries/product';
 import {
+  Article,
   Blog,
   Cart,
   Collection,
@@ -34,7 +35,7 @@ import {
   Page,
   Product,
   ShopifyAddToCartOperation,
-  ShopifyBlogOperation,
+  ShopifyArticleOperation,
   ShopifyBlogsOperation,
   ShopifyCart,
   ShopifyCartOperation,
@@ -449,15 +450,26 @@ export async function getBlogs({
   return removeEdgesAndNodes(res.body.data.blogs);
 }
 
-export async function getBlog({ handle }: { handle: string }): Promise<Blog> {
-  const res = await shopifyFetch<ShopifyBlogOperation>({
-    query: getBlogQuery,
+// export async function getBlog({ handle }: { handle: string }): Promise<Blog> {
+//   const res = await shopifyFetch<ShopifyBlogOperation>({
+//     query: getBlogQuery,
+//     variables: {
+//       handle
+//     }
+//   });
+
+//   return res.body.data.blog;
+// }
+
+export async function getArticle({ id }: { id: string }): Promise<Article> {
+  const res = await shopifyFetch<ShopifyArticleOperation>({
+    query: getArticleQuery,
     variables: {
-      handle
+      id
     }
   });
 
-  return res.body.data.blog;
+  return res.body.data.article;
 }
 
 // This is called from `app/api/revalidate.ts` so providers can control revalidation logic.

@@ -13,12 +13,10 @@ const BlogCollection = async () => {
       <div>
         <h1 className="text-4xl font-semibold">Articles</h1>
 
-        <div className="grid grid-cols-1 pt-5 md:grid-cols-3 ">
+        <div className="grid grid-cols-1 gap-10 pt-5  md:grid-cols-3 ">
           {blogs.length ? (
-            blogs.map((item, index) => {
-              return (
-                <BlogCard article={item.articles.nodes[0]!} handle={item.handle} key={index} />
-              );
+            blogs[0]?.articles.nodes.map((item, index) => {
+              return <BlogCard article={item} key={index} />;
             })
           ) : (
             <div className=" col-span-1 flex h-[400px] h-full w-full items-center justify-center text-3xl font-semibold md:col-span-3">

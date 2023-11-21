@@ -70,6 +70,7 @@ export type Article = {
   image: Image | null; // assuming 'null' or a string URL for the image
   handle: string;
   title: string;
+  id: string;
   contentHtml: string;
   content: string;
   publishedAt: string;
@@ -308,11 +309,11 @@ export type ShopifyBlogsOperation = {
   };
 };
 
-export type ShopifyBlogOperation = {
+export type ShopifyArticleOperation = {
   data: {
-    blog: any;
+    article: Article;
   };
   variables: {
-    handle: string;
+    id: string;
   };
 };

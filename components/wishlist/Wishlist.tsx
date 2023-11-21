@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import { Product } from 'lib/shopify/types';
 import { Heart } from 'lucide-react';
 import Image from 'next/image';
-import { useEffect } from 'react';
 import { wishlistAtom } from 'lib/shopify/jotai';
 import { useAtom } from 'jotai/react';
 import Price from 'components/price';
@@ -14,10 +13,6 @@ import Link from 'next/link';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 export default function WishList({ className }: { className?: string }) {
-  //@ts-ignore
-  // const initialWishlist =
-  //   typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('wishlist') || '[]') : [];
-  // const [wishlist, setWishlist] = useState(initialWishlist);
   const [wishlist, setWishlist] = useAtom(wishlistAtom);
 
   const displayWishListItems = wishlist.map((item: Product, index: number) => {
@@ -55,10 +50,6 @@ export default function WishList({ className }: { className?: string }) {
       </div>
     );
   });
-
-  useEffect(() => {
-    localStorage.setItem('wishlist', JSON.stringify(wishlist));
-  }, [wishlist]);
 
   return (
     <Popover>

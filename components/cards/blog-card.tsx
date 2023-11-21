@@ -3,7 +3,9 @@ import { Article } from 'lib/shopify/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton';
-const BlogCard = ({ article, handle }: { article: Article; handle: string }) => {
+const BlogCard = ({ article }: { article: Article }) => {
+  const id = article.id.replace('gid://shopify/Article/', '');
+
   return (
     <div className="col-span-1 h-[400px]">
       <div className="relative h-2/3 w-full">
@@ -19,11 +21,11 @@ const BlogCard = ({ article, handle }: { article: Article; handle: string }) => 
         )}
       </div>
       <div className="flex flex-col pt-4">
-        <Link href={`/blog/${handle}`}>
+        <Link href={`/blog/${id}`}>
           <h4 className="text-2xl font-semibold">{article.title}</h4>
         </Link>
 
-        <Link href={`/blog/${handle}`} className="pt-3 ">
+        <Link href={`/blog/${id}`} className="pt-3 ">
           Read More
         </Link>
       </div>

@@ -1,20 +1,17 @@
 import { Skeleton } from '@/components/ui/skeleton';
 import Subscribe from 'components/subscribe';
-import { getBlog } from 'lib/shopify';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-
+import { getArticle } from 'lib/shopify';
 export async function generateMetadata({
   params
 }: {
   params: { handle: string };
 }): Promise<Metadata> {
-  const blog = await getBlog({ handle: params.handle });
+  const article = await getArticle({ id: `gid://shopify/Article/${params.handle}` });
 
-  if (!blog) return notFound();
-
-  const article = blog.articles.nodes[0];
+  if (!article) return notFound();
 
   const { url, width, height, altText: alt } = article?.image || {};
 
@@ -45,9 +42,9 @@ export async function generateMetadata({
 }
 
 const BlogPage = async ({ params }: { params: { handle: string } }) => {
-  const blog = await getBlog({ handle: params.handle });
+  const article = await getArticle({ id: `gid://shopify/Article/${params.handle}` });
 
-  const article = blog.articles.nodes[0];
+  if (!article) return notFound();
 
   return (
     <div className="container min-h-screen py-8">

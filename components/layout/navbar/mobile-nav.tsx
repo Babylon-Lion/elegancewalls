@@ -10,7 +10,6 @@ import Link from 'next/link';
 // import BlogNav from '../mega-menu/blog-nav';
 import { colors, wallpaperStyles } from '../mega-menu/megamenu-nav';
 const MobileNavigation = ({ collections, blogs }: { collections: Collection[]; blogs: Blog[] }) => {
-  console.log(blogs, 'test12345623');
   const displayCollections = collections.map((collection, index) => {
     return (
       <Link
