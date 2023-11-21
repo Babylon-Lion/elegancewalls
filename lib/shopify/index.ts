@@ -63,7 +63,7 @@ const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 export async function shopifyFetch<T>({
-  // cache = 'force-cache',
+  cache,
   headers,
   query,
   tags,
@@ -87,7 +87,7 @@ export async function shopifyFetch<T>({
         ...(query && { query }),
         ...(variables && { variables })
       }),
-      // cache: 'no-store',
+      cache: cache ? cache : 'force-cache',
       next: { revalidate: 3600 },
       ...(tags && { next: { tags } })
     });
@@ -439,6 +439,8 @@ export async function getBlogs({
 }): Promise<Blog[]> {
   const res = await shopifyFetch<ShopifyBlogsOperation>({
     query: getBlogsQuery,
+    cache: 'no-store',
+
     variables: {
       query,
       reverse,
@@ -464,6 +466,8 @@ export async function getBlogs({
 export async function getArticle({ id }: { id: string }): Promise<Article> {
   const res = await shopifyFetch<ShopifyArticleOperation>({
     query: getArticleQuery,
+    cache: 'no-store',
+
     variables: {
       id
     }
