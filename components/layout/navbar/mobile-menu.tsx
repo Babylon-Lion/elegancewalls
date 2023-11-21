@@ -5,16 +5,10 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 import MobileNavigation from './mobile-nav';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Blog, Collection } from 'lib/shopify/types';
+import { Collection } from 'lib/shopify/types';
 import Search from './search';
 
-export default function MobileMenu({
-  collections,
-  blogs
-}: {
-  collections: Collection[];
-  blogs: Blog[];
-}) {
+export default function MobileMenu({ collections }: { collections: Collection[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
@@ -80,7 +74,7 @@ export default function MobileMenu({
                   <Search />
                 </div>
 
-                <MobileNavigation collections={collections} blogs={blogs} />
+                <MobileNavigation collections={collections} />
               </div>
             </Dialog.Panel>
           </Transition.Child>

@@ -1,7 +1,7 @@
 import Cart from 'components/cart';
 import OpenCart from 'components/cart/open-cart';
 import LogoSquare from 'components/logo-square';
-import { getBlogs } from 'lib/shopify';
+// import { getBlogs } from 'lib/shopify';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import MobileMenu from './mobile-menu';
@@ -12,12 +12,12 @@ import WishList from 'components/wishlist';
 
 export default async function Navbar() {
   const collections = await getCollections();
-  const blogs = await getBlogs({ after: '' });
+  // const blogs = await getBlogs({ after: '' });
 
   return (
     <nav className="relative flex items-center justify-between p-4 lg:px-6">
       <div className="block flex-none md:hidden">
-        <MobileMenu collections={collections} blogs={blogs} />
+        <MobileMenu collections={collections} />
       </div>
       <div className="flex w-full items-center">
         <div className="flex w-full md:w-1/3">

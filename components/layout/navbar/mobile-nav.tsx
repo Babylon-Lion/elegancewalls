@@ -5,11 +5,11 @@ import {
   AccordionTrigger
 } from '@/components/ui/accordion';
 import { AvatarFunc } from '@/components/ui/avatar';
-import { Blog, Collection } from 'lib/shopify/types';
+import { Collection } from 'lib/shopify/types';
 import Link from 'next/link';
 // import BlogNav from '../mega-menu/blog-nav';
 import { colors, wallpaperStyles } from '../mega-menu/megamenu-nav';
-const MobileNavigation = ({ collections, blogs }: { collections: Collection[]; blogs: Blog[] }) => {
+const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
   const displayCollections = collections.map((collection, index) => {
     return (
       <Link
