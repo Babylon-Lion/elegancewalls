@@ -8,7 +8,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger
 } from '@/components/ui/navigation-menu';
-import { Blog, Collection } from 'lib/shopify/types';
+import { Collection } from 'lib/shopify/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -80,7 +80,7 @@ export const wallpaperStyles = [
     url: 'https://res.cloudinary.com/dw3tmehnz/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1696882318/fcmtecnaboavrgj2tsva.jpg?_s=public-apps'
   }
 ];
-const MegaMenuNav = ({ collections, blogs }: { collections: Collection[]; blogs: Blog[] }) => {
+const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
   const [hoveredCollection, setHoveredCollection] = useState('');
 
   const splitArray = (n: number, array: any[]) => {

@@ -85,6 +85,12 @@ export type Blog = {
   title: string;
   handle: string;
   articles: {
+    pageInfo: {
+      endCursor: string;
+      hasNextPage: boolean;
+      hasPreviousPage: boolean;
+      startCursor: string;
+    };
     nodes: Article[];
   };
 };
@@ -306,6 +312,7 @@ export type ShopifyBlogsOperation = {
     reverse?: boolean;
     sortKey?: string;
     after: string | null;
+    before: string | null;
   };
 };
 

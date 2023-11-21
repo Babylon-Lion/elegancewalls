@@ -430,22 +430,24 @@ export async function getBlogs({
   query,
   reverse,
   sortKey,
-  after
+  after,
+  before
 }: {
   query?: string;
   reverse?: boolean;
   sortKey?: string;
   after: string | null;
+  before: string | null;
 }): Promise<Blog[]> {
   const res = await shopifyFetch<ShopifyBlogsOperation>({
-    query: getBlogsQuery,
-    cache: 'no-store',
+    query: getBlogsQuery(after, before),
 
     variables: {
       query,
       reverse,
       sortKey,
-      after
+      after,
+      before
     }
   });
   //@ts-ignore
@@ -466,7 +468,6 @@ export async function getBlogs({
 export async function getArticle({ id }: { id: string }): Promise<Article> {
   const res = await shopifyFetch<ShopifyArticleOperation>({
     query: getArticleQuery,
-    cache: 'no-store',
 
     variables: {
       id

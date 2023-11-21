@@ -1,30 +1,28 @@
-import BlogCard from 'components/cards/blog-card';
+import BlogsWrapper from 'components/blog/blogs-wrapper';
+import LoadMore from 'components/blog/load-more';
 import { getBlogs } from 'lib/shopify';
-
 export const metadata = {
   title: 'Blog',
   description: 'Explore latest  wallpaper news from EleganceWalls.'
 };
-const BlogCollection = async () => {
-  const blogs = await getBlogs({ after: '' });
+const BlogCollection = async ({
+  searchParams
+}: {
+  searchParams?: { [key: string]: string | undefined };
+}) => {
+  const blogs = await getBlogs({
+    after: searchParams?.after ? searchParams?.after : '',
+    before: searchParams?.before ? searchParams?.before : ''
+  });
 
   return (
     <div className="container min-h-screen py-8">
       <div>
         <h1 className="text-4xl font-semibold">Articles</h1>
 
-        <div className="grid grid-cols-1 gap-10 pt-5  md:grid-cols-3 ">
-          {blogs.length ? (
-            blogs[0]?.articles.nodes.map((item, index) => {
-              return <BlogCard article={item} key={index} />;
-            })
-          ) : (
-            <div className=" col-span-1 flex h-[400px] h-full w-full items-center justify-center text-3xl font-semibold md:col-span-3">
-              {' '}
-              Empty{' '}
-            </div>
-          )}
-        </div>
+        <BlogsWrapper articles={blogs[0]?.articles.nodes!} />
+
+        <LoadMore pageInfo={blogs[0]?.articles.pageInfo!} />
       </div>
     </div>
   );

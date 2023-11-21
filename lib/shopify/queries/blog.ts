@@ -1,54 +1,64 @@
-export const getBlogsQuery = `
-{
-    blogs(first:100,){
-      pageInfo{
-        endCursor
-        hasNextPage
-      }
-      
+export const getBlogsQuery = (after: string | null, before: string | null) =>
+  `
+query{
+  blogs(first:1,){
     
-      edges{
-        
-        node{
-            handle
-        
-          
-          authors{
-            firstName
-            lastName
-          }
-          
-          
-          title
-          articles(first:100){
-           nodes{
-            id
-            seo{
-                description
-                title
-              }
-            publishedAt
-            image{
-              url
-              altText
-            }
-            handle
-            title
+    
   
-            contentHtml
-            content
-            
-            
-          } 
-          }
+    edges{
+      
+      
+      node{
+          handle
+      
+        
+        authors{
+          firstName
+          lastName
+        }
+        
+        
+        title
+        articles(first:9, ${after ? `after:"${after}",` : null}${
+          before ? `before:"${before}",` : null
+        }){
+          pageInfo{
+            endCursor
+            startCursor
+            hasPreviousPage
+      hasNextPage
+    }
+         nodes{
           
+          id
+          seo{
+              description
+              title
+            }
+          publishedAt
+          image{
+            url
+            altText
+          }
+          handle
+          title
+
+          contentHtml
+          content
+          
+          
+        } 
         }
         
       }
       
     }
+    
   }
-  `;
+}
+  `
+    .replace(/null/g, '')
+    .replace(/undefined/g, '');
 
 export const getBlogQuery = `query getBlog($handle:String){
     blog(handle:$handle){
