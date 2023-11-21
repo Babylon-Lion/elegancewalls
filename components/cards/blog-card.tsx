@@ -9,16 +9,19 @@ const BlogCard = ({ article }: { article: Article }) => {
   return (
     <div className="col-span-1 h-[400px]">
       <div className="relative h-2/3 w-full">
-        {article?.image?.url ? (
-          <Image
-            fill
-            src={article.image.url}
-            className="absolute object-cover"
-            alt={article.image.altText!}
-          />
-        ) : (
-          <Skeleton className="h-full w-full" />
-        )}
+        <Link href={`/blog/${id}`}>
+          {' '}
+          {article?.image?.url ? (
+            <Image
+              fill
+              src={article.image.url}
+              className="absolute object-cover"
+              alt={article.image.altText!}
+            />
+          ) : (
+            <Skeleton className="h-full w-full" />
+          )}
+        </Link>
       </div>
       <div className="flex flex-col pt-4">
         <Link href={`/blog/${id}`}>
