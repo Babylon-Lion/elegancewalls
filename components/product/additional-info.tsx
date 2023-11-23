@@ -1,7 +1,5 @@
 import { Product } from 'lib/shopify/types';
-import React from 'react';
 import Link from 'next/link';
-
 const data = {
   hexa: {
     width: 1.06,
@@ -17,14 +15,34 @@ const data = {
   }
 };
 const AdditionalInfo = ({ product }: { product: Product }) => {
-  const collection = product.collections.nodes.find((collection) =>
+  const category = product.collections.nodes.find((collection) =>
     Object.keys(data).some((key) => collection.title.toLowerCase() === key)
   );
 
+  const findParentCollection = () => {
+    let maxSpacesObject = { title: '', handle: '' };
+
+    product.collections.nodes.forEach((item) => {
+      const spacesCount = item.title.split(' ').length - 1;
+
+      if (spacesCount) {
+        maxSpacesObject = item;
+      }
+      //in case title has no spaces in it
+    });
+
+    if (!maxSpacesObject) {
+      maxSpacesObject = product.collections.nodes.find(
+        (item) => item.title != category?.title && item.title != 'Residential'
+      )!;
+    }
+    return maxSpacesObject;
+  };
+
   const findDimensions = () => {
-    if (collection) {
+    if (category) {
       const matchingKey = Object.keys(data).find((key) =>
-        collection.title.toLowerCase().includes(key)
+        category.title.toLowerCase().includes(key)
       )!;
       return data[matchingKey as keyof typeof data];
     }
@@ -32,6 +50,7 @@ const AdditionalInfo = ({ product }: { product: Product }) => {
   };
 
   const metersToFeet = (meters: number) => (meters * 3.28084).toFixed(1);
+  const parentCollection = findParentCollection();
 
   const dimensions = findDimensions();
   const widthInFeet = dimensions?.width ? metersToFeet(dimensions.width) : null;
@@ -41,20 +60,44 @@ const AdditionalInfo = ({ product }: { product: Product }) => {
       <p>
         {' '}
         From the{' '}
-        <Link className="underline" href={`/search/${collection?.handle}`}>
+        <Link
+          className="underline"
+          href={`/search/${
+            parentCollection
+              ? parentCollection?.handle
+              : product.collections.nodes.find((item) => item.title != 'residential')?.handle
+          }`}
+        >
           {' '}
-          {collection?.title}
+          {parentCollection?.title
+            ? parentCollection?.title
+            : product.collections.nodes.find((item) => item.title.toLowerCase() != 'residential')
+                ?.title}
         </Link>{' '}
         Collection
       </p>
-      <p className="">
-        <strong className="pr-2">Width:</strong>
-        {dimensions?.width}m {`(${widthInFeet}ft)`}
-      </p>
-      <p>
-        <strong className="pr-2">Height:</strong>
-        {dimensions?.height}m {`(${heightInFeet}ft)`}
-      </p>
+
+      {category && (
+        <p>
+          {' '}
+          <strong className="pr-2">Category:</strong>
+          {category?.title}
+        </p>
+      )}
+
+      {dimensions?.width && (
+        <>
+          <p className="">
+            <strong className="pr-2">Width:</strong>
+            {dimensions?.width}m {`(${widthInFeet}ft)`}
+          </p>
+
+          <p>
+            <strong className="pr-2">Height:</strong>
+            {dimensions?.height}m {`(${heightInFeet}ft)`}
+          </p>
+        </>
+      )}
     </div>
   );
 };
