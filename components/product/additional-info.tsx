@@ -65,7 +65,8 @@ const AdditionalInfo = ({ product }: { product: Product }) => {
           href={`/search/${
             parentCollection
               ? parentCollection?.handle
-              : product.collections.nodes.find((item) => item.title != 'residential')?.handle
+              : product.collections.nodes.find((item) => item.title.toLowerCase() != 'residential')
+                  ?.handle
           }`}
         >
           {' '}
