@@ -28,8 +28,12 @@ const AdditionalInfo = ({ product }: { product: Product }) => {
     }
     return null;
   };
-  const dimensions = findDimensions();
 
+  const metersToFeet = (meters: number) => (meters * 3.28084).toFixed(1);
+
+  const dimensions = findDimensions();
+  const widthInFeet = dimensions?.width ? metersToFeet(dimensions.width) : null;
+  const heightInFeet = dimensions?.height ? metersToFeet(dimensions.height) : null;
   return (
     <div className="mt-4 flex flex-col gap-4">
       <p>
@@ -43,11 +47,11 @@ const AdditionalInfo = ({ product }: { product: Product }) => {
       </p>
       <p className="">
         <strong className="pr-2">Width:</strong>
-        {dimensions?.width}m
+        {dimensions?.width}m {`(${widthInFeet}ft)`}
       </p>
       <p>
         <strong className="pr-2">Height:</strong>
-        {dimensions?.height}m
+        {dimensions?.height}m {`(${heightInFeet}ft)`}
       </p>
     </div>
   );
