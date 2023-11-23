@@ -11,7 +11,7 @@ const data = {
     width: 1.06,
     height: 10.0
   },
-  mural: {
+  murals: {
     width: 1.0,
     height: 1.0
   }

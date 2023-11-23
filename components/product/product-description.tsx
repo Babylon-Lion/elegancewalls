@@ -14,6 +14,8 @@ export function ProductDescription({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
   const searchParams = useSearchParams();
 
+  console.log(product.collections);
+
   return (
     <>
       <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700">
