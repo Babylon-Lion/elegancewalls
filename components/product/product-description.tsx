@@ -14,12 +14,14 @@ export function ProductDescription({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
   const searchParams = useSearchParams();
 
-  console.log(product.collections);
-
   return (
     <>
       <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700">
-        <p>{product.variants.find((item) => item.title === searchParams.get('color'))?.sku}</p>
+        <p>
+          {product.variants.length === 1
+            ? product.variants[0]?.sku
+            : product.variants.find((item) => item.title === searchParams.get('color'))?.sku}
+        </p>
         <h1 className="mb-4 text-5xl font-medium">{product.title}</h1>
         <div className="mr-auto w-auto rounded-full bg-blue-600 p-2 text-sm text-white">
           <Price
