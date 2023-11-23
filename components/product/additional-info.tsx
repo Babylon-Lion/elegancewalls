@@ -17,13 +17,15 @@ const data = {
   }
 };
 const AdditionalInfo = ({ product }: { product: Product }) => {
-  const findDimensions = () => {
-    const tag = product.collections.nodes.find((collection) =>
-      Object.keys(data).some((key) => collection.title.toLowerCase().includes(key))
-    );
+  const collection = product.collections.nodes.find((collection) =>
+    Object.keys(data).some((key) => collection.title.toLowerCase() === key)
+  );
 
-    if (tag) {
-      const matchingKey = Object.keys(data).find((key) => tag.title.toLowerCase().includes(key))!;
+  const findDimensions = () => {
+    if (collection) {
+      const matchingKey = Object.keys(data).find((key) =>
+        collection.title.toLowerCase().includes(key)
+      )!;
       return data[matchingKey as keyof typeof data];
     }
     return null;
@@ -39,9 +41,9 @@ const AdditionalInfo = ({ product }: { product: Product }) => {
       <p>
         {' '}
         From the{' '}
-        <Link className="underline" href={`/collection/${product.collections.nodes[0]?.handle}`}>
+        <Link className="underline" href={`/search/${collection?.handle}`}>
           {' '}
-          {product.collections.nodes[0]?.title}
+          {collection?.title}
         </Link>{' '}
         Collection
       </p>

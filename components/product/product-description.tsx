@@ -4,18 +4,20 @@ import { AddToCart } from 'components/cart/add-to-cart';
 import Price from 'components/price';
 import Prose from 'components/prose';
 import { Product } from 'lib/shopify/types';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
+import AdditionalInfo from './additional-info';
 import Calculator from './calculator';
 import Quantity from './quantity';
 import { VariantSelector } from './variant-selector';
-import AdditionalInfo from './additional-info';
 export function ProductDescription({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
+  const searchParams = useSearchParams();
 
   return (
     <>
       <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700">
-        <p>{product.variants[0]?.sku}</p>
+        <p>{product.variants.find((item) => item.title === searchParams.get('color'))?.sku}</p>
         <h1 className="mb-4 text-5xl font-medium">{product.title}</h1>
         <div className="mr-auto w-auto rounded-full bg-blue-600 p-2 text-sm text-white">
           <Price
