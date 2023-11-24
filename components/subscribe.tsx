@@ -4,7 +4,7 @@ const Subscribe = () => {
   return (
     <div>
       {' '}
-      <div className="flex  w-full items-center justify-center gap-2 ">
+      <div className="mt-10 flex w-full items-center justify-center gap-2">
         <div className="flex w-full flex-col gap-2 md:w-1/2">
           <p className="text-xl font-semibold">Subscribe to our newsletter</p>
 
