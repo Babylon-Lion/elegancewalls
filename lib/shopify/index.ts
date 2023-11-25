@@ -1,3 +1,4 @@
+'use server';
 import { HIDDEN_PRODUCT_TAG, SHOPIFY_GRAPHQL_API_ENDPOINT, TAGS } from 'lib/constants';
 import { isShopifyError } from 'lib/type-guards';
 import { ensureStartsWith } from 'lib/utils';
@@ -10,6 +11,15 @@ import {
   editCartItemsMutation,
   removeFromCartMutation
 } from './mutations/cart';
+import {
+  createCustomerAccessToken,
+  createCustomerAddressMutation,
+  createCustomerMutation,
+  customerResetMutation,
+  recoverCustomerEmailMutation,
+  updateCustomerAddressMutation,
+  updateCustomerMutation
+} from './mutations/customer';
 import { getArticleQuery, getBlogsQuery } from './queries/blog';
 import { getCartQuery } from './queries/cart';
 import {
@@ -17,6 +27,7 @@ import {
   getCollectionQuery,
   getCollectionsQuery
 } from './queries/collection';
+import { getCustomerQuery } from './queries/customer';
 import { getMenuQuery } from './queries/menu';
 import { getPageQuery, getPagesQuery } from './queries/page';
 import {
@@ -25,15 +36,22 @@ import {
   getProductsQuery
 } from './queries/product';
 import {
+  Address,
   Article,
   Blog,
   Cart,
   Collection,
   Connection,
+  CreateCustomerAccessTokenOperation,
+  CreateCustomerAddressOperation,
+  CreateCustomerOperation,
+  CustomerRecoverPasswordOperation,
+  GetCustomerOperation,
   Image,
   Menu,
   Page,
   Product,
+  RecoverCustomerEmailOperation,
   ShopifyAddToCartOperation,
   ShopifyArticleOperation,
   ShopifyBlogsOperation,
@@ -52,7 +70,9 @@ import {
   ShopifyProductRecommendationsOperation,
   ShopifyProductsOperation,
   ShopifyRemoveFromCartOperation,
-  ShopifyUpdateCartOperation
+  ShopifyUpdateCartOperation,
+  UpdateCustomerAddressOperation,
+  UpdateCustomerOperation
 } from './types';
 
 const domain = process.env.SHOPIFY_STORE_DOMAIN
@@ -88,7 +108,7 @@ export async function shopifyFetch<T>({
         ...(variables && { variables })
       }),
       cache: cache ? cache : 'force-cache',
-      next: { revalidate: 3600 },
+      // next: { revalidate: 3600 },
       ...(tags && { next: { tags } })
     });
 
@@ -475,6 +495,154 @@ export async function getArticle({ id }: { id: string }): Promise<Article> {
   });
 
   return res.body.data.article;
+}
+
+export async function createCustomer({
+  input
+}: {
+  input: { email: string; password: string };
+}): Promise<any> {
+  const res = await shopifyFetch<CreateCustomerOperation>({
+    query: createCustomerMutation,
+    variables: {
+      input
+    }
+  });
+  return res.body.data.customerCreate;
+}
+export async function getCustomerAccessToken({
+  input
+}: {
+  input: { email: string; password: string };
+}): Promise<any> {
+  const res = await shopifyFetch<CreateCustomerAccessTokenOperation>({
+    query: createCustomerAccessToken,
+    cache: 'no-store',
+    variables: {
+      input
+    }
+  });
+
+  return res.body.data;
+}
+
+export async function getCustomer({
+  customerAccessToken,
+  after
+}: {
+  customerAccessToken: string;
+  after: string | null;
+}): Promise<any> {
+  const res = await shopifyFetch<GetCustomerOperation>({
+    query: getCustomerQuery,
+    cache: 'no-store',
+    variables: {
+      customerAccessToken,
+      after
+    }
+  });
+
+  return res.body.data.customer;
+}
+
+export async function updateCustomer({
+  input
+}: {
+  input: {
+    firstName: string | null;
+    lastName: string | null;
+    phone: string | null;
+    password: string | null;
+  };
+}): Promise<any> {
+  const res = await shopifyFetch<UpdateCustomerOperation>({
+    query: updateCustomerMutation,
+    variables: {
+      input
+    }
+  });
+
+  return res.body.data;
+}
+
+export async function createCustomerAddress({
+  customerAccessToken,
+  address
+}: {
+  customerAccessToken: string;
+  address: Address;
+}): Promise<any> {
+  const res = await shopifyFetch<CreateCustomerAddressOperation>({
+    query: createCustomerAddressMutation,
+    variables: {
+      customerAccessToken,
+      address
+    }
+  });
+
+  return res.body.data;
+}
+
+export async function updateCustomerAddress({
+  customerAccessToken,
+  address,
+  id
+}: {
+  customerAccessToken: string;
+  address: Address;
+  id: string;
+}): Promise<any> {
+  const res = await shopifyFetch<UpdateCustomerAddressOperation>({
+    query: updateCustomerAddressMutation,
+    variables: {
+      customerAccessToken,
+      address,
+      id
+    }
+  });
+
+  return res.body.data;
+}
+
+export async function recoverCustomerEmail({ email }: { email: string }): Promise<any> {
+  const res = await shopifyFetch<RecoverCustomerEmailOperation>({
+    query: recoverCustomerEmailMutation,
+    cache: 'no-store',
+    variables: {
+      email
+    }
+  });
+
+  return res.body.data;
+}
+
+export async function customerReset({
+  resetToken,
+  newPassword,
+  customerId
+}: {
+  resetToken: string;
+  newPassword: string;
+  customerId: string;
+}): Promise<any> {
+  const res = await shopifyFetch<CustomerRecoverPasswordOperation>({
+    query: customerResetMutation,
+    cache: 'no-store',
+
+    variables: {
+      id: customerId,
+
+      input: {
+        password: newPassword,
+        resetToken
+      }
+    }
+  });
+  if (res.body.data.customerReset.customerUserErrors.length) {
+    return null;
+  }
+
+  return res.body.data.customerReset.customer;
 }
 
 // This is called from `app/api/revalidate.ts` so providers can control revalidation logic.

@@ -9,6 +9,7 @@ import Search from './search';
 import { getCollections } from 'lib/shopify';
 const { SITE_NAME } = process.env;
 import WishList from 'components/wishlist';
+import LogIn from 'components/profile/profile-popover';
 
 export default async function Navbar() {
   const collections = await getCollections();
@@ -36,6 +37,7 @@ export default async function Navbar() {
             <Cart />
             <WishList />
           </Suspense>
+          <LogIn />
         </div>
       </div>
     </nav>
