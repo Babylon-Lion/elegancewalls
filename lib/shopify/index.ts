@@ -96,21 +96,37 @@ export async function shopifyFetch<T>({
   variables?: ExtractVariables<T>;
 }): Promise<{ status: number; body: T } | never> {
   try {
-    const result = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': key,
-        ...headers
-      },
-      body: JSON.stringify({
-        ...(query && { query }),
-        ...(variables && { variables })
-      }),
-      cache: cache ? cache : 'force-cache',
-      // next: { revalidate: 3600 },
-      ...(tags && { next: { tags } })
-    });
+    const result =
+      cache === 'no-store'
+        ? await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Shopify-Storefront-Access-Token': key,
+              ...headers
+            },
+            body: JSON.stringify({
+              ...(query && { query }),
+              ...(variables && { variables })
+            }),
+            cache: 'no-store',
+            ...(tags && { next: { tags } })
+          })
+        : await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Shopify-Storefront-Access-Token': key,
+              ...headers
+            },
+            body: JSON.stringify({
+              ...(query && { query }),
+              ...(variables && { variables })
+            }),
+            cache: 'force-cache',
+            next: { revalidate: 3600 },
+            ...(tags && { next: { tags } })
+          });
 
     const body = await result.json();
 
