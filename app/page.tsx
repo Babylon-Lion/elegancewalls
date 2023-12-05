@@ -1,19 +1,8 @@
-// import { Carousel } from 'components/carousel';
-// import { ThreeItemGrid } from 'components/grid/three-items';
-// import Footer from 'components/layout/footer';
-// import { Suspense } from 'react';
 import { SliceZone } from '@prismicio/react';
 import { Metadata } from 'next';
 import { createClient } from 'prismicio';
 import { components } from '../slices/components';
 export const runtime = 'edge';
-
-export const metadata: Metadata = {
-  description: 'Elegance wallpaper, is high end wallcovering store',
-  openGraph: {
-    type: 'website'
-  }
-};
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
