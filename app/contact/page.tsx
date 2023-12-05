@@ -1,9 +1,10 @@
-import Contact from '../../components/contact';
+import ContactForm from './contact-form';
 
-export default function Home() {
+export default function Contact() {
   return (
-    <main className="flex min-h-screen flex-col justify-center bg-white p-24">
-      <Contact />
-    </main>
+    <div className="mx-auto my-10 max-w-2xl px-4">
+      <h1>Contact Us</h1>
+      <ContactForm />
+    </div>
   );
 }

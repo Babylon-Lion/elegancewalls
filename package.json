@@ -38,7 +38,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.4",
-    "@sendgrid/mail": "^7.7.0",
+    "@sendgrid/mail": "^6.5.5",
     "@shopify/hydrogen-react": "^2023.7.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
