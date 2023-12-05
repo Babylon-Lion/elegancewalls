@@ -1,15 +1,15 @@
+import { Toaster } from '@/components/ui/toaster';
+import Footer from 'components/layout/footer';
+import MegaMenu from 'components/layout/mega-menu';
 import Navbar from 'components/layout/navbar';
+import ShopifyContext from 'components/shopify-context';
 import { ensureStartsWith } from 'lib/utils';
 import { Playfair_Display, Roboto } from 'next/font/google';
-import { ReactNode, Suspense } from 'react';
-import { Toaster } from '@/components/ui/toaster';
-import MegaMenu from 'components/layout/mega-menu';
-import ShopifyContext from 'components/shopify-context';
 import { repositoryName } from 'prismicio';
-import Footer from 'components/layout/footer';
+import { ReactNode, Suspense } from 'react';
 
 import { PrismicPreview } from '@prismicio/next';
-
+import NextAuthProvider from 'components/session-provider';
 import './globals.css';
 
 const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env;
@@ -54,18 +54,21 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return (
     <html lang="en" className={`${playfair.variable} ${roboto.variable}`}>
       <body className=" bg-neutral-50 font-main text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
-        <ShopifyContext>
-          <Navbar />
-          <MegaMenu />
-          <Suspense>
-            <main>{children}</main>
+        <NextAuthProvider>
+          {' '}
+          <ShopifyContext>
+            <Navbar />
+            <MegaMenu />
+            <Suspense>
+              <main>{children}</main>
 
-            <PrismicPreview repositoryName={repositoryName} />
+              <PrismicPreview repositoryName={repositoryName} />
 
-            <Toaster />
-          </Suspense>
-          <Footer />
-        </ShopifyContext>
+              <Toaster />
+            </Suspense>
+            <Footer />
+          </ShopifyContext>
+        </NextAuthProvider>
       </body>
     </html>
   );

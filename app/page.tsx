@@ -5,9 +5,10 @@
 import { SliceZone } from '@prismicio/react';
 import { createClient } from 'prismicio';
 import { components } from '../slices/components';
+import { Metadata } from 'next';
 export const runtime = 'edge';
 
-export const metadata = {
+export const metadata: Metadata = {
   description: 'Elegance wallpaper, is high end wallcovering store',
   openGraph: {
     type: 'website'

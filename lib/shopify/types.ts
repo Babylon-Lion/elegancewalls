@@ -50,6 +50,55 @@ export type Money = {
   currencyCode: string;
 };
 
+export type Customer = {
+  email: string;
+  firstName: string | null;
+  lastName: string | null;
+  phone: string | null;
+  orders: {
+    nodes: Order[];
+    pageInfo: {
+      hasNextPage: string;
+      endCursor: string;
+    };
+  };
+  addresses: {
+    nodes: Address[];
+  };
+};
+
+export type Order = {
+  currentSubtotalPrice: {
+    amount: string;
+    currencyCode: string;
+  };
+  processedAt: string;
+  statusUrl: string;
+  lineItems: {
+    nodes: [
+      {
+        title: string;
+        variant: {
+          image: {
+            url: string;
+          };
+        };
+      }
+    ];
+  };
+};
+
+export type Address = {
+  id?: string;
+  address1: string;
+  address2: string;
+  zip: string;
+  country: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+};
+
 export type Page = {
   id: string;
   title: string;
@@ -321,6 +370,103 @@ export type ShopifyArticleOperation = {
     article: Article;
   };
   variables: {
+    id: string;
+  };
+};
+
+export type CreateCustomerOperation = {
+  data: {
+    customerCreate: any;
+  };
+  variables: {
+    input: {
+      email: string;
+      password: string;
+    };
+  };
+};
+
+export type CreateCustomerAccessTokenOperation = {
+  data: {
+    customerAccessTokenCreate: {
+      customerAccessToken: {
+        accessToken: string;
+      };
+    };
+  };
+  variables: {
+    input: {
+      email: string;
+      password: string;
+    };
+  };
+};
+
+export type GetCustomerOperation = {
+  data: {
+    customer: Customer;
+  };
+  variables: {
+    customerAccessToken: string;
+    after: string | null;
+  };
+};
+
+export type UpdateCustomerOperation = {
+  data: {
+    customer: Customer;
+  };
+  variables: {
+    input: {
+      firstName: string | null;
+      lastName: string | null;
+      phone: string | null;
+      password: string | null;
+    };
+  };
+};
+
+export type CreateCustomerAddressOperation = {
+  data: {
+    customer: Customer;
+  };
+  variables: {
+    customerAccessToken: string;
+    address: Address;
+  };
+};
+
+export type UpdateCustomerAddressOperation = {
+  data: {
+    customer: Customer;
+  };
+  variables: {
+    customerAccessToken: string;
+    address: Address;
+    id: string;
+  };
+};
+export type RecoverCustomerEmailOperation = {
+  data: {
+    customer: Customer;
+  };
+  variables: {
+    email: string;
+  };
+};
+
+export type CustomerRecoverPasswordOperation = {
+  data: {
+    customerReset: {
+      customer: Customer;
+      customerUserErrors: any[];
+    };
+  };
+  variables: {
+    input: {
+      resetToken: string;
+      password: string;
+    };
     id: string;
   };
 };

@@ -13,7 +13,6 @@ const LoadMore = ({
     hasPreviousPage: boolean;
   };
 }) => {
-  console.log(pageInfo);
   const path = usePathname();
   const newParams = new URLSearchParams();
   const router = useRouter();

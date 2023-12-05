@@ -9,6 +9,7 @@ import Search from './search';
 import { getCollections } from 'lib/shopify';
 const { SITE_NAME } = process.env;
 import WishList from 'components/wishlist';
+import LogIn from 'components/profile/profile-popover';
 
 export default async function Navbar() {
   const collections = await getCollections();
@@ -20,10 +21,13 @@ export default async function Navbar() {
         <MobileMenu collections={collections} />
       </div>
       <div className="flex w-full items-center">
-        <div className="flex w-full md:w-1/3">
-          <Link href="/" className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6">
+        <div className="flex w-full md:w-1/3 ">
+          <Link
+            href="/"
+            className="mr-2 flex w-full items-center md:w-auto md:justify-center lg:mr-6"
+          >
             <LogoSquare />
-            <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block">
+            <div className="ml-2 hidden flex-none text-sm font-medium uppercase lg:block">
               {SITE_NAME}
             </div>
           </Link>
@@ -36,6 +40,7 @@ export default async function Navbar() {
             <Cart />
             <WishList />
           </Suspense>
+          <LogIn />
         </div>
       </div>
     </nav>

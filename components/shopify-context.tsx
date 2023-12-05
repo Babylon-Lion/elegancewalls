@@ -11,7 +11,14 @@ const ShopifyContext = ({ children }: { children: React.ReactNode }) => {
       languageIsoCode="EN"
       countryIsoCode={'US'}
     >
-      <CartProvider onLineAdd={() => console.log('added')}>{children}</CartProvider>
+      <CartProvider
+        onLineAdd={() => console.log('added')}
+        onBuyerIdentityUpdateComplete={() => {
+          console.log('buyer identity ma nigga');
+        }}
+      >
+        {children}
+      </CartProvider>
     </ShopifyProvider>
   );
 };

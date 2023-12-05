@@ -3,7 +3,9 @@ import { Dialog, Transition } from '@headlessui/react';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { useCart } from '@shopify/hydrogen-react';
 import Price from 'components/price';
+import { useAtom } from 'jotai/react';
 import { DEFAULT_OPTION } from 'lib/constants';
+import { isCartOpenAtom } from 'lib/shopify/jotai';
 import { createUrl } from 'lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,8 +14,8 @@ import CloseCart from './close-cart';
 import DeleteItemButton from './delete-item-button';
 import EditItemQuantityButton from './edit-item-quantity-button';
 import OpenCart from './open-cart';
-import { useAtom } from 'jotai/react';
-import { isCartOpenAtom } from 'lib/shopify/jotai';
+
+// import { useSession } from 'next-auth/react';
 
 type MerchandiseSearchParams = {
   [key: string]: string;
@@ -21,7 +23,21 @@ type MerchandiseSearchParams = {
 
 export default function CartModal() {
   const [isOpen, setIsOpen] = useAtom(isCartOpenAtom);
+  // const { data: session } = useSession()
   const { lines, checkoutUrl, totalQuantity } = useCart();
+
+  // useEffect(() => {
+  //   if (session) {
+
+  //     buyerIdentityUpdate({ customerAccessToken: session.user?.accessToken, deliveryAddressPreferences: [{deliveryAddress:{
+  //       firstName: 'Saba',
+  //       lastName: 'Wowman123',
+
+  //       country: 'United States',
+  //     }}, ],email:"sbkobaidze@gmail.com",})
+  //    }
+
+  // },[session])
 
   const totalAmount = lines?.reduce((acc, item) => {
     acc += parseFloat(item?.cost?.totalAmount?.amount!);
