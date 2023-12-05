@@ -33,6 +33,7 @@ const productFragment = /* GraphQL */ `
     variants(first: 250) {
       edges {
         node {
+          sku
           id
           title
           availableForSale

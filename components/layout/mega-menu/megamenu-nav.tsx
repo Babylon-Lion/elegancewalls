@@ -12,6 +12,7 @@ import { Collection } from 'lib/shopify/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+// import BlogNav from './blog-nav';
 export const colors = [
   { title: 'White', hex: '#ffffff' },
   { title: 'Black', hex: '#000000' },
@@ -256,6 +257,17 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                 </div>
               </div>
             </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            {/* <NavigationMenuTrigger  > */}
+            <Link href="/blog" className="bg-transparent text-white underline opacity-100">
+              Learn
+            </Link>
+            {/* </NavigationMenuTrigger> */}
+            {/* <NavigationMenuContent>
+            <BlogNav blogs={blogs} />
+
+            </NavigationMenuContent> */}
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

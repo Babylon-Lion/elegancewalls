@@ -1,7 +1,6 @@
 import { atom } from 'jotai';
-
+import { atomWithStorage } from 'jotai/utils';
+import { Product } from '../types';
 export const isCartOpenAtom = atom(false);
-//@ts-ignore
-export const wishlistAtom = atom(
-  typeof window != undefined ? JSON.parse(localStorage.getItem('wishlist') || '[]') : []
-);
+
+export const wishlistAtom = atomWithStorage<Product[]>('wishlist', []);

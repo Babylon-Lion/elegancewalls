@@ -6,7 +6,6 @@ import { asLink, asText } from '@prismicio/client';
 import Link from 'next/link';
 const DisplayOffers = ({ slice }: { slice: DisplayOffersSlice }) => {
   const offers = slice.items.map((item, index) => {
-    console.log(item.buttonlink);
     return (
       <div
         className="relative col-span-1 flex h-[300px] items-center md:max-h-[400px] "

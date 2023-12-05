@@ -1,21 +1,14 @@
 'use client';
 
 import { Dialog, Transition } from '@headlessui/react';
-import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 import MobileNavigation from './mobile-nav';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Collection, Menu } from 'lib/shopify/types';
+import { Collection } from 'lib/shopify/types';
 import Search from './search';
 
-export default function MobileMenu({
-  menu,
-  collections
-}: {
-  menu: Menu[];
-  collections: Collection[];
-}) {
+export default function MobileMenu({ collections }: { collections: Collection[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
@@ -80,20 +73,6 @@ export default function MobileMenu({
                 <div className="mb-4 w-full">
                   <Search />
                 </div>
-                {menu.length ? (
-                  <ul className="flex w-full flex-col">
-                    {menu.map((item: Menu) => (
-                      <li
-                        className="py-2 text-xl text-black transition-colors hover:text-neutral-500 dark:text-white"
-                        key={item.title}
-                      >
-                        <Link href={item.path} onClick={closeMobileMenu}>
-                          {item.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
 
                 <MobileNavigation collections={collections} />
               </div>

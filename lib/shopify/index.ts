@@ -10,6 +10,7 @@ import {
   editCartItemsMutation,
   removeFromCartMutation
 } from './mutations/cart';
+import { getArticleQuery, getBlogsQuery } from './queries/blog';
 import { getCartQuery } from './queries/cart';
 import {
   getCollectionProductsQuery,
@@ -24,6 +25,8 @@ import {
   getProductsQuery
 } from './queries/product';
 import {
+  Article,
+  Blog,
   Cart,
   Collection,
   Connection,
@@ -32,6 +35,8 @@ import {
   Page,
   Product,
   ShopifyAddToCartOperation,
+  ShopifyArticleOperation,
+  ShopifyBlogsOperation,
   ShopifyCart,
   ShopifyCartOperation,
   ShopifyCollection,
@@ -58,7 +63,7 @@ const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 export async function shopifyFetch<T>({
-  // cache = 'force-cache',
+  cache,
   headers,
   query,
   tags,
@@ -82,7 +87,7 @@ export async function shopifyFetch<T>({
         ...(query && { query }),
         ...(variables && { variables })
       }),
-      // cache: 'no-store',
+      cache: cache ? cache : 'force-cache',
       next: { revalidate: 3600 },
       ...(tags && { next: { tags } })
     });
@@ -419,6 +424,57 @@ export async function getProducts({
   });
 
   return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
+}
+
+export async function getBlogs({
+  query,
+  reverse,
+  sortKey,
+  after,
+  before
+}: {
+  query?: string;
+  reverse?: boolean;
+  sortKey?: string;
+  after: string | null;
+  before: string | null;
+}): Promise<Blog[]> {
+  const res = await shopifyFetch<ShopifyBlogsOperation>({
+    query: getBlogsQuery(after, before),
+
+    variables: {
+      query,
+      reverse,
+      sortKey,
+      after,
+      before
+    }
+  });
+  //@ts-ignore
+  return removeEdgesAndNodes(res.body.data.blogs);
+}
+
+// export async function getBlog({ handle }: { handle: string }): Promise<Blog> {
+//   const res = await shopifyFetch<ShopifyBlogOperation>({
+//     query: getBlogQuery,
+//     variables: {
+//       handle
+//     }
+//   });
+
+//   return res.body.data.blog;
+// }
+
+export async function getArticle({ id }: { id: string }): Promise<Article> {
+  const res = await shopifyFetch<ShopifyArticleOperation>({
+    query: getArticleQuery,
+
+    variables: {
+      id
+    }
+  });
+
+  return res.body.data.article;
 }
 
 // This is called from `app/api/revalidate.ts` so providers can control revalidation logic.
