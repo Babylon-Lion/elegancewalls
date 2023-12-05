@@ -15,7 +15,7 @@ import DeleteItemButton from './delete-item-button';
 import EditItemQuantityButton from './edit-item-quantity-button';
 import OpenCart from './open-cart';
 
-// import { useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
 type MerchandiseSearchParams = {
   [key: string]: string;
@@ -23,21 +23,27 @@ type MerchandiseSearchParams = {
 
 export default function CartModal() {
   const [isOpen, setIsOpen] = useAtom(isCartOpenAtom);
-  // const { data: session } = useSession()
-  const { lines, checkoutUrl, totalQuantity } = useCart();
+  const { data: session } = useSession();
+  const { lines, checkoutUrl, totalQuantity, buyerIdentityUpdate } = useCart();
 
-  // useEffect(() => {
-  //   if (session) {
+  useEffect(() => {
+    if (session) {
+      buyerIdentityUpdate({
+        customerAccessToken: session.user?.accessToken,
+        deliveryAddressPreferences: [
+          {
+            deliveryAddress: {
+              firstName: 'Saba',
+              lastName: 'Wowman123',
 
-  //     buyerIdentityUpdate({ customerAccessToken: session.user?.accessToken, deliveryAddressPreferences: [{deliveryAddress:{
-  //       firstName: 'Saba',
-  //       lastName: 'Wowman123',
-
-  //       country: 'United States',
-  //     }}, ],email:"sbkobaidze@gmail.com",})
-  //    }
-
-  // },[session])
+              country: 'United States'
+            }
+          }
+        ],
+        email: 'sbkobaidze@gmail.com'
+      });
+    }
+  }, [session]);
 
   const totalAmount = lines?.reduce((acc, item) => {
     acc += parseFloat(item?.cost?.totalAmount?.amount!);
