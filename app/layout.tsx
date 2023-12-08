@@ -54,7 +54,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return (
     <html lang="en" className={`${playfair.variable} ${roboto.variable}`}>
       <body className=" bg-neutral-50 font-main text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
-        <Script strategy="afterInteractive" id="google-tag-manager" defer>
+        <Script async strategy="afterInteractive" id="google-tag-manager" defer>
           {` window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
