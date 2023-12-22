@@ -10,6 +10,7 @@ import { Playfair_Display, Roboto } from 'next/font/google';
 import Script from 'next/script';
 import { repositoryName } from 'prismicio';
 import { ReactNode, Suspense } from 'react';
+import Announcment from 'components/announcment';
 import './globals.css';
 
 const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env;
@@ -64,6 +65,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <NextAuthProvider>
           {' '}
           <ShopifyContext>
+            <Announcment />
             <Navbar />
             <MegaMenu />
             <Suspense>

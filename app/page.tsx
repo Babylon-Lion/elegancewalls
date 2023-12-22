@@ -44,13 +44,6 @@ export default async function HomePage() {
   return (
     <div className="container min-h-screen">
       <SliceZone components={components} slices={page.data.slices} />
-      {/* <ThreeItemGrid />
-      <Suspense>
-        <Carousel />
-        <Suspense>
-          <Footer />
-        </Suspense>
-      </Suspense> */}
     </div>
   );
 }
