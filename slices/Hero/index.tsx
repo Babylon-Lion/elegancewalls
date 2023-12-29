@@ -28,7 +28,7 @@ export const HeroComponent = ({ item }: { item: HeroSliceDefaultItem }) => {
 
           <Button
             asChild
-            size={window.innerWidth > 768 ? 'lg' : 'sm'}
+            size={'sm'}
             className="border-1 border-black bg-white text-black drop-shadow-lg hover:bg-white hover:opacity-70"
           >
             <Link href={asLink(item.pagelink)!}>
