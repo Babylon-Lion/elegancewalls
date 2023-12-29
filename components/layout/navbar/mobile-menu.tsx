@@ -15,15 +15,15 @@ export default function MobileMenu({ collections }: { collections: Collection[] 
   const openMobileMenu = () => setIsOpen(true);
   const closeMobileMenu = () => setIsOpen(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 768) {
-        setIsOpen(false);
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isOpen]);
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     if (window?.innerWidth > 768) {
+  //       setIsOpen(false);
+  //     }
+  //   };
+  //   window?.addEventListener('resize', handleResize);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, [isOpen]);
 
   useEffect(() => {
     setIsOpen(false);
