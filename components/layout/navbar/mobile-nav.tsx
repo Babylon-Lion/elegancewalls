@@ -100,7 +100,7 @@ const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
           >
             <div className="flex w-full items-center justify-between text-sm font-medium leading-none">
               {component.title}
-              {AvatarFunc(component.image.url, 's', 'h-10 w-10')}
+              {AvatarFunc(component?.image?.url, 's', 'h-10 w-10')}
             </div>
           </Link>
         ))}
