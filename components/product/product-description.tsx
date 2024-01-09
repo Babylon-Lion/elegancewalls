@@ -47,7 +47,7 @@ export function ProductDescription({ product }: { product: Product }) {
           {product.priceRange.maxVariantPrice.amount === '44.75' ||
           product.priceRange.maxVariantPrice.amount === '35.16'
             ? `Price per ${
-                product.priceRange.maxVariantPrice.amount === '44.75' ? '6' : '4'
+                product.priceRange.maxVariantPrice.amount === '35.16' ? '6' : '4'
               } roll is ${formatCurrency(
                 quantity * parseFloat(product.priceRange.maxVariantPrice.amount)
               )} `
