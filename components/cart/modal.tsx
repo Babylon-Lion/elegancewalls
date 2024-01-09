@@ -58,8 +58,6 @@ export default function CartModal() {
     }
   }, [isOpen, setIsOpen]);
 
-  console.log(checkoutUrl);
-
   return (
     <>
       <button aria-label="Open cart" onClick={openCart}>

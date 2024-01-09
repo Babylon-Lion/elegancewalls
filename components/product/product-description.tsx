@@ -24,6 +24,7 @@ export function ProductDescription({ product }: { product: Product }) {
 
   // console.log(product.priceRange.maxVariantPrice.amount, 'test1234123123123','how much bro');
 
+  console.log(product.priceRange.maxVariantPrice.amount);
   return (
     <>
       <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700">
@@ -41,8 +42,8 @@ export function ProductDescription({ product }: { product: Product }) {
           {product.priceRange.maxVariantPrice.amount === '44.75' ||
           product.priceRange.maxVariantPrice.amount === '35.16'
             ? ' / Per single roll '
-            : product.priceRange.maxVariantPrice.amount === '5.20' ||
-              product.priceRange.maxVariantPrice.amount === '4.20 '
+            : product.priceRange.maxVariantPrice.amount === '5.2' ||
+              product.priceRange.maxVariantPrice.amount === '4.2 '
             ? ' / Per square foot'
             : null}
         </div>
