@@ -23,7 +23,7 @@ export default function EditItemQuantityButton({
     linesUpdate([
       {
         id: line.id!,
-        quantity: line?.quantity! + (price === '44.75' ? 6 : price === '35.16' ? 4 : 1)
+        quantity: line?.quantity! + (price === '35.16' ? 6 : price === '44.75' ? 4 : 1)
       }
     ]);
   };
@@ -34,7 +34,7 @@ export default function EditItemQuantityButton({
     linesUpdate([
       {
         id: line.id!,
-        quantity: line.quantity! - (price === '44.75' ? 6 : price === '35.16' ? 4 : 1)
+        quantity: line.quantity! - (price === '35.16' ? 6 : price === '44.75' ? 4 : 1)
       }
     ]);
   };

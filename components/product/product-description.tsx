@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AddToCart } from 'components/cart/add-to-cart';
 import Price from 'components/price';
 import Prose from 'components/prose';
+import { formatCurrency } from 'lib/currency';
 import { Product } from 'lib/shopify/types';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
@@ -10,7 +11,6 @@ import AdditionalInfo from './additional-info';
 import Calculator from './calculator';
 import Quantity from './quantity';
 import { VariantSelector } from './variant-selector';
-import { formatCurrency } from 'lib/currency';
 
 export function ProductDescription({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(
@@ -41,19 +41,23 @@ export function ProductDescription({ product }: { product: Product }) {
           {product.priceRange.maxVariantPrice.amount === '44.75' ||
           product.priceRange.maxVariantPrice.amount === '35.16'
             ? ' / Per single roll '
-            : ' / Per square foot'}
+            : product.priceRange.maxVariantPrice.amount === '5.20' ||
+              product.priceRange.maxVariantPrice.amount === '4.20 '
+            ? ' / Per square foot'
+            : null}
         </div>
         <div className="my-2 text-xl font-semibold uppercase">
           {product.priceRange.maxVariantPrice.amount === '44.75' ||
           product.priceRange.maxVariantPrice.amount === '35.16'
-            ? `Price per ${
-                product.priceRange.maxVariantPrice.amount === '35.16' ? '6' : '4'
-              } roll is ${formatCurrency(
+            ? `Price per ${quantity} roll is ${formatCurrency(
                 quantity * parseFloat(product.priceRange.maxVariantPrice.amount)
               )} `
-            : `Price per ${quantity} square foot is ${formatCurrency(
+            : product.priceRange.maxVariantPrice.amount === '5.20' ||
+              product.priceRange.maxVariantPrice.amount === '4.20 '
+            ? `Price per ${quantity} square foot is ${formatCurrency(
                 quantity * parseFloat(product.priceRange.maxVariantPrice.amount)
-              )} `}
+              )} `
+            : null}
         </div>
         <AdditionalInfo product={product} />
       </div>

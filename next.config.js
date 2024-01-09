@@ -19,9 +19,6 @@ module.exports = {
     return config;
   },
 
-  experimental: {
-    serverActions: true
-  },
   images: {
     domains: [
       'cdn.shopify.com',
