@@ -2,11 +2,14 @@ import { Input } from '@/components/ui/input';
 
 const Quantity = ({
   quantity,
-  setQuantity
+  setQuantity,
+  price
 }: {
   quantity: number;
   setQuantity: (numbe: number) => void;
+  price: string;
 }) => {
+  const increaseAmount = price === '211.0' ? 6 : price === '179.0' ? 4 : 1;
   return (
     <div className="flex flex-col gap-4 pb-5">
       <div>
@@ -16,7 +19,9 @@ const Quantity = ({
         <button
           aria-label="Calculate"
           onClick={() => {
-            quantity - 1 > 0 ? setQuantity(quantity - 1) : setQuantity(1);
+            quantity - increaseAmount > 0
+              ? setQuantity(quantity - increaseAmount)
+              : setQuantity(increaseAmount);
           }}
           className={
             'relative flex w-1/3 items-center justify-center rounded-full bg-[#F5F7F9] p-2 tracking-wide  hover:opacity-90'
@@ -28,7 +33,7 @@ const Quantity = ({
         <button
           aria-label="Calculate"
           onClick={() => {
-            setQuantity(quantity + 1);
+            setQuantity(quantity + increaseAmount);
           }}
           className={
             'relative flex w-1/3 items-center justify-center rounded-full bg-[#F5F7F9] p-2 tracking-wide  hover:opacity-90'

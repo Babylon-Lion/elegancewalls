@@ -14,7 +14,7 @@ import CloseCart from './close-cart';
 import DeleteItemButton from './delete-item-button';
 import EditItemQuantityButton from './edit-item-quantity-button';
 import OpenCart from './open-cart';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 
 type MerchandiseSearchParams = {
   [key: string]: string;
@@ -22,27 +22,27 @@ type MerchandiseSearchParams = {
 
 export default function CartModal() {
   const [isOpen, setIsOpen] = useAtom(isCartOpenAtom);
-  const { data: session } = useSession();
-  const { lines, checkoutUrl, totalQuantity, buyerIdentityUpdate } = useCart();
+  // const { data: session } = useSession();
+  const { lines, checkoutUrl, totalQuantity } = useCart();
 
-  useEffect(() => {
-    if (session) {
-      buyerIdentityUpdate({
-        customerAccessToken: session.user?.accessToken,
-        deliveryAddressPreferences: [
-          {
-            deliveryAddress: {
-              firstName: 'Saba',
-              lastName: 'Wowman123',
+  // useEffect(() => {
+  //   if (session) {
+  //     buyerIdentityUpdate({
+  //       customerAccessToken: session.user?.accessToken,
+  //       deliveryAddressPreferences: [
+  //         {
+  //           deliveryAddress: {
+  //             firstName: 'Saba',
+  //             lastName: 'Wowman123',
 
-              country: 'United States'
-            }
-          }
-        ],
-        email: 'sbkobaidze@gmail.com'
-      });
-    }
-  }, [session]);
+  //             country: 'United States'
+  //           }
+  //         }
+  //       ],
+  //       email: 'sbkobaidze@gmail.com'
+  //     });
+  //   }
+  // }, [session]);
 
   const totalAmount = lines?.reduce((acc, item) => {
     acc += parseFloat(item?.cost?.totalAmount?.amount!);
@@ -157,11 +157,19 @@ export default function CartModal() {
                                 currencyCode={item?.cost?.totalAmount?.currencyCode!}
                               />
                               <div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200 dark:border-neutral-700">
-                                <EditItemQuantityButton type="minus" cartItem={item} />
+                                <EditItemQuantityButton
+                                  type="minus"
+                                  cartItem={item}
+                                  price={item.merchandise.price?.amount}
+                                />
                                 <p className="w-6 text-center">
                                   <span className="w-full text-sm">{item.quantity}</span>
                                 </p>
-                                <EditItemQuantityButton type="plus" cartItem={item} />
+                                <EditItemQuantityButton
+                                  type="plus"
+                                  cartItem={item}
+                                  price={item.merchandise.price?.amount}
+                                />
                               </div>
                             </div>
                           </div>

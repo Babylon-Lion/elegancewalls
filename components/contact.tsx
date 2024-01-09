@@ -98,7 +98,7 @@ const Contact: FC = () => {
           </p>
 
           <div className="mt-10 items-center justify-between xl:flex">
-            <div>
+            <div className="w-full md:w-1/2">
               <p className="mb-4 text-base font-medium leading-4 text-gray-800">First Name</p>
               <input
                 value={formData.firstName}
@@ -108,11 +108,11 @@ const Contact: FC = () => {
                 type="text"
                 id="firstName"
                 aria-label="Please input first name"
-                className="w-full rounded bg-gray-100 p-3 text-base leading-none text-gray-500 placeholder-gray-500 xl:w-48"
+                className="w-full rounded bg-gray-100 p-3 text-base leading-none text-gray-500 placeholder-gray-500"
                 placeholder="eg. William"
               />
             </div>
-            <div className="mt-4 xl:ml-6 xl:mt-0">
+            <div className="mt-4 w-full md:w-1/2 xl:ml-6 xl:mt-0">
               <p className="mb-4 text-base font-medium leading-4 text-gray-800">Last Name</p>
               <input
                 value={formData.lastName}
@@ -122,7 +122,7 @@ const Contact: FC = () => {
                 type="text"
                 id="lastName"
                 aria-label="Please input Last name"
-                className="w-full rounded bg-gray-100 p-3 text-base leading-none text-gray-500 placeholder-gray-500 xl:w-48"
+                className="w-full rounded bg-gray-100 p-3 text-base leading-none text-gray-500 placeholder-gray-500 "
                 placeholder="eg. Smith"
               />
             </div>

@@ -7,23 +7,36 @@ import { useCart } from '@shopify/hydrogen-react';
 import LoadingDots from 'components/loading-dots';
 export default function EditItemQuantityButton({
   type,
-  cartItem
+  cartItem,
+  price
 }: {
   type: 'plus' | 'minus';
   cartItem: any;
+  price: string | undefined;
 }) {
+  console.log(price);
   const [isPending, startTransition] = useTransition();
   const { linesUpdate, lines } = useCart();
   const cartIncrease = () => {
-    const line = lines?.find(() => cartItem.merchandise.id)!;
+    const line = lines?.find((item) => item?.merchandise?.id === cartItem.merchandise.id)!;
 
-    linesUpdate([{ id: line.id!, quantity: line?.quantity! + 1 }]);
+    linesUpdate([
+      {
+        id: line.id!,
+        quantity: line?.quantity! + (price === '211.0' ? 6 : price === '179.0' ? 4 : 1)
+      }
+    ]);
   };
 
   const cartDecrease = () => {
-    const line = lines?.find(() => cartItem.merchandise.id)!;
+    const line = lines?.find((item) => item?.merchandise?.id === cartItem.merchandise.id)!;
 
-    linesUpdate([{ id: line.id!, quantity: line.quantity! - 1 }]);
+    linesUpdate([
+      {
+        id: line.id!,
+        quantity: line.quantity! - (price === '211.0' ? 6 : price === '179.0' ? 4 : 1)
+      }
+    ]);
   };
 
   return (
