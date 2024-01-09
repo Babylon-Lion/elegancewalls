@@ -192,12 +192,14 @@ export default function CartModal() {
                       />
                     </div>
                   </div>
-                  <Link
-                    href={checkoutUrl}
-                    className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
-                  >
-                    Proceed to Checkout
-                  </Link>
+                  {checkoutUrl && (
+                    <Link
+                      href={checkoutUrl}
+                      className="block w-full rounded-full bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
+                    >
+                      Proceed to Checkout
+                    </Link>
+                  )}
                 </div>
               )}
             </Dialog.Panel>
