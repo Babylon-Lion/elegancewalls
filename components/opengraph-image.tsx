@@ -1,5 +1,5 @@
 import LogoIcon from './icons/logo';
-import { ImageResponse } from 'next/server';
+import { ImageResponse } from 'next/og';
 
 export type Props = {
   title?: string;
