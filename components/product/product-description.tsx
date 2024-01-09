@@ -10,9 +10,13 @@ import AdditionalInfo from './additional-info';
 import Calculator from './calculator';
 import Quantity from './quantity';
 import { VariantSelector } from './variant-selector';
+
 export function ProductDescription({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
   const searchParams = useSearchParams();
+
+  console.log(product.priceRange.maxVariantPrice.amount, 'test1234123123123');
+
   return (
     <>
       <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700">
@@ -27,6 +31,7 @@ export function ProductDescription({ product }: { product: Product }) {
             amount={product.priceRange.maxVariantPrice.amount}
             currencyCode={product.priceRange.maxVariantPrice.currencyCode}
           />
+          {product.priceRange.maxVariantPrice.amount === '179.00'}
         </div>
         <AdditionalInfo product={product} />
       </div>
