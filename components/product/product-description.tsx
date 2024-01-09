@@ -14,9 +14,9 @@ import { formatCurrency } from 'lib/currency';
 
 export function ProductDescription({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(
-    product.priceRange.maxVariantPrice.amount === '211.0'
+    product.priceRange.maxVariantPrice.amount === '35.16'
       ? 6
-      : product.priceRange.maxVariantPrice.amount === '179.0'
+      : product.priceRange.maxVariantPrice.amount === '44.75'
       ? 4
       : 1
   );
@@ -38,16 +38,16 @@ export function ProductDescription({ product }: { product: Product }) {
             amount={product.priceRange.maxVariantPrice.amount}
             currencyCode={product.priceRange.maxVariantPrice.currencyCode}
           />
-          {product.priceRange.maxVariantPrice.amount === '179.0' ||
-          product.priceRange.maxVariantPrice.amount === '211.0'
+          {product.priceRange.maxVariantPrice.amount === '44.75' ||
+          product.priceRange.maxVariantPrice.amount === '35.16'
             ? ' / Per single roll '
             : ' / Per square foot'}
         </div>
         <div className="my-2 text-xl font-semibold uppercase">
-          {product.priceRange.maxVariantPrice.amount === '179.0' ||
-          product.priceRange.maxVariantPrice.amount === '211.0'
+          {product.priceRange.maxVariantPrice.amount === '44.75' ||
+          product.priceRange.maxVariantPrice.amount === '35.16'
             ? `Price per ${
-                product.priceRange.maxVariantPrice.amount === '211.0' ? '6' : '4'
+                product.priceRange.maxVariantPrice.amount === '44.75' ? '6' : '4'
               } roll is ${formatCurrency(
                 quantity * parseFloat(product.priceRange.maxVariantPrice.amount)
               )} `

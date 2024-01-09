@@ -9,7 +9,7 @@ const Quantity = ({
   setQuantity: (numbe: number) => void;
   price: string;
 }) => {
-  const increaseAmount = price === '211.0' ? 6 : price === '179.0' ? 4 : 1;
+  const increaseAmount = price === '35.16' ? 6 : price === '44.75' ? 4 : 1;
   return (
     <div className="flex flex-col gap-4 pb-5">
       <div>
