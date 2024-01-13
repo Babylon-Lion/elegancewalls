@@ -48,16 +48,13 @@ export function ProductDescription({ product }: { product: Product }) {
             : null}
         </div>
         <div className="my-2 text-xl font-semibold uppercase">
-          {product.priceRange.maxVariantPrice.amount === '44.75' ||
-          product.priceRange.maxVariantPrice.amount === '35.16'
-            ? `Price per ${quantity} roll is ${formatCurrency(
-                quantity * parseFloat(product.priceRange.maxVariantPrice.amount)
-              )} `
+          {product.priceRange.maxVariantPrice.amount === '44.75'
+            ? `Sold in 4x single roll bolts`
+            : product.priceRange.maxVariantPrice.amount === '35.16'
+            ? `Sold in 6x single roll bolts`
             : product.priceRange.maxVariantPrice.amount === '5.20' ||
               product.priceRange.maxVariantPrice.amount === '4.20 '
-            ? `Price per ${quantity} square foot is ${formatCurrency(
-                quantity * parseFloat(product.priceRange.maxVariantPrice.amount)
-              )} `
+            ? `Sold in 1x  `
             : null}
         </div>
         <AdditionalInfo product={product} />
