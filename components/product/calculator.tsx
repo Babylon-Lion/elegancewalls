@@ -9,14 +9,17 @@ import {
   SelectValue
 } from '@/components/ui/select';
 import { toast } from '@/components/ui/use-toast';
+import { Product } from 'lib/shopify/types';
 import { useEffect, useState } from 'react';
 
 const Calculator = ({
   collections,
-  setQuantity
+  setQuantity,
+  product
 }: {
   collections: { title: string; handle: string }[];
   setQuantity: (num: number) => void;
+  product: Product;
 }) => {
   const [collectionType, setCollectionType] = useState('');
   const [measurements, setMeasurements] = useState({ height: '', width: '', unit: 'inches' });
@@ -111,9 +114,25 @@ const Calculator = ({
         title: 'Success!'
       });
     }
-    setQuantity(area ? area : 1);
+    setQuantity(
+      area
+        ? product.priceRange.maxVariantPrice.amount === '35.16'
+          ? 6 * area
+          : product.priceRange.maxVariantPrice.amount === '44.75'
+          ? 4 * area
+          : area
+        : 1
+    );
 
-    setSuggestedQuantity(area ? area : 1);
+    setSuggestedQuantity(
+      area
+        ? product.priceRange.maxVariantPrice.amount === '35.16'
+          ? 6 * area
+          : product.priceRange.maxVariantPrice.amount === '44.75'
+          ? 4 * area
+          : area
+        : 1
+    );
     return;
   };
 

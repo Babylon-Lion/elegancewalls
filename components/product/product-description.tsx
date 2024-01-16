@@ -61,7 +61,11 @@ export function ProductDescription({ product }: { product: Product }) {
       </div>
       <div></div>
       <VariantSelector options={product.options} variants={product.variants} />
-      <Calculator collections={product.collections.nodes} setQuantity={setQuantity} />
+      <Calculator
+        collections={product.collections.nodes}
+        setQuantity={setQuantity}
+        product={product}
+      />
       <Quantity
         quantity={quantity}
         setQuantity={setQuantity}
