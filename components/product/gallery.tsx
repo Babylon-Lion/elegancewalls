@@ -1,14 +1,14 @@
 'use client';
-import { useEffect } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 import { GridTileImage } from 'components/grid/tile';
+import { Product } from 'lib/shopify/types';
 import { createUrl } from 'lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { Product } from 'lib/shopify/types';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
+const newCollections = ['Omega', 'Roka'];
 export function Gallery({
   images,
   product
@@ -40,8 +40,14 @@ export function Gallery({
       const selectedVariant = product?.variants?.find(
         (item) => item.selectedOptions[0]?.value! === colorSearchParam
       )?.image?.url;
-      const selectedImageIndex =
-        product?.images?.findIndex((item) => item.url === selectedVariant) + 1;
+      //new collections are not mismatched
+      const newCollectionOrNot = product.collections.nodes.some((item) =>
+        newCollections.some((collection) => item.title === collection)
+      );
+
+      const selectedImageIndex = !newCollectionOrNot
+        ? product?.images?.findIndex((item) => item.url === selectedVariant) + 1
+        : product?.images?.findIndex((item) => item.url === selectedVariant);
 
       const imageSearchParams = new URLSearchParams(searchParams.toString());
 

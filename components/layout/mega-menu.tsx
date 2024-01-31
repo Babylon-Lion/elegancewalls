@@ -3,6 +3,8 @@ import MegaMenuNav from './mega-menu/megamenu-nav';
 
 const MegaMenu = async () => {
   const collections = await getCollections();
+
+  // console.log(collections)
   // const blogs = await getBlogs({ after: '' });
 
   return (

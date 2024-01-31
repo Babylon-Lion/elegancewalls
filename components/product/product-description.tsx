@@ -3,7 +3,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AddToCart } from 'components/cart/add-to-cart';
 import Price from 'components/price';
 import Prose from 'components/prose';
-import { formatCurrency } from 'lib/currency';
 import { Product } from 'lib/shopify/types';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
@@ -22,9 +21,6 @@ export function ProductDescription({ product }: { product: Product }) {
   );
   const searchParams = useSearchParams();
 
-  // console.log(product.priceRange.maxVariantPrice.amount, 'test1234123123123','how much bro');
-
-  console.log(product.priceRange.maxVariantPrice.amount);
   return (
     <>
       <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700">
