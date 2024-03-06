@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
-const newCollections = ['Omega', 'Roka'];
+const newCollections = ['Omega', 'Roka', 'Seasons'];
 export function Gallery({
   images,
   product
