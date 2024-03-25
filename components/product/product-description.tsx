@@ -62,6 +62,8 @@ export function ProductDescription({ product }: { product: Product }) {
         setQuantity={setQuantity}
         product={product}
       />
+      <div id="wallpaperwidget" shop-id="727d7a.myshopify.com" title="Visualize Wallpaper"></div>
+
       <Quantity
         quantity={quantity}
         setQuantity={setQuantity}
