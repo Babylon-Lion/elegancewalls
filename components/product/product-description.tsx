@@ -66,6 +66,7 @@ export function ProductDescription({ product }: { product: Product }) {
         id="wallpaperwidget"
         shop-id="727d7a.myshopify.com"
         title="Visualize Wallpaper"
+        current-product={product.id.replace('gid://shopify/Product/', '')}
         widget-height="100"
       ></div>
 
