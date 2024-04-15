@@ -24,7 +24,7 @@ export default function WishList({ className }: { className?: string }) {
               <Image
                 fill
                 alt={item.title}
-                src={item.featuredImage.url}
+                src={item?.featuredImage?.url}
                 className="rounded-md object-cover"
               />
             </AspectRatio>
@@ -34,8 +34,8 @@ export default function WishList({ className }: { className?: string }) {
           <div className="flex flex-col gap-3">
             <p className="text-sm font-semibold"> {item.title}</p>
             <Price
-              amount={item.priceRange.maxVariantPrice.amount}
-              currencyCode={item.priceRange.maxVariantPrice.currencyCode}
+              amount={item?.priceRange?.maxVariantPrice?.amount}
+              currencyCode={item?.priceRange?.maxVariantPrice?.currencyCode}
             />
           </div>
         </Link>

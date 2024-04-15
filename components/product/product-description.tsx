@@ -5,7 +5,7 @@ import Price from 'components/price';
 import Prose from 'components/prose';
 import { Product } from 'lib/shopify/types';
 import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AdditionalInfo from './additional-info';
 import Calculator from './calculator';
 import Quantity from './quantity';
@@ -19,7 +19,19 @@ export function ProductDescription({ product }: { product: Product }) {
       ? 4
       : 1
   );
+
+  const [appended, setAppended] = useState(false);
   const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (!appended) {
+      const script = document.createElement('script');
+      script.src = 'https://pub-e683c637cf794357a0de8cf92254a92a.r2.dev/bundle.min.js';
+      script.async = true;
+      document.body.appendChild(script);
+      setAppended(true);
+    }
+  }, [appended]);
 
   return (
     <>

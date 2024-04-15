@@ -7,7 +7,6 @@ import { ProductDescription } from 'components/product/product-description';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
 import { getProduct, getProductRecommendations } from 'lib/shopify';
 import { Image } from 'lib/shopify/types';
-import Script from 'next/script';
 import Slider from 'slices/ShowcaseCollection/slider';
 
 export const runtime = 'edge';
@@ -81,7 +80,6 @@ export default async function ProductPage({ params }: { params: { handle: string
         }}
       />
 
-      <Script src="https://pub-e683c637cf794357a0de8cf92254a92a.r2.dev/bundle.min.js" defer />
       <div className="mx-auto max-w-screen-2xl px-4">
         <div className="flex  rounded-lg border border-neutral-200 bg-white p-8 dark:border-neutral-800 dark:bg-black md:p-12 lg:flex-row lg:gap-8">
           <div className="h-full w-full basis-full lg:basis-4/6">
