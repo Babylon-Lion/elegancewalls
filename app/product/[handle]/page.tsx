@@ -22,7 +22,6 @@ export async function generateMetadata({
 
   const { url, width, height, altText: alt } = product.featuredImage || {};
   const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
-
   return {
     title: product.seo.title || product.title,
     description: product.seo.description || product.description,
@@ -79,7 +78,6 @@ export default async function ProductPage({ params }: { params: { handle: string
           __html: JSON.stringify(productJsonLd)
         }}
       />
-
       <div className="mx-auto max-w-screen-2xl px-4">
         <div className="flex flex-col  rounded-lg border border-neutral-200 bg-white p-8 dark:border-neutral-800 dark:bg-black md:p-12 lg:flex-row lg:gap-8">
           <div className="h-full w-full basis-full lg:basis-4/6">
