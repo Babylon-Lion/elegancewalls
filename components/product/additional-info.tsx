@@ -62,7 +62,7 @@ const AdditionalInfo = ({ product }: { product: Product }) => {
         From the{' '}
         <Link
           className="underline"
-          href={`/search/${
+          href={`/wallpaper/${
             parentCollection
               ? parentCollection?.handle
               : product.collections.nodes.find((item) => item.title.toLowerCase() != 'residential')

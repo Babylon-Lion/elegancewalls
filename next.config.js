@@ -1,3 +1,4 @@
+const MillionLint = require('@million/lint');
 /** @type {import('next').NextConfig} */
 
 module.exports = {
@@ -8,24 +9,22 @@ module.exports = {
   webpack: (config) => {
     const errorMsg =
       "Cannot get final name for export 'ResponseCookies' of ./node_modules/next/dist/esm/server/web/spec-extension/cookies.js";
-
     config.stats = {
       ...config.stats,
       warningsFilter: (warning) => {
         return !warning.includes(errorMsg);
       }
     };
-
     return config;
   },
-
   images: {
     domains: [
       'cdn.shopify.com',
       'asset.cloudinary.com',
       'res.cloudinary.com',
       'images.prismic.io',
-      'i.ibb.co'
+      'i.ibb.co',
+      'images.prismic.io'
     ]
   },
   async redirects() {

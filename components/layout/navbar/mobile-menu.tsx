@@ -1,11 +1,11 @@
 'use client';
 
 import { Dialog, Transition } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Collection } from 'lib/shopify/types';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 import MobileNavigation from './mobile-nav';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Collection } from 'lib/shopify/types';
 import Search from './search';
 
 export default function MobileMenu({ collections }: { collections: Collection[] }) {

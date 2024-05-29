@@ -28,7 +28,7 @@ export default function Search() {
       newParams.delete('q');
     }
 
-    router.push(createUrl('/search', newParams));
+    router.push(createUrl('/wallpaper', newParams));
   }
 
   return (

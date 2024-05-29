@@ -111,7 +111,7 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
                   {collections.slice(0, 4).map((component, index) => (
                     <Link
-                      href={`/search/${
+                      href={`/wallpaper/${
                         component.title === 'All' ? '' : component.title.toLowerCase()
                       }`}
                       key={index}
@@ -173,7 +173,10 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
 
                   {wallpaperStyles.slice(0, 4).map((component, index) => (
-                    <Link href={`/search?style=${component.title.replace(' ', '-')}`} key={index}>
+                    <Link
+                      href={`/wallpaper?style=${component.title.replace(' ', '-')}`}
+                      key={index}
+                    >
                       <ListItem key={index} title={component.title} src={component.url}></ListItem>
                     </Link>
                   ))}
@@ -193,7 +196,7 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                         {chunk.map((style, i) => (
                           <Link
                             key={i}
-                            href={`/search?style=${style.title}`}
+                            href={`/wallpaper?style=${style.title}`}
                             className="rounded-full p-1 px-2 hover:bg-slate-600 hover:text-white "
                             onMouseOver={() => {
                               setHoveredCollection(style.url);
@@ -221,7 +224,10 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                 <div className="flex w-1/3 flex-col gap-2 pr-5">
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
                   {colors.slice(0, 4).map((component, index) => (
-                    <Link href={`/search?color=${component.title.replace(' ', '-')}`} key={index}>
+                    <Link
+                      href={`/wallpaper?color=${component.title.replace(' ', '-')}`}
+                      key={index}
+                    >
                       <ListItem
                         key={index}
                         title={component.title}
@@ -241,7 +247,7 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                         {chunk.map((color, i) => (
                           <Link
                             key={i}
-                            href={`/search?color=${color.title}`}
+                            href={`/wallpaper?color=${color.title}`}
                             className="flex justify-between rounded-full p-1 px-2 hover:bg-slate-600 hover:text-white"
                           >
                             {color.title}

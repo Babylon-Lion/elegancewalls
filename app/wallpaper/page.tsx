@@ -1,3 +1,4 @@
+import SearchLayout from 'components/collections/colleciton-layout';
 import Grid from 'components/grid';
 import ProductGridItems from 'components/layout/product-grid-items';
 import { defaultSort, sorting } from 'lib/constants';
@@ -25,7 +26,7 @@ export default async function SearchPage({
   const resultsText = products.length > 1 ? 'results' : 'result';
 
   return (
-    <>
+    <SearchLayout>
       {searchValue ? (
         <p className="mb-4">
           {products.length === 0
@@ -39,6 +40,6 @@ export default async function SearchPage({
           <ProductGridItems products={products} />
         </Grid>
       ) : null}
-    </>
+    </SearchLayout>
   );
 }

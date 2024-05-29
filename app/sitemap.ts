@@ -18,14 +18,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const collectionsPromise = getCollections().then((collections) =>
     collections.map((collection) => ({
-      url: `${baseUrl}${collection.path}`,
+      url: `${baseUrl}/wallpaper/${collection.handle}`,
       lastModified: collection.updatedAt
     }))
   );
 
   const productsPromise = getProducts({}).then((products) =>
     products.map((product) => ({
-      url: `${baseUrl}/product/${product.handle}`,
+      url: `${baseUrl}/wallpaper/${product.collections.nodes[0]?.handle}/${product.handle}`,
       lastModified: product.updatedAt
     }))
   );

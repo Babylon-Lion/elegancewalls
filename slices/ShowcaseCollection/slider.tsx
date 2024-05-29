@@ -70,7 +70,7 @@ const Slider = ({
               className="border-2 border-black bg-transparent text-black hover:bg-transparent hover:opacity-80"
               asChild
             >
-              <Link href={`/search/${handle}`}>View All</Link>
+              <Link href={`/wallpaper/${handle}`}>View All</Link>
             </Button>
           </div>
         )}

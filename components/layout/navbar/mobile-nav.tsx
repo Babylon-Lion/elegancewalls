@@ -27,7 +27,7 @@ const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
     return arr.map((item, index) => {
       return (
         <Link
-          href={`/search?color=${item.title ? item.title : item}`}
+          href={`/wallpaper?color=${item.title ? item.title : item}`}
           className="flex   items-center  justify-between rounded-md bg-accent p-3 font-semibold"
           key={index}
         >
@@ -93,7 +93,7 @@ const MobileNavigation = ({ collections }: { collections: Collection[] }) => {
         {collections.slice(0, 5).map((component, index) => (
           <Link
             key={index}
-            href={`/search/${component.handle}`}
+            href={`/wallpaper/${component.handle}`}
             className={
               'block select-none space-y-1 rounded-md bg-accent  p-3 leading-none no-underline opacity-80 outline-none transition-colors hover:text-accent-foreground hover:opacity-100 focus:bg-accent focus:text-accent-foreground'
             }

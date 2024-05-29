@@ -25,7 +25,7 @@ const PurchaseHistory = ({ customer }: { customer: Customer }) => {
           {' '}
           <div className="flex flex-col items-center gap-3 ">
             <h2 className="text-orange font-secondary text-2xl font-semibold"> No orders found</h2>{' '}
-            <Link href="/search">
+            <Link href="/wallpaper">
               {' '}
               <Button className=" font-secondary">Continue Shopping</Button>
             </Link>

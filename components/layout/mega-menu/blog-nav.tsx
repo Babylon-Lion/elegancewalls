@@ -46,7 +46,7 @@ const BlogNav = ({ blogs, mobile }: { blogs: Blog[]; mobile?: boolean }) => {
           <h3 className="text-md col-span-1 font-semibold ">How to</h3>
 
           {wallpaperStyles.slice(0, 4).map((component, index) => (
-            <Link href={`/search?color=${component.title.replace(' ', '-')}`} key={index}>
+            <Link href={`/wallpaper?color=${component.title.replace(' ', '-')}`} key={index}>
               <ListItem key={index} title={component.title} src={component.url}></ListItem>
             </Link>
           ))}
