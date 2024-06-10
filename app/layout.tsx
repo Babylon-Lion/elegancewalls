@@ -54,7 +54,7 @@ const roboto = Roboto({
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const client = createClient();
-
+  //@ts-ignore
   const announcment = (await client.getByType('announcment')).results;
 
   return (

@@ -1,7 +1,6 @@
 import { asText } from '@prismicio/client';
-import { AnnouncmentDocumentData } from 'prismicio-types';
 
-const Announcment = ({ data }: { data: AnnouncmentDocumentData }) => {
+const Announcment = ({ data }: { data: any }) => {
   if (!data?.announcment) return null;
   return (
     <div className="h-10 w-full bg-gold">

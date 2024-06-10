@@ -4,6 +4,37 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Content for announcment documents
+ */
+interface AnnouncmentDocumentData {
+  /**
+   * announcment field in *announcment*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: announcment.announcment
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  announcment: prismic.RichTextField;
+}
+
+/**
+ * announcment document from Prismic
+ *
+ * - **API ID**: `announcment`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AnnouncmentDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+  Simplify<AnnouncmentDocumentData>,
+  'announcment',
+  Lang
+>;
+
 type FooterDocumentDataSlicesSlice = FooterMenuSlice;
 
 /**
@@ -140,7 +171,7 @@ export type HomeDocument<Lang extends string = string> = prismic.PrismicDocument
   Lang
 >;
 
-export type AllDocumentTypes = FooterDocument | HomeDocument;
+export type AllDocumentTypes = AnnouncmentDocument | FooterDocument | HomeDocument;
 
 /**
  * Primary content in *DisplayOffers → Items*
@@ -632,6 +663,8 @@ declare module '@prismicio/client' {
 
   namespace Content {
     export type {
+      AnnouncmentDocument,
+      AnnouncmentDocumentData,
       FooterDocument,
       FooterDocumentData,
       FooterDocumentDataSlicesSlice,
