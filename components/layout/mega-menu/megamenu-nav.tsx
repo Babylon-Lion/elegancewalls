@@ -111,9 +111,13 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                   <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
                   {collections.slice(0, 4).map((component, index) => (
                     <Link
-                      href={`/wallpaper/${
-                        component.title === 'All' ? '' : component.title.toLowerCase()
-                      }`}
+                      href={
+                        component.title === 'All'
+                          ? '/wallpaper'
+                          : component.title === 'Acoustics'
+                          ? '/wallpaper/acoustics/acoustic-wallcovering'
+                          : component.title.toLowerCase()
+                      }
                       key={index}
                     >
                       <ListItem
@@ -134,28 +138,34 @@ const MegaMenuNav = ({ collections }: { collections: Collection[] }) => {
                 </div>
 
                 <div className="flex w-2/3  flex-col  gap-2  ">
-                  <h3 className="text-md col-span-1 font-semibold ">Most Popular</h3>
+                  <h3 className="text-md col-span-1 font-semibold ">Collections</h3>
                   <div className="flex w-full  gap-3">
                     {collectionChunks.map((chunk, index) => (
                       <div
                         key={index}
                         className="flex max-h-[400px] w-1/3 flex-col gap-2  overflow-hidden rounded-md bg-accent p-3 text-sm font-semibold"
                       >
-                        {chunk.map((collection, i) => (
-                          <Link
-                            key={i}
-                            href={collection.path}
-                            className="rounded-full p-1 px-2 hover:bg-slate-600 hover:text-white"
-                            onMouseOver={() =>
-                              collection?.image?.url
-                                ? setHoveredCollection(collection.image.url)
-                                : setHoveredCollection('')
-                            }
-                            onMouseLeave={() => setHoveredCollection('')}
-                          >
-                            {collection.title}
-                          </Link>
-                        ))}
+                        {chunk.map((collection, i) => {
+                          return (
+                            <Link
+                              key={i}
+                              href={
+                                collection.title === 'Acoustics'
+                                  ? '/wallpaper/acoustics/acoustic-wallcovering'
+                                  : collection.path
+                              }
+                              className="rounded-full p-1 px-2 hover:bg-slate-600 hover:text-white"
+                              onMouseOver={() =>
+                                collection?.image?.url
+                                  ? setHoveredCollection(collection.image.url)
+                                  : setHoveredCollection('')
+                              }
+                              onMouseLeave={() => setHoveredCollection('')}
+                            >
+                              {collection.title}
+                            </Link>
+                          );
+                        })}
                       </div>
                     ))}
                   </div>

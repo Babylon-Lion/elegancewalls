@@ -108,7 +108,11 @@ export default function CartModal() {
                       const merchandiseSearchParams = {} as MerchandiseSearchParams;
 
                       const merchandiseUrl = createUrl(
-                        `/product/${item?.merchandise?.product?.handle}`,
+                        `/wallpaper/${
+                          item.merchandise.product?.collections?.nodes?.length
+                            ? item.merchandise.product?.collections?.nodes[0]?.handle
+                            : 'default'
+                        }/${item?.merchandise?.product?.handle}`,
                         new URLSearchParams(merchandiseSearchParams)
                       );
 

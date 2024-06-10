@@ -1,16 +1,16 @@
 'use client';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import clsx from 'clsx';
+import Price from 'components/price';
+import { useAtom } from 'jotai/react';
+import { wishlistAtom } from 'lib/shopify/jotai';
 import { Product } from 'lib/shopify/types';
 import { Heart } from 'lucide-react';
 import Image from 'next/image';
-import { wishlistAtom } from 'lib/shopify/jotai';
-import { useAtom } from 'jotai/react';
-import Price from 'components/price';
 
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { X } from 'lucide-react';
 import Link from 'next/link';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 export default function WishList({ className }: { className?: string }) {
   const [wishlist, setWishlist] = useAtom(wishlistAtom);
@@ -18,7 +18,7 @@ export default function WishList({ className }: { className?: string }) {
   const displayWishListItems = wishlist.map((item: Product, index: number) => {
     return (
       <div key={index} className="flex gap-2">
-        <Link href={`/product/${item.handle}`}>
+        <Link href={`/wallpaper/${item.collections.nodes[0]?.handle}/${item.handle}`}>
           <div className="relative h-[80px] w-[80px]">
             <AspectRatio ratio={1 / 1}>
               <Image
@@ -30,7 +30,7 @@ export default function WishList({ className }: { className?: string }) {
             </AspectRatio>
           </div>
         </Link>
-        <Link href={`/product/${item.handle}`}>
+        <Link href={`/wallpaper/${item.collections.nodes[0]?.handle}/${item.handle}`}>
           <div className="flex flex-col gap-3">
             <p className="text-sm font-semibold"> {item.title}</p>
             <Price

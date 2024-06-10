@@ -29,7 +29,7 @@ const ProductCard = ({ product }: { product: Product }) => {
       </Link>
 
       <div className="flex justify-between">
-        <Link href={`/product/${product.handle}`}>
+        <Link href={`/wallpaper/${product.collections.nodes[0]?.handle}/${product.handle}`}>
           <div className="flex flex-col gap-1">
             <p className="font-semibold">
               {product.title.length > 40 ? product.title.slice(0, 40) + '...' : product.title}

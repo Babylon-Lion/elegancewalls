@@ -9,8 +9,9 @@ import ShopifyContext from 'components/shopify-context';
 import { ensureStartsWith } from 'lib/utils';
 import { Playfair_Display, Roboto } from 'next/font/google';
 import Script from 'next/script';
-import { repositoryName } from 'prismicio';
+import { createClient, repositoryName } from 'prismicio';
 import { ReactNode, Suspense } from 'react';
+
 import './globals.css';
 
 const { TWITTER_CREATOR, TWITTER_SITE, SITE_NAME } = process.env;
@@ -52,6 +53,10 @@ const roboto = Roboto({
 });
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
+  const client = createClient();
+
+  const announcment = (await client.getByType('announcment')).results;
+
   return (
     <html lang="en" className={`${playfair.variable} ${roboto.variable}`}>
       <body className=" bg-neutral-50 font-main text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
@@ -66,7 +71,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <NextAuthProvider>
           {' '}
           <ShopifyContext>
-            <Announcment />
+            <Announcment data={announcment[0]?.data} />
             <Navbar />
             <MegaMenu />
             <Suspense>
